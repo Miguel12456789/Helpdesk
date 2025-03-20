@@ -1,3 +1,4 @@
 <?php
-    echo "Hello, World!";
+
+ echo "composer require vlucas/phpdotenv";
 ?>
