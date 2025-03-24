@@ -1,4 +1,4 @@
-## Getting Started
+# Helpdesk
 
 First, run the development server:
 
@@ -8,3 +8,29 @@ node src/server.js
 
 Open [http://localhost:5000/](http://localhost:5000/) with your browser to see the result
 
+### Installation:
+
+Install Node in oficial website [https://nodejs.org/pt](https://nodejs.org/pt)
+
+Check the "Add to PATH" option if it appears
+
+After installation, open the terminal and type:
+
+```bash
+node -v
+node -v
+```
+
+Run project
+
+```bash
+npm install
+npm start
+npm install express
+```
+
+if it doesn't work try
+
+```bash
+npm init -y
+```
