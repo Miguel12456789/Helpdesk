@@ -25,8 +25,8 @@ Run project
 
 ```bash
 npm install
-npm start
 npm install express
+npm start
 ```
 
 if it doesn't work try
