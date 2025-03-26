@@ -1,19 +1,55 @@
 <!DOCTYPE html>
-<html lang="pt-pt">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Header</title>
+    <link rel="stylesheet" href="../../public/nav.css">
+    <title>Document</title>
 </head>
+
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact</a></li>
-            </ul>
+    <header class="header">
+        <div class="logo">
+            <img src="/images/logo.png" alt="Helpdesk Público">
+            <span>HELPDESK PÚBLICO</span>
+            <small>CONTRATAÇÃO PÚBLICA EFICIENTE</small>
+        </div>
+
+        <div class="search-box">
+            <input type="text" placeholder="Pesquisa">
+            <button><i class="fa fa-search"></i></button>
+        </div>
+
+        <nav class="menu">
+            <button class="menu-toggle">
+                <i class="fa fa-bars"></i> Menu
+            </button>
         </nav>
+
+        <div class="language-switch">
+            <span class="lang-en">EN</span> |
+            <span class="lang-pt active">PT</span>
+        </div>
     </header>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const langPT = document.querySelector(".lang-pt");
+            const langEN = document.querySelector(".lang-en");
+
+            langPT.addEventListener("click", () => {
+                langPT.classList.add("active");
+                langEN.classList.remove("active");
+            });
+
+            langEN.addEventListener("click", () => {
+                langEN.classList.add("active");
+                langPT.classList.remove("active");
+            });
+        }); 
+    </script>
+
 </body>
+
 </html>
