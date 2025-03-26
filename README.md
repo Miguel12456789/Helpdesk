@@ -16,7 +16,7 @@ Check the "Add to PATH" option if it appears
 
 #### First instalation: 
 
-After instal node, open the terminal and type:
+After installing node, open the terminal and type:
 
 ```bash
 node -v
