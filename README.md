@@ -18,7 +18,7 @@ After installation, open the terminal and type:
 
 ```bash
 node -v
-node -v
+npm -v
 ```
 
 Run project
