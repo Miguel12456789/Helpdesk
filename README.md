@@ -14,7 +14,9 @@ Install Node in oficial website [https://nodejs.org/pt](https://nodejs.org/pt)
 
 Check the "Add to PATH" option if it appears
 
-After installation, open the terminal and type:
+#### First instalation: 
+
+After installing node, open the terminal and type:
 
 ```bash
 node -v
@@ -25,8 +27,8 @@ Run project
 
 ```bash
 npm install
-npm start
 npm install express
+npm start
 ```
 
 if it doesn't work try
@@ -34,3 +36,4 @@ if it doesn't work try
 ```bash
 npm init -y
 ```
+
