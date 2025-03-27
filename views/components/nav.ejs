@@ -2,241 +2,236 @@
 <html lang="pt-pt">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/nav.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/nav.css">
+  <link rel="shortcut icon" href="/images/logo_icon.png"> <!-- Favicon -->
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" /> <!-- Icon Font -->
+  <title>Helpdesk</title>
 </head>
 
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <a href="/img/helpdesk_logo.jpg" class="logo" aria-label="Helpdesk Público Homepage">
-                    <div class="logo-image">
-                        <img src="/img/helpdesk_logo.jpg" alt="" aria-hidden="true">
-                    </div>
-                </a>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo-image">
+          <img src="/images/logo.png" class="logo" aria-label="Helpdesk Público Logo" aria-hidden="true">
+        </div>
 
-                <div class="search-container">
-                    <form class="search-form" role="search">
-                        <div class="search-box">
-                            <input type="search" placeholder="Pesquisa" aria-label="Pesquisar no site">
-                            <button type="submit" class="search-button" aria-label="Iniciar pesquisa">
-                                <i class="fas fa-search" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
 
-                <div class="nav-controls">
-                    <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="main-menu">
-                        <span>Menu</span>
-                        <i class="fas fa-bars" aria-hidden="true"></i>
-                    </button>
-
-                    <div class="language-switch" role="radiogroup" aria-label="Selecionar idioma">
-                        <button type="button" class="lang" id="lang-en" aria-pressed="false" role="radio">EN</button>
-                        <span class="separator" aria-hidden="true">|</span>
-                        <button type="button" class="lang active" id="lang-pt" aria-pressed="true" role="radio">PT</button>
-                    </div>
-                </div>
+        <div class="search-container">
+          <form class="search-form" role="search">
+            <div class="search-box">
+              <input type="search" placeholder="Pesquisa" aria-label="Pesquisar no site">
+              <button type="submit" class="search-button" aria-label="Iniciar pesquisa">
+                <i class="uil uil-search"></i>
+              </button>
             </div>
+          </form>
         </div>
-    </header>
 
-    <nav class="main-menu" id="main-menu" aria-label="Menu principal" hidden>
-        <div class="container">
-            <div class="menu-header">
-                <h2>Menu Principal</h2>
-                <button class="menu-close" aria-label="Fechar menu">
-                    <i class="fas fa-times" aria-hidden="true"></i>
-                </button>
-            </div>
-            <ul class="menu-list">
-                <li><a href="/">Início</a></li>
-                <li><a href="/sobre">Sobre Nós</a></li>
-                <li><a href="/servicos">Serviços</a></li>
-                <li><a href="/recursos">Recursos</a></li>
-                <li><a href="/contacto">Contacto</a></li>
-            </ul>
-        </div>
-    </nav>
+        <div class="nav-controls">
+          <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="main-menu">
+            <span>Menu</span>
+            <i class="uil uil-bars"></i>
+          </button>
 
-    <main class="content">
-        <div class="container">
-            <h1>Bem-vindo ao Helpdesk Público</h1>
-            <p>A sua plataforma de apoio à contratação pública eficiente.</p>
+          <div class="language-switch" role="radiogroup" aria-label="Selecionar idioma">
+            <button type="button" class="lang" id="lang-en" aria-pressed="false" role="radio">EN</button>
+            <span class="separator" aria-hidden="true">|</span>
+            <button type="button" class="lang active" id="lang-pt" aria-pressed="true" role="radio">PT</button>
+          </div>
         </div>
-    </main>
-    <script>
+      </div>
+    </div>
+  </header>
+
+  <nav class="main-menu" id="main-menu" aria-label="Menu principal" hidden>
+    <div class="container">
+      <div class="menu-header">
+        <h2>Menu Principal</h2>
+        <button class="menu-close" aria-label="Fechar menu">
+          <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+      </div>
+      <ul class="menu-list">
+        <li><a href="/">Início</a></li>
+        <li><a href="/sobre">Sobre Nós</a></li>
+        <li><a href="/servicos">Serviços</a></li>
+        <li><a href="/recursos">Recursos</a></li>
+        <li><a href="/contacto">Contacto</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <script>
     document.addEventListener("DOMContentLoaded", () => {
-        // DOM Elements
-        const menuToggle = document.querySelector(".menu-toggle")
-        const menuClose = document.querySelector(".menu-close")
-        const mainMenu = document.getElementById("main-menu")
-        const langEN = document.getElementById("lang-en")
-        const langPT = document.getElementById("lang-pt")
-      
-        // Toggle menu functionality
-        function toggleMenu() {
-          const isExpanded = menuToggle.getAttribute("aria-expanded") === "true"
-      
-          menuToggle.setAttribute("aria-expanded", !isExpanded)
-          mainMenu.hidden = isExpanded
-          mainMenu.classList.toggle("active", !isExpanded)
-      
-          // Prevent scrolling when menu is open
-          document.body.style.overflow = isExpanded ? "" : "hidden"
-      
-          // Focus trap for accessibility
-          if (!isExpanded) {
-            setTimeout(() => {
-              menuClose.focus()
-            }, 100)
-          }
+      // DOM Elements
+      const menuToggle = document.querySelector(".menu-toggle")
+      const menuClose = document.querySelector(".menu-close")
+      const mainMenu = document.getElementById("main-menu")
+      const langEN = document.getElementById("lang-en")
+      const langPT = document.getElementById("lang-pt")
+
+      // Toggle menu functionality
+      function toggleMenu() {
+        const isExpanded = menuToggle.getAttribute("aria-expanded") === "true"
+
+        menuToggle.setAttribute("aria-expanded", !isExpanded)
+        mainMenu.hidden = isExpanded
+        mainMenu.classList.toggle("active", !isExpanded)
+
+        // Prevent scrolling when menu is open
+        document.body.style.overflow = isExpanded ? "" : "hidden"
+
+        // Focus trap for accessibility
+        if (!isExpanded) {
+          setTimeout(() => {
+            menuClose.focus()
+          }, 100)
         }
-      
-        menuToggle.addEventListener("click", toggleMenu)
-        menuClose.addEventListener("click", toggleMenu)
-      
-        // Close menu on escape key
-        document.addEventListener("keydown", (event) => {
-          if (event.key === "Escape" && !mainMenu.hidden) {
-            toggleMenu()
-          }
-        })
-      
-        // Language switcher functionality
-        function setLanguage(lang) {
-          // Update active state and ARIA attributes
-          if (lang === "en") {
-            langEN.classList.add("active")
-            langPT.classList.remove("active")
-            langEN.setAttribute("aria-pressed", "true")
-            langPT.setAttribute("aria-pressed", "false")
-            document.documentElement.lang = "en"
-      
-            // Example of content that would change with language
-            updateUILanguage("en")
-          } else {
-            langPT.classList.add("active")
-            langEN.classList.remove("active")
-            langPT.setAttribute("aria-pressed", "true")
-            langEN.setAttribute("aria-pressed", "false")
-            document.documentElement.lang = "pt-PT"
-      
-            // Example of content that would change with language
-            updateUILanguage("pt")
-          }
-      
-          // Store language preference
-          localStorage.setItem("preferredLanguage", lang)
+      }
+
+      menuToggle.addEventListener("click", toggleMenu)
+      menuClose.addEventListener("click", toggleMenu)
+
+      // Close menu on escape key
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && !mainMenu.hidden) {
+          toggleMenu()
         }
-      
-        langEN.addEventListener("click", () => setLanguage("en"))
-        langPT.addEventListener("click", () => setLanguage("pt"))
-      
-        // Function to update UI text based on language
-        function updateUILanguage(lang) {
-          const translations = {
-            en: {
-              search: "Search",
-              menu: "Menu",
-              menuTitle: "Main Menu",
-              home: "Home",
-              about: "About Us",
-              services: "Services",
-              resources: "Resources",
-              contact: "Contact",
-              welcome: "Welcome to Helpdesk Público",
-              subtitle: "Your platform for efficient public contracting.",
-            },
-            pt: {
-              search: "Pesquisa",
-              menu: "Menu",
-              menuTitle: "Menu Principal",
-              home: "Início",
-              about: "Sobre Nós",
-              services: "Serviços",
-              resources: "Recursos",
-              contact: "Contacto",
-              welcome: "Bem-vindo ao Helpdesk Público",
-              subtitle: "A sua plataforma de apoio à contratação pública eficiente.",
-            },
-          }
-      
-          // Update search placeholder
-          document.querySelector(".search-box input").placeholder = translations[lang].search
-      
-          // Update menu button text
-          document.querySelector(".menu-toggle span").textContent = translations[lang].menu
-      
-          // Update menu title
-          document.querySelector(".menu-header h2").textContent = translations[lang].menuTitle
-      
-          // Update menu items
-          const menuItems = document.querySelectorAll(".menu-list a")
-          menuItems[0].textContent = translations[lang].home
-          menuItems[1].textContent = translations[lang].about
-          menuItems[2].textContent = translations[lang].services
-          menuItems[3].textContent = translations[lang].resources
-          menuItems[4].textContent = translations[lang].contact
-      
-          // Update main content
-          document.querySelector(".content h1").textContent = translations[lang].welcome
-          document.querySelector(".content p").textContent = translations[lang].subtitle
+      })
+
+      // Language switcher functionality
+      function setLanguage(lang) {
+        // Update active state and ARIA attributes
+        if (lang === "en") {
+          langEN.classList.add("active")
+          langPT.classList.remove("active")
+          langEN.setAttribute("aria-pressed", "true")
+          langPT.setAttribute("aria-pressed", "false")
+          document.documentElement.lang = "en"
+
+          // Example of content that would change with language
+          updateUILanguage("en")
+        } else {
+          langPT.classList.add("active")
+          langEN.classList.remove("active")
+          langPT.setAttribute("aria-pressed", "true")
+          langEN.setAttribute("aria-pressed", "false")
+          document.documentElement.lang = "pt-PT"
+
+          // Example of content that would change with language
+          updateUILanguage("pt")
         }
-      
-        // Check for saved language preference
-        const savedLanguage = localStorage.getItem("preferredLanguage")
-        if (savedLanguage) {
-          setLanguage(savedLanguage)
+
+        // Store language preference
+        localStorage.setItem("preferredLanguage", lang)
+      }
+
+      langEN.addEventListener("click", () => setLanguage("en"))
+      langPT.addEventListener("click", () => setLanguage("pt"))
+
+      // Function to update UI text based on language
+      function updateUILanguage(lang) {
+        const translations = {
+          en: {
+            search: "Search",
+            menu: "Menu",
+            menuTitle: "Main Menu",
+            home: "Home",
+            about: "About Us",
+            services: "Services",
+            resources: "Resources",
+            contact: "Contact",
+            welcome: "Welcome to Helpdesk Público",
+            subtitle: "Your platform for efficient public contracting.",
+          },
+          pt: {
+            search: "Pesquisa",
+            menu: "Menu",
+            menuTitle: "Menu Principal",
+            home: "Início",
+            about: "Sobre Nós",
+            services: "Serviços",
+            resources: "Recursos",
+            contact: "Contacto",
+            welcome: "Bem-vindo ao Helpdesk Público",
+            subtitle: "A sua plataforma de apoio à contratação pública eficiente.",
+          },
         }
-      
-        // Responsive search behavior
-        const searchForm = document.querySelector(".search-form")
-        searchForm.addEventListener("submit", (event) => {
-          event.preventDefault()
-          const searchTerm = document.querySelector(".search-box input").value.trim()
-          if (searchTerm) {
-            // Simulate search - in a real app, you would redirect to search results
-            alert(`Searching for: ${searchTerm}`)
-            // searchForm.submit(); // Uncomment in real implementation
-          }
-        })
-      
-        // Add smooth scroll for in-page links
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-          anchor.addEventListener("click", function (e) {
-            e.preventDefault()
-            const targetId = this.getAttribute("href")
-            if (targetId !== "#") {
-              const targetElement = document.querySelector(targetId)
-              if (targetElement) {
-                targetElement.scrollIntoView({
-                  behavior: "smooth",
-                })
-      
-                // Close menu if open
-                if (!mainMenu.hidden) {
-                  toggleMenu()
-                }
+
+        // Update search placeholder
+        document.querySelector(".search-box input").placeholder = translations[lang].search
+
+        // Update menu button text
+        document.querySelector(".menu-toggle span").textContent = translations[lang].menu
+
+        // Update menu title
+        document.querySelector(".menu-header h2").textContent = translations[lang].menuTitle
+
+        // Update menu items
+        const menuItems = document.querySelectorAll(".menu-list a")
+        menuItems[0].textContent = translations[lang].home
+        menuItems[1].textContent = translations[lang].about
+        menuItems[2].textContent = translations[lang].services
+        menuItems[3].textContent = translations[lang].resources
+        menuItems[4].textContent = translations[lang].contact
+
+        // Update main content
+        document.querySelector(".content h1").textContent = translations[lang].welcome
+        document.querySelector(".content p").textContent = translations[lang].subtitle
+      }
+
+      // Check for saved language preference
+      const savedLanguage = localStorage.getItem("preferredLanguage")
+      if (savedLanguage) {
+        setLanguage(savedLanguage)
+      }
+
+      // Responsive search behavior
+      const searchForm = document.querySelector(".search-form")
+      searchForm.addEventListener("submit", (event) => {
+        event.preventDefault()
+        const searchTerm = document.querySelector(".search-box input").value.trim()
+        if (searchTerm) {
+          // Simulate search - in a real app, you would redirect to search results
+          alert(`Searching for: ${searchTerm}`)
+          // searchForm.submit(); // Uncomment in real implementation
+        }
+      })
+
+      // Add smooth scroll for in-page links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault()
+          const targetId = this.getAttribute("href")
+          if (targetId !== "#") {
+            const targetElement = document.querySelector(targetId)
+            if (targetElement) {
+              targetElement.scrollIntoView({
+                behavior: "smooth",
+              })
+
+              // Close menu if open
+              if (!mainMenu.hidden) {
+                toggleMenu()
               }
             }
-          })
-        })
-      
-        // Handle window resize
-        window.addEventListener("resize", () => {
-          if (window.innerWidth > 768 && !mainMenu.hidden) {
-            // Close menu on larger screens if it was open
-            toggleMenu()
           }
         })
       })
-      
-</script>      
+
+      // Handle window resize
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 768 && !mainMenu.hidden) {
+          // Close menu on larger screens if it was open
+          toggleMenu()
+        }
+      })
+    })
+
+  </script>
 </body>
 
 </html>
