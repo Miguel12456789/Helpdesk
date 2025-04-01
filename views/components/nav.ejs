@@ -78,7 +78,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             const body = document.querySelector("body");
             const searchToggle = document.querySelector(".searchToggle");
-            const sidebarOpen = document.querySelector(".sidebarOpen");
+            const menuToggle = document.querySelector(".menu-toggle"); // Select the entire button container
             const closeBtn = document.querySelector(".close-btn");
             const sidebar = document.querySelector(".sidebar");
             const overlay = document.querySelector(".overlay");
@@ -88,8 +88,8 @@
                 searchToggle.classList.toggle("active");
             });
 
-            // Open sidebar
-            sidebarOpen.addEventListener("click", () => {
+            // Open sidebar - attach event to the entire button container
+            menuToggle.addEventListener("click", () => {
                 sidebar.classList.add("active");
                 overlay.classList.add("active");
                 body.style.overflow = "hidden"; // Prevent scrolling when sidebar is open

@@ -1,22 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/style.css">
+    <link rel="stylesheet" href="style.css">
     <title>Helpdesk Público</title>
 </head>
+
 <body>
     <!-- Inclui o ficheiro nav.ejs -->
     <%- include('components/nav') %>
 
+        <div class="container">
+            <div class="banner">
+                <p class="banner-text">
+                    Bem-vindo! O Helpdesk Público centraliza o apoio e informações sobre serviços públicos, facilitando
+                    a comunicação e resolução de questões relacionadas com a administração pública em Portugal.
+                </p>
+            </div>
 
-    <h1>Bem-vindo à página inicial</h1>
-    <p>Conteúdo da página inicial.</p>
+            <div class="search-container">
+                <div class="dropdown" id="contracts-dropdown">
+                    <div class="dropdown-select" id="dropdown-contracts">Contratos</div>
+                    <div class="dropdown-menu" id="contracts-menu">
+                        <div class="dropdown-item">Contratos Públicos</div>
+                        <div class="dropdown-item">Contratos Privados</div>
+                        <div class="dropdown-item">Contratos Internacionais</div>
+                        <div class="dropdown-item">Todos os Contratos</div>
+                    </div>
+                </div>
 
-    <%- include('components/footer') %> 
+                <input type="text" class="search-input" placeholder="Pesquisar pelo objeto do Contrato">
 
-    
+                <button class="search-button">Pesquisar</button>
 
+                <button class="advanced-search">Pesquisa Avanc.</button>
+            </div>
+        </div>
+        <%- include('components/footer') %>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    // Dropdown functionality
+                    const dropdownContainer = document.getElementById("contracts-dropdown")
+                    const dropdown = document.getElementById("dropdown-contracts")
+                    const dropdownMenu = document.getElementById("contracts-menu")
+                    const dropdownItems = document.querySelectorAll(".dropdown-item")
+
+                    // Toggle dropdown menu when clicking on the select
+                    dropdown.addEventListener("click", (e) => {
+                        e.stopPropagation()
+                        dropdownContainer.classList.toggle("active")
+                    })
+
+                    // Close dropdown when clicking outside
+                    document.addEventListener("click", () => {
+                        dropdownContainer.classList.remove("active")
+                    })
+
+                    // Prevent closing when clicking inside the dropdown menu
+                    dropdownMenu.addEventListener("click", (e) => {
+                        e.stopPropagation()
+                    })
+
+                    // Select dropdown item
+                    dropdownItems.forEach((item) => {
+                        item.addEventListener("click", function () {
+                            dropdown.textContent = this.textContent
+                            dropdownContainer.classList.remove("active")
+
+                            // You could trigger an action here based on selection
+                            console.log("Selected:", this.textContent)
+                        })
+                    })
+
+                    // Close dropdown when pressing Escape key
+                    document.addEventListener("keydown", (e) => {
+                        if (e.key === "Escape") {
+                            dropdownContainer.classList.remove("active")
+                        }
+                    })
+
+                    // Add focus/blur events for accessibility
+                    dropdown.addEventListener("keydown", (e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault()
+                            dropdownContainer.classList.toggle("active")
+                        }
+                    })
+
+                    // Make dropdown accessible via keyboard
+                    dropdown.setAttribute("tabindex", "0")
+                    dropdown.setAttribute("role", "button")
+                    dropdown.setAttribute("aria-haspopup", "true")
+                    dropdown.setAttribute("aria-expanded", "false")
+
+                    // Update ARIA attributes when dropdown state changes
+                    const observer = new MutationObserver((mutations) => {
+                        mutations.forEach((mutation) => {
+                            if (mutation.type === "attributes" && mutation.attributeName === "class") {
+                                const isExpanded = dropdownContainer.classList.contains("active")
+                                dropdown.setAttribute("aria-expanded", isExpanded ? "true" : "false")
+                            }
+                        })
+                    })
+
+                    observer.observe(dropdownContainer, { attributes: true })
+                })
+
+
+            </script>
 </body>
+
 </html>
