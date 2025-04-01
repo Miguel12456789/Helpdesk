@@ -63,21 +63,11 @@
                   <div class="footer-section social">
                     <h3>Social</h3>
                     <div class="social-icons">
-                      <% 
-                      // Default social links if not provided
-                      const links = typeof socialLinks !== 'undefined' ? socialLinks : {
-                        facebook: '#',
-                        instagram: '#',
-                        twitter: '#',
-                        youtube: '#',
-                        wordpress: '#'
-                      };
-                      %>
-                      <a href="<%= links.facebook %>" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                      <a href="<%= links.instagram %>" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                      <a href="<%= links.twitter %>" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                      <a href="<%= links.youtube %>" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                      <a href="<%= links.wordpress %>" aria-label="WordPress"><i class="fab fa-wordpress-simple"></i></a>
+                      <a href="https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2Fhelpdeskpublico%2F" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                      <a href="https://www.instagram.com/helpdeskpublico/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                      <a href="https://x.com/i/flow/login?redirect_after_login=%2Fhelpdeskpublico%2F" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                      <a href="https://www.youtube.com/channel/UC58J5GYpiDIefPgDEsNgGJw" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                      <a href="https://www.linkedin.com/company/helpdeskpublico/" aria-label="Linkedin"><i class="fab fa-linkedin"></i></a>
                     </div>
                   </div>
                 </div>
@@ -88,7 +78,7 @@
           
               <!-- Copyright Section -->
               <div class="copyright">
-                <p>&copy; <span id="current-year">2019</span> Lift Media | All Rights Reserved</p>
+                <p>&copy; <span id="current-year"></span> Helpdesk Público | Todos os Direitos Reservados</p>
               </div>
             </div>
           </footer>
