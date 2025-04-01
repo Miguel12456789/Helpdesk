@@ -12,32 +12,36 @@
     <!-- Inclui o ficheiro nav.ejs -->
     <%- include('components/nav') %>
 
-        <div class="container">
-            <div class="banner">
-                <p class="banner-text">
-                    Bem-vindo! O Helpdesk Público centraliza o apoio e informações sobre serviços públicos, facilitando
-                    a comunicação e resolução de questões relacionadas com a administração pública em Portugal.
-                </p>
-            </div>
-
-            <div class="search-container">
-                <div class="dropdown" id="contracts-dropdown">
-                    <div class="dropdown-select" id="dropdown-contracts">Contratos</div>
-                    <div class="dropdown-menu" id="contracts-menu">
-                        <div class="dropdown-item">Contratos Públicos</div>
-                        <div class="dropdown-item">Contratos Privados</div>
-                        <div class="dropdown-item">Contratos Internacionais</div>
-                        <div class="dropdown-item">Todos os Contratos</div>
-                    </div>
+        <div class="main-content">
+            <div class="container">
+                <div class="banner">
+                    <p class="banner-text">
+                        Bem-vindo! O Helpdesk Público centraliza o apoio e informações sobre serviços públicos,
+                        facilitando
+                        a comunicação e resolução de questões relacionadas com a administração pública em Portugal.
+                    </p>
                 </div>
 
-                <input type="text" class="search-input" placeholder="Pesquisar pelo objeto do Contrato">
+                <div class="search-container">
+                    <div class="dropdown" id="contracts-dropdown">
+                        <div class="dropdown-select" id="dropdown-contracts">Contratos</div>
+                        <div class="dropdown-menu" id="contracts-menu">
+                            <div class="dropdown-item">Contratos Públicos</div>
+                            <div class="dropdown-item">Contratos Privados</div>
+                            <div class="dropdown-item">Contratos Internacionais</div>
+                            <div class="dropdown-item">Todos os Contratos</div>
+                        </div>
+                    </div>
 
-                <button class="search-button">Pesquisar</button>
+                    <input type="text" class="search-input" placeholder="Pesquisar pelo objeto do Contrato">
 
-                <button class="advanced-search">Pesquisa Avanc.</button>
+                    <button class="search-button">Pesquisar</button>
+
+                    <button class="advanced-search">Pesquisa Avanc.</button>
+                </div>
             </div>
         </div>
+        
         <%- include('components/footer') %>
 
             <script>

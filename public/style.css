@@ -43,6 +43,8 @@
 body {
     background-color: var(--color-background);
     color: var(--color-text);
+    display: flex;
+    flex-direction: column;
 }
 
 /* Container centralizado */
@@ -201,6 +203,15 @@ body {
 
 .advanced-search:hover {
     background-color: var(--color-advanced-button-hover-bg);
+}
+
+
+.main-content {
+    flex: 1 0 auto;
+}
+
+.site-footer {
+    flex-shrink: 0;
 }
 
 /* Responsive styles */
