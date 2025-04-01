@@ -38,7 +38,7 @@
   
   /* Logo Icon Only - Enlarged */
   .logo-icon-only {
-    width: 300px; /* Larger size */
+    width: 180px; /* Larger size */
     height: auto;
     /* Optional: Add a slight drop shadow to enhance visibility */
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
