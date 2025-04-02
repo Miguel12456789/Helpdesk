@@ -12,36 +12,198 @@
     <!-- Inclui o ficheiro nav.ejs -->
     <%- include('components/nav') %>
 
-        <div class="main-content">
-            <div class="container">
-                <div class="banner">
-                    <p class="banner-text">
-                        Bem-vindo! O Helpdesk Público centraliza o apoio e informações sobre serviços públicos,
-                        facilitando
-                        a comunicação e resolução de questões relacionadas com a administração pública em Portugal.
-                    </p>
+        <div class="container">
+            <div class="banner">
+                <p class="banner-text">
+                    Bem-vindo! O Helpdesk Público centraliza o apoio e informações sobre serviços públicos, facilitando
+                    a comunicação e resolução de questões relacionadas com a administração pública em Portugal.
+                </p>
+            </div>
+
+            <div class="search-container">
+                <div class="dropdown" id="contracts-dropdown">
+                    <div class="dropdown-select" id="dropdown-contracts">
+                        <span class="dropdown-select-text">Contratos</span>
+                        <span class="dropdown-select-icon"></span>
+                    </div>
+                    <div class="dropdown-menu" id="contracts-menu">
+                        <div class="dropdown-item">Contratos Públicos</div>
+                        <div class="dropdown-item">Contratos Privados</div>
+                        <div class="dropdown-item">Contratos Internacionais</div>
+                        <div class="dropdown-item">Todos os Contratos</div>
+                    </div>
                 </div>
 
-                <div class="search-container">
-                    <div class="dropdown" id="contracts-dropdown">
-                        <div class="dropdown-select" id="dropdown-contracts">Contratos</div>
-                        <div class="dropdown-menu" id="contracts-menu">
-                            <div class="dropdown-item">Contratos Públicos</div>
-                            <div class="dropdown-item">Contratos Privados</div>
-                            <div class="dropdown-item">Contratos Internacionais</div>
-                            <div class="dropdown-item">Todos os Contratos</div>
+                <input type="text" class="search-input" placeholder="Pesquisar pelo objeto do Contrato">
+
+                <button class="search-button">Pesquisar</button>
+
+                <button class="advanced-search" id="advanced-search-btn">Pesquisa Avanc.</button>
+
+                <!-- Advanced Search Form -->
+                <div class="advanced-search-form" id="advanced-search-form">
+                    <div class="form-row">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="special-measures">
+                            <label for="special-measures">Medidas especiais</label>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="include-mec">
+                            <label for="include-mec">Incluir MEC ao abrigo do CCP</label>
+                        </div>
+
+                        <div class="form-column">
+                            <label class="form-label">Tipologia da medida especial</label>
+                            <select class="form-select">
+                                <option>Todos</option>
+                                <option>Opção 1</option>
+                                <option>Opção 2</option>
+                            </select>
                         </div>
                     </div>
 
-                    <input type="text" class="search-input" placeholder="Pesquisar pelo objeto do Contrato">
+                    <hr>
 
-                    <button class="search-button">Pesquisar</button>
+                    <div class="form-row">
+                        <div class="form-column">
+                            <label class="form-label">Tipo de Procedimento</label>
+                            <select class="form-select">
+                                <option>Todos</option>
+                                <option>Concurso Público</option>
+                                <option>Ajuste Direto</option>
+                                <option>Consulta Prévia</option>
+                            </select>
+                        </div>
 
-                    <button class="advanced-search">Pesquisa Avanc.</button>
+                        <div class="form-column">
+                            <label class="form-label">Entidade Adjudicante</label>
+                            <input type="text" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-column">
+                            <label class="form-label">Tipo de Contrato</label>
+                            <select class="form-select">
+                                <option>Todos</option>
+                                <option>Aquisição de Bens</option>
+                                <option>Aquisição de Serviços</option>
+                                <option>Empreitada de Obras Públicas</option>
+                            </select>
+                        </div>
+
+                        <div class="form-column">
+                            <label class="form-label">Entidade Adjudicatária</label>
+                            <input type="text" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-column">
+                            <label class="form-label">CPV</label>
+                            <input type="text" class="form-input">
+                        </div>
+
+                        <div class="form-column">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="environmental-criteria">
+                                <label for="environmental-criteria">Critérios ambientais</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-column">
+                            <label class="form-label">Datas</label>
+                            <select class="form-select">
+                                <option>Data do Contrato</option>
+                                <option>Data de Publicação</option>
+                                <option>Data de Celebração</option>
+                            </select>
+
+                            <div class="form-row" style="margin-top: 10px;">
+                                <div class="form-column">
+                                    <label class="form-label">De:</label>
+                                    <div class="date-group">
+                                        <select class="date-select">
+                                            <option>Ano:</option>
+                                            <option>2023</option>
+                                            <option>2022</option>
+                                            <option>2021</option>
+                                        </select>
+                                        <select class="date-select">
+                                            <option>Mês:</option>
+                                            <option>01</option>
+                                            <option>02</option>
+                                            <option>03</option>
+                                        </select>
+                                        <select class="date-select">
+                                            <option>Dia:</option>
+                                            <option>01</option>
+                                            <option>02</option>
+                                            <option>03</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-column">
+                                    <label class="form-label">Até:</label>
+                                    <div class="date-group">
+                                        <select class="date-select">
+                                            <option>Ano:</option>
+                                            <option>2023</option>
+                                            <option>2022</option>
+                                            <option>2021</option>
+                                        </select>
+                                        <select class="date-select">
+                                            <option>Mês:</option>
+                                            <option>01</option>
+                                            <option>02</option>
+                                            <option>03</option>
+                                        </select>
+                                        <select class="date-select">
+                                            <option>Dia:</option>
+                                            <option>01</option>
+                                            <option>02</option>
+                                            <option>03</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-column">
+                            <label class="form-label">Local de Execução (País, Distrito, Concelho)</label>
+                            <select class="form-select" style="margin-bottom: 10px;">
+                                <option>Todos</option>
+                                <option>Portugal</option>
+                                <option>Espanha</option>
+                            </select>
+
+                            <select class="form-select" style="margin-bottom: 10px;">
+                                <option>Todos</option>
+                                <option>Lisboa</option>
+                                <option>Porto</option>
+                                <option>Faro</option>
+                            </select>
+
+                            <select class="form-select">
+                                <option>Todos</option>
+                                <option>Lisboa</option>
+                                <option>Cascais</option>
+                                <option>Sintra</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button class="btn-clear">LIMPAR</button>
+                        <button class="btn-search">PESQUISAR</button>
+                    </div>
                 </div>
             </div>
         </div>
-        
         <%- include('components/footer') %>
 
             <script>
@@ -49,8 +211,54 @@
                     // Dropdown functionality
                     const dropdownContainer = document.getElementById("contracts-dropdown")
                     const dropdown = document.getElementById("dropdown-contracts")
+                    const dropdownText = dropdown.querySelector(".dropdown-select-text")
                     const dropdownMenu = document.getElementById("contracts-menu")
                     const dropdownItems = document.querySelectorAll(".dropdown-item")
+
+                    // Calculate the width needed for the largest text option and set dropdown width
+                    function calculateMaxWidth() {
+                        // Create a temporary span to measure text width
+                        const tempSpan = document.createElement("span")
+                        tempSpan.style.visibility = "hidden"
+                        tempSpan.style.position = "absolute"
+                        tempSpan.style.whiteSpace = "nowrap"
+                        tempSpan.style.font = window.getComputedStyle(dropdownText).font
+                        document.body.appendChild(tempSpan)
+
+                        // Find the widest text
+                        let maxWidth = 0
+                        tempSpan.textContent = dropdownText.textContent // Include current text
+                        maxWidth = Math.max(maxWidth, tempSpan.offsetWidth)
+
+                        dropdownItems.forEach((item) => {
+                            tempSpan.textContent = item.textContent
+                            maxWidth = Math.max(maxWidth, tempSpan.offsetWidth)
+                        })
+
+                        document.body.removeChild(tempSpan)
+
+                        // Add padding for arrow and spacing
+                        return maxWidth + 40 // 40px for arrow and padding
+                    }
+
+                    // Set dropdown width based on the largest text option (only for non-mobile)
+                    const maxWidth = calculateMaxWidth()
+                    if (window.innerWidth > 768) {
+                        dropdownContainer.style.width = maxWidth + "px"
+                    } else {
+                        // On mobile, let CSS handle the width (100%)
+                        dropdownContainer.style.width = ""
+                    }
+
+                    // Add resize listener to adjust width when window is resized
+                    window.addEventListener("resize", () => {
+                        if (window.innerWidth > 768) {
+                            dropdownContainer.style.width = maxWidth + "px"
+                        } else {
+                            // On mobile, let CSS handle the width (100%)
+                            dropdownContainer.style.width = ""
+                        }
+                    })
 
                     // Toggle dropdown menu when clicking on the select
                     dropdown.addEventListener("click", (e) => {
@@ -71,7 +279,7 @@
                     // Select dropdown item
                     dropdownItems.forEach((item) => {
                         item.addEventListener("click", function () {
-                            dropdown.textContent = this.textContent
+                            dropdownText.textContent = this.textContent
                             dropdownContainer.classList.remove("active")
 
                             // You could trigger an action here based on selection
@@ -111,6 +319,49 @@
                     })
 
                     observer.observe(dropdownContainer, { attributes: true })
+
+                    // Advanced Search Form functionality
+                    const advancedSearchBtn = document.getElementById("advanced-search-btn")
+                    const advancedSearchForm = document.getElementById("advanced-search-form")
+
+                    advancedSearchBtn.addEventListener("click", () => {
+                        advancedSearchForm.classList.toggle("visible")
+
+                        // Scroll to form if it's now visible
+                        if (advancedSearchForm.classList.contains("visible")) {
+                            setTimeout(() => {
+                                advancedSearchForm.scrollIntoView({ behavior: "smooth", block: "nearest" })
+                            }, 100)
+                        }
+                    })
+
+                    // Clear button functionality
+                    const clearBtn = document.querySelector(".btn-clear")
+                    clearBtn.addEventListener("click", () => {
+                        // Reset all form inputs
+                        const inputs = advancedSearchForm.querySelectorAll("input")
+                        const selects = advancedSearchForm.querySelectorAll("select")
+
+                        inputs.forEach((input) => {
+                            if (input.type === "checkbox") {
+                                input.checked = false
+                            } else {
+                                input.value = ""
+                            }
+                        })
+
+                        selects.forEach((select) => {
+                            select.selectedIndex = 0
+                        })
+                    })
+
+                    // Search button functionality
+                    const searchBtn = document.querySelector(".btn-search")
+                    searchBtn.addEventListener("click", () => {
+                        // Collect form data and submit
+                        console.log("Advanced search submitted")
+                        // Here you would typically collect all form data and submit it
+                    })
                 })
 
 
