@@ -1,0 +1,127 @@
+
+<link rel="stylesheet" href="contract_details.css" />
+<!-- Contract Details Form -->
+<div class="contract-details-container">
+    <div class="contract-header">
+      <div class="contract-title">
+        <h2>DETALHE CONTRATO</h2>
+      </div>
+      <div class="contract-actions">
+        <div class="action-buttons">
+          <button class="action-btn export-btn">EXPORTAR RESULTADOS</button>
+          <button class="action-btn email-btn">ENVIAR POR E-MAIL</button>
+          <button class="action-btn print-btn">IMPRIMIR</button>
+        </div>
+        <div class="last-update">
+          Última Atualização: <span id="update-date">14 fev. 2025</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="contract-data">
+      <div class="data-row light-row">
+        <div class="data-label">Data de Publicação:</div>
+        <div class="data-value">26-09-1756</div>
+      </div>
+      <div class="data-row">
+        <div class="data-label">Tipo de Contrato</div>
+        <div class="data-value">Aquisição de Serviços</div>
+      </div>
+      <div class="data-row light-row">
+        <div class="data-label">N° de acordo quadro</div>
+        <div class="data-value">Não Aplicável</div>
+      </div>
+      <div class="data-row">
+        <div class="data-label">Descrição de acordo quadro</div>
+        <div class="data-value">Não Aplicável</div>
+      </div>
+      <div class="data-row light-row">
+        <div class="data-label">Tipologia da medida especial</div>
+        <div class="data-value">-</div>
+      </div>
+    </div>
+  </div>
+  
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Format the current date in the required format (day month year)
+  function formatDate(date) {
+    const months = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"]
+    const day = date.getDate()
+    const month = months[date.getMonth()]
+    const year = date.getFullYear()
+
+    return `${day} ${month}. ${year}`
+  }
+
+  // Set the current date as the update date (uncomment to use current date)
+  // const updateDateElement = document.getElementById('update-date');
+  // if (updateDateElement) {
+  //   updateDateElement.textContent = formatDate(new Date());
+  // }
+
+  // Export results functionality
+  const exportBtn = document.querySelector(".export-btn")
+  if (exportBtn) {
+    exportBtn.addEventListener("click", () => {
+      alert("Exportando resultados...")
+      // Implement your export logic here
+    })
+  }
+
+  // Email functionality
+  const emailBtn = document.querySelector(".email-btn")
+  if (emailBtn) {
+    emailBtn.addEventListener("click", () => {
+      alert("Preparando envio por e-mail...")
+      // Implement your email logic here
+    })
+  }
+
+  // Print functionality
+  const printBtn = document.querySelector(".print-btn")
+  if (printBtn) {
+    printBtn.addEventListener("click", () => {
+      window.print()
+    })
+  }
+})
+
+// This file shows how to integrate the contract details component into your existing page
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Assuming you have a search form with id "search-form"
+  const searchForm = document.getElementById("search-form")
+
+  if (searchForm) {
+    // Load the contract details component after the search form
+    fetch("/path-to-your-ejs-template/contract-details.ejs")
+      .then((response) => response.text())
+      .then((html) => {
+        // Create a container for the contract details
+        const contractContainer = document.createElement("div")
+        contractContainer.innerHTML = html
+
+        // Insert the contract details after the search form
+        searchForm.parentNode.insertBefore(contractContainer, searchForm.nextSibling)
+
+        // Load and apply the CSS
+        const contractStyles = document.createElement("link")
+        contractStyles.rel = "stylesheet"
+        contractStyles.href = "/path-to-your-css/contract-details.css"
+        document.head.appendChild(contractStyles)
+
+        // Load and apply the JavaScript
+        const contractScript = document.createElement("script")
+        contractScript.src = "/path-to-your-js/contract-details.js"
+        document.body.appendChild(contractScript)
+      })
+      .catch((error) => {
+        console.error("Error loading contract details component:", error)
+      })
+  }
+})
+
+
+
+</script>  
