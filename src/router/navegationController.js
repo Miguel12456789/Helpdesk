@@ -8,4 +8,4 @@ const renderPage = (page) => (req, res) => {
 
 const home = renderPage("home");
 
-module.exports = { home, contract_details };
+module.exports = { home };
