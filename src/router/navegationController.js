@@ -7,5 +7,6 @@ const renderPage = (page) => (req, res) => {
 };
 
 const home = renderPage("home");
+const base_gov = renderPage("base_gov")
 
-module.exports = { home };
+module.exports = { home, base_gov };
