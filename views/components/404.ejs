@@ -1,11 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-PT">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <title>Helpdesk Público</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="404.css">
+
 <body>
-    <h1>TESTE</h1>
+    <!-- Inclui o ficheiro nav.ejs -->
+    <%- include('nav') %>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <div class="error-container">
+                <div class="error-content">
+                    <div class="error-code">404</div>
+                    <h2 class="error-title">Oops! Página não encontrada</h2>
+                    <p class="error-message">
+                        A página que você está procurando não existe ou foi movida.
+                        Por favor, verifique o URL ou use a pesquisa abaixo.
+                    </p>
+
+                    <!-- Navigation Options -->
+                    <div class="nav-buttons">
+                        <a href="/" class="btn btn-primary">Voltar à Página Inicial</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+    <%- include('footer') %>
 </body>
+
 </html>

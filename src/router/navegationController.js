@@ -7,6 +7,6 @@ const renderPage = (page) => (req, res) => {
 };
 
 const home = renderPage("home");
-const contratos = renderPage("contratos");
+const contract_details = renderPage("contract_details");
 
-module.exports = { home, contratos };
+module.exports = { home, contract_details };
