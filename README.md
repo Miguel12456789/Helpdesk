@@ -36,4 +36,3 @@ if it doesn't work try
 ```bash
 npm init -y
 ```
-
