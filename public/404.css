@@ -1,0 +1,139 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 5rem auto 6rem;
+    padding: 0 2rem;
+}
+
+
+/* Main Content Styles */
+.main {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.error-container {
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    width: 100%;
+}
+
+.error-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.error-code {
+    font-size: 6rem;
+    font-weight: 700;
+    color: #4b7a3e;
+    margin-bottom: 1rem;
+}
+
+.error-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.error-message {
+    color: #666;
+    max-width: 28rem;
+    margin: 0 auto 2rem;
+}
+
+/* Navigation Styles */
+.nav-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.btn-primary {
+    background-color: #4b7a3e;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #3d6433;
+}
+
+.btn-outline {
+    background-color: transparent;
+    border-color: #4b7a3e;
+    color: #4b7a3e;
+}
+
+.btn-outline:hover {
+    background-color: #f0f7ee;
+    color: #3d6433;
+}
+
+.btn-dark {
+    background-color: #222;
+    color: white;
+}
+
+.btn-dark:hover {
+    background-color: #000;
+}
+
+.btn-ghost {
+    background-color: transparent;
+    color: #666;
+}
+
+.btn-ghost:hover {
+    color: #4b7a3e;
+}
+
+
+/* Responsive Styles */
+@media (min-width: 768px) {
+    .header-title {
+        text-align: left;
+    }
+
+    .nav-buttons {
+        flex-direction: row;
+    }
+
+}
