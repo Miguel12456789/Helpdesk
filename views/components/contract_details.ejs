@@ -1,127 +1,161 @@
 
 <link rel="stylesheet" href="contract_details.css" />
 <!-- Contract Details Form -->
-<div class="contract-details-container">
-    <div class="contract-header">
-      <div class="contract-title">
-        <h2>DETALHE CONTRATO</h2>
-      </div>
-      <div class="contract-actions">
+  <!-- Contract Details Section -->
+  <div class="details-section">
+    <div class="details-header">
+      <h2 class="details-title">DETALHE CONTRATO</h2>
+      
+      <div class="details-actions">
         <div class="action-buttons">
-          <button class="action-btn export-btn">EXPORTAR RESULTADOS</button>
-          <button class="action-btn email-btn">ENVIAR POR E-MAIL</button>
-          <button class="action-btn print-btn">IMPRIMIR</button>
+          <button class="action-button export-button">EXPORTAR RESULTADOS</button>
+          <button class="action-button email-button">ENVIAR POR E-MAIL</button>
+          <button class="action-button print-button">IMPRIMIR</button>
         </div>
-        <div class="last-update">
-          Última Atualização: <span id="update-date">14 fev. 2025</span>
-        </div>
+        <div class="last-update">Última Atualização: <span id="update-date">14 fev. 2025</span></div>
       </div>
     </div>
-  
-    <div class="contract-data">
-      <div class="data-row light-row">
-        <div class="data-label">Data de Publicação:</div>
-        <div class="data-value">26-09-1756</div>
+    
+    <div class="details-table">
+      <div class="table-row light-row">
+        <div class="table-cell label-cell">Data de Publicação:</div>
+        <div class="table-cell value-cell">26-09-1756</div>
       </div>
-      <div class="data-row">
-        <div class="data-label">Tipo de Contrato</div>
-        <div class="data-value">Aquisição de Serviços</div>
+      
+      <div class="table-row">
+        <div class="table-cell label-cell">Tipo de Contrato</div>
+        <div class="table-cell value-cell">Aquisição de Serviços</div>
       </div>
-      <div class="data-row light-row">
-        <div class="data-label">N° de acordo quadro</div>
-        <div class="data-value">Não Aplicável</div>
+      
+      <div class="table-row light-row">
+        <div class="table-cell label-cell">N° de acordo quadro</div>
+        <div class="table-cell value-cell">Não Aplicável</div>
       </div>
-      <div class="data-row">
-        <div class="data-label">Descrição de acordo quadro</div>
-        <div class="data-value">Não Aplicável</div>
+      
+      <div class="table-row">
+        <div class="table-cell label-cell">Descrição de acordo quadro</div>
+        <div class="table-cell value-cell">Não Aplicável</div>
       </div>
-      <div class="data-row light-row">
-        <div class="data-label">Tipologia da medida especial</div>
-        <div class="data-value">-</div>
+      
+      <div class="table-row light-row">
+        <div class="table-cell label-cell">Tipologia da medida especial</div>
+        <div class="table-cell value-cell">-</div>
       </div>
     </div>
   </div>
+</div>
   
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  // Format the current date in the required format (day month year)
-  function formatDate(date) {
-    const months = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"]
-    const day = date.getDate()
-    const month = months[date.getMonth()]
-    const year = date.getFullYear()
+  // Dropdown functionality
+  const dropdownButton = document.querySelector(".dropdown-button")
+  const dropdownContent = document.querySelector(".dropdown-content")
 
-    return `${day} ${month}. ${year}`
+  if (dropdownButton && dropdownContent) {
+    // Toggle dropdown on click (for mobile)
+    dropdownButton.addEventListener("click", (e) => {
+      e.stopPropagation()
+      dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block"
+    })
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", () => {
+      dropdownContent.style.display = "none"
+    })
+
+    // Handle dropdown item selection
+    const dropdownItems = dropdownContent.querySelectorAll("a")
+    dropdownItems.forEach((item) => {
+      item.addEventListener("click", function (e) {
+        e.preventDefault()
+        dropdownButton.textContent = this.textContent
+        dropdownButton.appendChild(document.createElement("span")).className = "dropdown-icon"
+        dropdownButton.querySelector(".dropdown-icon").textContent = "▼"
+        dropdownContent.style.display = "none"
+      })
+    })
   }
 
-  // Set the current date as the update date (uncomment to use current date)
-  // const updateDateElement = document.getElementById('update-date');
-  // if (updateDateElement) {
-  //   updateDateElement.textContent = formatDate(new Date());
-  // }
+  // Search functionality
+  const searchForm = document.querySelector(".search-form")
+  const searchInput = document.querySelector(".search-input")
+  const searchButton = document.querySelector(".search-button")
 
-  // Export results functionality
-  const exportBtn = document.querySelector(".export-btn")
-  if (exportBtn) {
-    exportBtn.addEventListener("click", () => {
+  if (searchForm && searchInput && searchButton) {
+    searchButton.addEventListener("click", () => {
+      performSearch()
+    })
+
+    searchInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault()
+        performSearch()
+      }
+    })
+
+    function performSearch() {
+      const searchTerm = searchInput.value.trim()
+      if (searchTerm) {
+        // In a real application, you would send this to your server
+        console.log("Searching for:", searchTerm)
+        alert(`Pesquisando por: ${searchTerm}`)
+
+        // Simulate loading contract details
+        // In a real app, this would be replaced with an AJAX call
+        setTimeout(() => {
+          document.querySelector(".details-section").style.display = "block"
+        }, 500)
+      } else {
+        alert("Por favor, insira um termo de pesquisa.")
+      }
+    }
+  }
+
+  // Advanced search button
+  const advancedSearchButton = document.querySelector(".advanced-search-button")
+  if (advancedSearchButton) {
+    advancedSearchButton.addEventListener("click", () => {
+      alert("Abrindo pesquisa avançada...")
+      // In a real app, this would open an advanced search form or modal
+    })
+  }
+
+  // Action buttons functionality
+  const exportButton = document.querySelector(".export-button")
+  const emailButton = document.querySelector(".email-button")
+  const printButton = document.querySelector(".print-button")
+
+  if (exportButton) {
+    exportButton.addEventListener("click", () => {
       alert("Exportando resultados...")
-      // Implement your export logic here
+      // In a real app, this would trigger a download
     })
   }
 
-  // Email functionality
-  const emailBtn = document.querySelector(".email-btn")
-  if (emailBtn) {
-    emailBtn.addEventListener("click", () => {
+  if (emailButton) {
+    emailButton.addEventListener("click", () => {
       alert("Preparando envio por e-mail...")
-      // Implement your email logic here
+      // In a real app, this would open an email form
     })
   }
 
-  // Print functionality
-  const printBtn = document.querySelector(".print-btn")
-  if (printBtn) {
-    printBtn.addEventListener("click", () => {
+  if (printButton) {
+    printButton.addEventListener("click", () => {
       window.print()
     })
   }
-})
 
-// This file shows how to integrate the contract details component into your existing page
-
-document.addEventListener("DOMContentLoaded", () => {
-  // Assuming you have a search form with id "search-form"
-  const searchForm = document.getElementById("search-form")
-
-  if (searchForm) {
-    // Load the contract details component after the search form
-    fetch("/path-to-your-ejs-template/contract-details.ejs")
-      .then((response) => response.text())
-      .then((html) => {
-        // Create a container for the contract details
-        const contractContainer = document.createElement("div")
-        contractContainer.innerHTML = html
-
-        // Insert the contract details after the search form
-        searchForm.parentNode.insertBefore(contractContainer, searchForm.nextSibling)
-
-        // Load and apply the CSS
-        const contractStyles = document.createElement("link")
-        contractStyles.rel = "stylesheet"
-        contractStyles.href = "/path-to-your-css/contract-details.css"
-        document.head.appendChild(contractStyles)
-
-        // Load and apply the JavaScript
-        const contractScript = document.createElement("script")
-        contractScript.src = "/path-to-your-js/contract-details.js"
-        document.body.appendChild(contractScript)
-      })
-      .catch((error) => {
-        console.error("Error loading contract details component:", error)
-      })
+  // Form validation
+  function validateForm() {
+    const searchTerm = searchInput.value.trim()
+    if (!searchTerm) {
+      return false
+    }
+    return true
   }
+
+  // Initialize the page - hide details section until search is performed
+  // Uncomment this line if you want to hide the details initially
+  // document.querySelector('.details-section').style.display = 'none';
 })
 
-
-
-</script>  
