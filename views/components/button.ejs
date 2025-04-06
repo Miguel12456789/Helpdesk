@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button</title>
+    <link rel="stylesheet" href="/button.css">
+</head>
+<body>
+    <div class="back-button-container">
+        <button id="backButton" class="back-button" aria-label="Back to main page">
+            <svg class="back-button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5"></path>
+                <path d="M12 19l-7-7 7-7"></path>
+            </svg>
+            Back to Main Page
+        </button>
+    </div>
+
+    <script>
+        
+        // Get the back button element
+        const backButton = document.getElementById('backButton');
+
+        // Add click event listener to navigate back to main page
+        backButton.addEventListener('click', function(e) {
+            // Create ripple effect
+            createRipple(e);
+            
+            // Navigate to the main page (root directory)
+            // Small timeout to allow the ripple animation to be visible
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 300);
+        });
+
+        // Function to create ripple effect
+        function createRipple(event) {
+            const button = event.currentTarget;
+            
+            // Remove any existing ripple elements
+            const ripple = button.querySelector('.ripple');
+            if (ripple) {
+                ripple.remove();
+            }
+            
+            // Create new ripple element
+            const circle = document.createElement('span');
+            const diameter = Math.max(button.clientWidth, button.clientHeight);
+            const radius = diameter / 2;
+            
+            // Position the ripple based on click coordinates
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+            circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+            circle.classList.add('ripple');
+            
+            // Add the ripple to the button
+            button.appendChild(circle);
+            
+            // Remove the ripple after animation completes
+            setTimeout(() => {
+                circle.remove();
+            }, 600);
+        }
+
+        // Optional: Add keyboard navigation support
+        document.addEventListener('keydown', function(e) {
+            // Navigate home when Home key is pressed
+            if (e.key === 'Home') {
+                window.location.href = '/';
+            }
+        });
+    </script>
+</body>
+</html>
