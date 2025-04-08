@@ -3,6 +3,7 @@
 /* Services Section */
 .services-section {
   margin: 0 auto; /* Centraliza horizontalmente */
+  margin-top: 3rem;
   margin-bottom: 3rem;
   max-width: 1200px; /* Define uma largura máxima */
   padding-left: 2rem; /* Ajuste para alinhar com a navbar */

@@ -286,7 +286,8 @@
                     </div>
                 </div>
             </div>
-            <%- include('components/button') %>
+            <%- include('components/tabela') %>
+                <%- include('components/button') %>
 
 
         </main>
@@ -425,6 +426,21 @@
                             const isExpanded = dropdownContainer.classList.contains('active');
                             dropdownButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
                         }
+                    });
+                });
+
+                document.addEventListener('DOMContentLoaded', function () {
+                    const searchButtons = document.querySelectorAll('.search-button, .submit-button'); // Seleciona ambos os botões
+                    const resultsTable = document.getElementById('results-table');
+
+                    searchButtons.forEach(button => {
+                        button.addEventListener('click', function () {
+                            // Exibe a tabela
+                            resultsTable.style.display = 'block';
+
+                            // Opcional: Role até a tabela
+                            resultsTable.scrollIntoView({ behavior: 'smooth' });
+                        });
                     });
                 });
             </script>
