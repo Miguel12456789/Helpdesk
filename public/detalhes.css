@@ -125,13 +125,9 @@ body {
     background-color: white;
     border-radius: 4px;
     overflow: hidden;
-    box-shadow: var(--shadow-sm);
-    transition: box-shadow var(--transition-speed) ease;
+    
 }
 
-.info-card:hover {
-    box-shadow: var(--shadow-md);
-}
 
 /* Information Table */
 .info-table-container {
@@ -163,7 +159,6 @@ body {
     font-weight: 500;
     color: var(--text-color);
     vertical-align: top;
-    border-right: 1px solid var(--border-color);
 }
 
 .info-table td {
