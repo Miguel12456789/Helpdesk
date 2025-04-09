@@ -6,8 +6,8 @@
   margin-top: 3rem;
   margin-bottom: 3rem;
   max-width: 1200px; /* Define uma largura máxima */
-  padding-left: 2rem; /* Ajuste para alinhar com a navbar */
-  padding-right: 2rem; /* Ajuste para alinhar com a navbar */
+  padding-left: 30px; /* Match navbar padding */
+  padding-right: 30px; /* Match navbar padding */
 }
 
 .services-row {
@@ -15,7 +15,8 @@
   gap: 2rem;
   margin-bottom: 2rem;
   justify-content: center; /* Garante que os cartões fiquem centralizados */
-  width: 1200px;
+  width: 100%; /* Changed from fixed width to 100% */
+  max-width: 100%; /* Ensure it doesn't overflow */
 }
 
 .top-row {
@@ -24,7 +25,7 @@
 
 .bottom-row {
   justify-content: center;
-  gap: 4rem; /* Larger gap between the two bottom cards */
+  gap: 2rem; /* Changed from 4rem to 2rem to match top row */
 }
 
 .top-row .service-card {
@@ -119,6 +120,18 @@
   margin-left: 0.5rem;
 }
 
+/* Container class to match navbar width */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
 /* Responsive Styles */
 @media (max-width: 1024px) {
   .services-row {
@@ -139,6 +152,11 @@
 @media (max-width: 768px) {
   .service-card {
     padding: 1.5rem;
+  }
+  
+  .services-section {
+    padding-left: 20px; /* Smaller padding on mobile */
+    padding-right: 20px; /* Smaller padding on mobile */
   }
 }
 
