@@ -254,12 +254,13 @@
             </div>
         </main>
         <%- include('components/tabela') %>
+        <%- include('components/detalhes') %>
             <%- include('components/button') %>
                 <%- include('components/footer') %>
 
                     <script>
                         document.addEventListener('DOMContentLoaded', function () {
-
+                            
                             // === Função para preencher anos, meses e dias dinamicamente ===
                             function populateDateSelectors(yearId, monthId, dayId) {
                                 const yearSelect = document.getElementById(yearId);
@@ -467,6 +468,9 @@
                                 });
                             });
                         });
+
+
+
                     </script>
 </body>
 
