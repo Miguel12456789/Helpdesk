@@ -1,27 +1,172 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <!-- Include Lucide icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <title>Helpdesk Público</title>
+    <title>Detalhe Contrato - Helpdesk</title>
+    <link rel="stylesheet" href="detalhe.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap">
 </head>
-
 <body>
-    <!-- Inclui o ficheiro nav.ejs -->
-    <%- include('components/nav') %>
+    <div class="container">
+        <main class="content-container">
+            <div class="page-header">
+                <div class="title-section">
+                    <h1 class="main-title">DETALHE</h1>
+                    <h2 class="subtitle">Contrato</h2>
+                </div>
+                <div class="action-buttons">
+                    <button id="printButton" class="print-button" aria-label="Imprimir detalhe do contrato">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="print-icon">
+                            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                            <rect x="6" y="14" width="12" height="8"></rect>
+                        </svg>
+                        IMPRIMIR DETALHE
+                    </button>
+                </div>
+            </div>
 
-        <%- include('components/button') %>
+            <section class="detail-section">
+                <h3 class="section-title">Informação detalhada</h3>
+                
+                <div class="info-card">
+                    <div class="info-table-container">
+                        <table class="info-table">
+                            <tbody>
+                                <tr>
+                                    <th>Data da publicação</th>
+                                    <td>0 contrato.dataPublicacao %></td>
+                                </tr>
+                                <tr>
+                                    <th>Tipos de contrato</th>
+                                    <td>0 contrato.tipoContrato %></td>
+                                </tr>
+                                <tr>
+                                    <th>N° do acordo quadro</th>
+                                    <td>0 contrato.numeroAcordoQuadro %></td>
+                                </tr>
+                                <tr>
+                                    <th>Descrição do acordo quadro</th>
+                                    <td>0 contrato.descricaoAcordoQuadro %></td>
+                                </tr>
+                                <tr>
+                                    <th>Tipologia da medida especial</th>
+                                    <td>0 contrato.tipologiaMedidaEspecial || '-' %></td>
+                                </tr>
+                                <tr>
+                                    <th>Tipo de procedimento</th>
+                                    <td><span class="procedure-tag">0 contrato.tipoProcedimento %></span></td>
+                                </tr>
+                                <tr>
+                                    <th>Descrição</th>
+                                    <td>0 contrato.descricao %></td>
+                                </tr>
+                                <tr>
+                                    <th>Fundamentação</th>
+                                    <td>0 contrato.fundamentacao %></td>
+                                </tr>
+                                <tr>
+                                    <th>Fundamentação para recurso ao ajuste direto</th>
+                                    <td>0 contrato.fundamentacaoAjusteDireto || 'Não aplicável.' %></td>
+                                </tr>
+                                <tr>
+                                    <th>Objeto do contrato</th>
+                                    <td>0 contrato.objeto %></td>
+                                </tr>
+                                <tr>
+                                    <th>Adjudicante</th>
+                                    <td>0 contrato.adjudicante %></td>
+                                </tr>
+                                <tr>
+                                    <th>Adjudicatário</th>
+                                    <td>0 contrato.adjudicatario %></td>
+                                </tr>
+                                <tr>
+                                    <th>Preço contratual</th>
+                                    <td class="price-value">0 contrato.preco.toLocaleString('pt-PT') %> €</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
-
-            <%- include('components/footer') %>
-
-                <script>
-
-                </script>
+                <div class="actions-footer">
+                    <a href="/contratos" class="back-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="back-icon">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                        Voltar à pesquisa
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script>document.addEventListener('DOMContentLoaded', function() {
+        // Print functionality
+        const printButton = document.getElementById('printButton');
+        if (printButton) {
+            printButton.addEventListener('click', function() {
+                window.print();
+            });
+        }
+        
+        // Add hover effect to table rows
+        const tableRows = document.querySelectorAll('.info-table tr');
+        tableRows.forEach(row => {
+            row.addEventListener('mouseenter', function() {
+                this.style.transition = 'background-color 0.2s ease';
+            });
+        });
+        
+        // Add smooth scrolling for back button
+        const backButton = document.querySelector('.back-button');
+        if (backButton) {
+            backButton.addEventListener('click', function(e) {
+                // Only apply if navigating within the same site
+                const href = this.getAttribute('href');
+                if (href.startsWith('/') || href.startsWith('#')) {
+                    e.preventDefault();
+                    
+                    // Add a subtle fade-out effect
+                    document.querySelector('.content-container').style.opacity = '0.8';
+                    document.querySelector('.content-container').style.transform = 'translateY(10px)';
+                    document.querySelector('.content-container').style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                    
+                    // Navigate after the animation
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 300);
+                }
+            });
+        }
+        
+        // Add focus styles for accessibility
+        const focusableElements = document.querySelectorAll('button, a');
+        focusableElements.forEach(element => {
+            element.addEventListener('focus', function() {
+                this.style.outline = '2px solid rgba(0, 102, 161, 0.5)';
+                this.style.outlineOffset = '2px';
+            });
+            
+            element.addEventListener('blur', function() {
+                this.style.outline = 'none';
+            });
+        });
+        
+        // Optimize animations for users who prefer reduced motion
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.style.setProperty('--transition-speed', '0s');
+            
+            // Remove animations
+            const animatedElements = document.querySelectorAll('.content-container, .info-table tr');
+            animatedElements.forEach(element => {
+                element.style.animation = 'none';
+                element.style.opacity = '1';
+                element.style.transform = 'none';
+            });
+        }
+    });</script>
 </body>
-
 </html>
