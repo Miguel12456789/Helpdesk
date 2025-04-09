@@ -8,7 +8,7 @@ router.get("/estatisticas_setor_publico", navegationController.estatisticas_seto
 router.get("/estatisticas_operadores_economicos", navegationController.estatisticas_operadores_economicos);
 router.get("/oportunidade_contratacao_publica", navegationController.oportunidade_contratacao_publica);
 router.get("/outros", navegationController.outros);
-
+router.get("/detalhe", navegationController.detalhe);
 
 
 module.exports = router;
