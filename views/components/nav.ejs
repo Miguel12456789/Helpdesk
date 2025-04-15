@@ -12,7 +12,6 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
-
 <body>
     <nav>
         <div class="nav-bar">
@@ -23,14 +22,16 @@
 
             <!-- Logo -->
             <div class="logo-image">
-                <img src="/images/logo.png" class="logo" aria-label="Helpdesk Público Logo" aria-hidden="true">
+                <a href="/">
+                    <img src="/images/logo.png" class="logo" aria-label="Helpdesk Público Logo" aria-hidden="true">
+                </a>
             </div>
 
             <!-- Search Box and Language Switcher -->
             <div class="darkLight-searchBox">
                 <div class="searchBox">
                     <div class="nav-icon-container searchToggle">
-                        <i class='bx bx-x cancel'></i>
+                        <!-- X icon removed, only search icon remains -->
                         <i class='bx bx-search search'></i>
                     </div>
                     <div class="search-field">
@@ -57,17 +58,20 @@
     <div class="sidebar">
         <div class="sidebar-header">
             <div class="logo-image">
-                <img src="/images/logo.png" class="logo" aria-label="Helpdesk Público Logo" aria-hidden="true">
+                <a href="/">
+                    <img src="/images/logo.png" class="logo" aria-label="Helpdesk Público Logo" aria-hidden="true">
+                </a>
             </div>
             <button class="close-btn">
                 <i class='bx bx-x'></i>
             </button>
         </div>
         <ul class="nav-links">
-            <li><a href="#"><span>Menu 1</span></a></li>
-            <li><a href="#"><span>Menu 2</span></a></li>
-            <li><a href="#"><span>Menu 3</span></a></li>
-            <li><a href="#"><span>Menu 4</span></a></li>
+            <li><a href="/base_gov"><span>Base Gov</span></a></li>
+            <li><a href="/estatisticas_setor_publico"><span>Estatísticas Setor Público</span></a></li>
+            <li><a href="/estatisticas_operadores_economicos"><span>Estatísticas Operadores Económicos</span></a></li>
+            <li><a href="/oportunidade_contratacao_publica"><span>Oportunidade Contratação Pública</span></a></li>
+            <li><a href="/outros"><span>Outros</span></a></li>
         </ul>
     </div>
 
@@ -78,21 +82,68 @@
         document.addEventListener('DOMContentLoaded', function () {
             const body = document.querySelector("body");
             const searchToggle = document.querySelector(".searchToggle");
-            const menuToggle = document.querySelector(".menu-toggle"); // Select the entire button container
+            const searchBox = document.querySelector(".searchBox");
+            const searchField = document.querySelector(".search-field");
+            const searchInput = document.querySelector(".search-field input");
+            const menuToggle = document.querySelector(".menu-toggle");
             const closeBtn = document.querySelector(".close-btn");
             const sidebar = document.querySelector(".sidebar");
             const overlay = document.querySelector(".overlay");
 
             // Toggle search box
-            searchToggle.addEventListener("click", () => {
+            searchToggle.addEventListener("click", (e) => {
+                e.stopPropagation(); // Prevent the click from immediately triggering the document click handler
                 searchToggle.classList.toggle("active");
+                
+                // If search is now active, focus the input and add document click listener
+                if (searchToggle.classList.contains("active")) {
+                    // Focus the search input with a slight delay to allow for CSS transitions
+                    setTimeout(() => {
+                        searchInput.focus();
+                    }, 300);
+                    
+                    // Add document click listener with a slight delay to prevent immediate triggering
+                    setTimeout(() => {
+                        document.addEventListener("click", closeSearchOnClickOutside);
+                    }, 10);
+                } else {
+                    // If search is closed, remove the listener
+                    document.removeEventListener("click", closeSearchOnClickOutside);
+                }
             });
+
+            // Prevent search from closing when clicking inside the search field or search box
+            searchField.addEventListener("click", (e) => {
+                e.stopPropagation();
+            });
+            
+            searchInput.addEventListener("click", (e) => {
+                e.stopPropagation();
+            });
+
+            // Function to close search when clicking outside
+            function closeSearchOnClickOutside(e) {
+                // Check if the click is outside the search box
+                if (!searchBox.contains(e.target)) {
+                    // Add a smooth transition by using setTimeout
+                    searchToggle.classList.remove("active");
+                    
+                    // Remove the event listener
+                    document.removeEventListener("click", closeSearchOnClickOutside);
+                }
+            }
 
             // Open sidebar - attach event to the entire button container
             menuToggle.addEventListener("click", () => {
                 sidebar.classList.add("active");
                 overlay.classList.add("active");
                 body.style.overflow = "hidden"; // Prevent scrolling when sidebar is open
+                
+                // Close search if it's open when sidebar is opened
+                if (searchToggle.classList.contains("active")) {
+                    searchToggle.classList.remove("active");
+                    document.removeEventListener("click", closeSearchOnClickOutside);
+                }
             });
 
             // Close sidebar when clicking the close button
@@ -103,6 +154,12 @@
             // Close sidebar when clicking the overlay
             overlay.addEventListener("click", () => {
                 closeSidebar();
+                
+                // Also close search if it's open when clicking the overlay
+                if (searchToggle.classList.contains("active")) {
+                    searchToggle.classList.remove("active");
+                    document.removeEventListener("click", closeSearchOnClickOutside);
+                }
             });
 
             // Close sidebar function
@@ -114,8 +171,17 @@
 
             // Close sidebar when pressing Escape key
             document.addEventListener("keydown", (e) => {
-                if (e.key === "Escape" && sidebar.classList.contains("active")) {
-                    closeSidebar();
+                if (e.key === "Escape") {
+                    // Close sidebar if it's open
+                    if (sidebar.classList.contains("active")) {
+                        closeSidebar();
+                    }
+                    
+                    // Close search if it's open
+                    if (searchToggle.classList.contains("active")) {
+                        searchToggle.classList.remove("active");
+                        document.removeEventListener("click", closeSearchOnClickOutside);
+                    }
                 }
             });
 
@@ -124,7 +190,8 @@
             const langDropdown = document.querySelector(".language-dropdown");
 
             // Toggle language dropdown
-            langToggle.addEventListener("click", () => {
+            langToggle.addEventListener("click", (e) => {
+                e.stopPropagation(); // Prevent immediate closing
                 langDropdown.classList.toggle("active");
 
                 // Close dropdown when clicking outside
@@ -144,7 +211,9 @@
             // Visual feedback for language options (no actual language change)
             const langOptions = document.querySelectorAll(".language-option");
             langOptions.forEach(option => {
-                option.addEventListener("click", () => {
+                option.addEventListener("click", (e) => {
+                    e.stopPropagation(); // Prevent the click from closing the dropdown immediately
+                    
                     // Update active class
                     langOptions.forEach(opt => opt.classList.remove("active"));
                     option.classList.add("active");

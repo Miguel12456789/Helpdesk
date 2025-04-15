@@ -125,19 +125,11 @@ nav .nav-bar {
     transition: all var(--transition-speed);
 }
 
-.searchToggle i.cancel {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.searchToggle.active i.cancel {
+/* Removed cancel icon styles */
+/* Modified search icon styles to always be visible */
+.searchToggle i.search {
     opacity: 1;
     pointer-events: auto;
-}
-
-.searchToggle.active i.search {
-    opacity: 0;
-    pointer-events: none;
 }
 
 .search-field {

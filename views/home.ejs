@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-pt">
 
 <head>
     <meta charset="UTF-8">
@@ -15,384 +15,164 @@
     <%- include('components/nav') %>
 
         <main class="container py-8">
-            <div class="banner">
-                <p>
-                    Bem-vindo! O Helpdesk Público centraliza o apoio e informações sobre serviços públicos,
-                    facilitando a comunicação e resolução de questões relacionadas com a administração pública em
-                    Portugal.
-                </p>
-            </div>
+            <!-- Service Cards Section -->
+            <section class="services-section">
+                <!-- Top Row - 3 Cards -->
+                <div class="services-row top-row">
 
-            <div class="search-container">
-                <div class="search-row">
-                    <!-- Dropdown -->
-                    <div class="dropdown" id="contracts-dropdown">
-                        <button id="dropdown-button" class="dropdown-select" aria-haspopup="true" aria-expanded="false">
-                            <span class="dropdown-text" id="selected-contract">Todos os Contratos</span>
-                            <i data-lucide="chevron-down" class="dropdown-icon"></i>
-                        </button>
-
-                        <div class="dropdown-menu" id="dropdown-menu">
-                            <div class="dropdown-item" data-value="Contratos Públicos">Contratos Públicos</div>
-                            <div class="dropdown-item" data-value="Contratos Privados">Contratos Privados</div>
-                            <div class="dropdown-item" data-value="Contratos Internacionais">Contratos Internacionais
-                            </div>
-                            <div class="dropdown-item" data-value="Todos os Contratos">Todos os Contratos</div>
+                    <!-- Card 1 - Base Gov -->
+                    <div class="service-card">
+                        <div class="card-icon">
+                            <i data-lucide="library" class="icon-large"></i>
                         </div>
+                        <h2 class="card-title">Base Gov</h2>
+                        <p class="card-description">
+                            Consulte dados sobre contratos públicos e entidades envolvidas.
+                        </p>
+                        <a href="/base_gov" class="card-button">
+                            <span>Aceder a Base Gov</span>
+                            <i data-lucide="arrow-right" class="icon-small"></i>
+                        </a>
                     </div>
 
-                    <!-- Search Input -->
-                    <input type="text" placeholder="Pesquisar pelo objeto do Contrato" class="search-input" />
-
-                    <!-- Search Button -->
-                    <button class="search-button">
-                        <i data-lucide="search" class="icon-small"></i>
-                        <span>Pesquisar</span>
-                    </button>
-
-                    <!-- Advanced Search Button -->
-                    <button id="advanced-search-btn" class="advanced-search-button">
-                        <i data-lucide="sliders-horizontal" class="icon-small"></i>
-                        <span>Pesquisa Avanc.</span>
-                    </button>
-                </div>
-
-                <!-- Advanced Search Form -->
-                <div id="advanced-search-form" class="advanced-search-form">
-                    <div class="form-content">
-                        <!-- First Row -->
-                        <div class="form-row">
-                            <div class="form-group">
-                                <input type="checkbox" id="special-measures" class="form-checkbox" />
-                                <label for="special-measures" class="form-label">
-                                    Medidas especiais
-                                </label>
-                            </div>
-
-                            <div class="form-group">
-                                <input type="checkbox" id="include-mec" class="form-checkbox" />
-                                <label for="include-mec" class="form-label">
-                                    Incluir MEC ao abrigo do CCP
-                                </label>
-                            </div>
-
-                            <div class="form-field">
-                                <label for="measure-type" class="form-label">
-                                    Tipologia da medida especial
-                                </label>
-                                <select id="measure-type" class="form-select">
-                                    <option>Todos</option>
-                                    <option>Opção 1</option>
-                                    <option>Opção 2</option>
-                                </select>
-                            </div>
+                    <!-- Card 2 - Estatísticas Setor Público -->
+                    <div class="service-card">
+                        <div class="card-icon">
+                            <i data-lucide="bar-chart-3" class="icon-large"></i>
                         </div>
+                        <h2 class="card-title">Estatísticas Setor Público</h2>
+                        <p class="card-description">
+                            Veja estatísticas sobre gastos e atividade da administração pública.
+                        </p>
+                        <a href="/estatisticas_setor_publico" class="card-button">
+                            <span>Ver as Estatísticas Setor Público</span>
+                            <i data-lucide="arrow-right" class="icon-small"></i>
+                        </a>
+                    </div>
 
-                        <hr class="form-divider" />
-
-                        <!-- Second Row -->
-                        <div class="form-row">
-                            <div class="form-field">
-                                <label for="procedure-type" class="form-label">
-                                    Tipo de Procedimento
-                                </label>
-                                <select id="procedure-type" class="form-select">
-                                    <option>Todos</option>
-                                    <option>Concurso Público</option>
-                                    <option>Ajuste Direto</option>
-                                    <option>Consulta Prévia</option>
-                                </select>
-                            </div>
-
-                            <div class="form-field">
-                                <label for="entity" class="form-label">
-                                    Entidade Adjudicante
-                                </label>
-                                <input type="text" id="entity" class="form-input" />
-                            </div>
+                    <!-- Card 3 - Estatísticas Operadores Económicos -->
+                    <div class="service-card">
+                        <div class="card-icon">
+                            <i data-lucide="line-chart" class="icon-large"></i>
                         </div>
-
-                        <!-- Third Row -->
-                        <div class="form-row">
-                            <div class="form-field">
-                                <label for="contract-type" class="form-label">
-                                    Tipo de Contrato
-                                </label>
-                                <select id="contract-type" class="form-select">
-                                    <option>Todos</option>
-                                    <option>Aquisição de Bens</option>
-                                    <option>Aquisição de Serviços</option>
-                                    <option>Empreitada de Obras Públicas</option>
-                                </select>
-                            </div>
-
-                            <div class="form-field">
-                                <label for="awarded-entity" class="form-label">
-                                    Entidade Adjudicatária
-                                </label>
-                                <input type="text" id="awarded-entity" class="form-input" />
-                            </div>
-                        </div>
-
-                        <!-- Fourth Row -->
-                        <div class="form-row">
-                            <div class="form-field">
-                                <label for="cpv" class="form-label">
-                                    CPV
-                                </label>
-                                <input type="text" id="cpv" class="form-input" />
-                            </div>
-
-                            <div class="form-group">
-                                <input type="checkbox" id="environmental-criteria" class="form-checkbox" />
-                                <label for="environmental-criteria" class="form-label">
-                                    Critérios ambientais
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- Fifth Row - Dates and Location -->
-                        <div class="form-row">
-                            <div class="form-field date-container">
-                                <label for="date-type" class="form-label">
-                                    Datas
-                                </label>
-                                <select id="date-type" class="form-select">
-                                    <option>Data do Contrato</option>
-                                    <option>Data de Publicação</option>
-                                    <option>Data de Celebração</option>
-                                </select>
-
-                                <div class="date-range">
-                                    <div class="date-field">
-                                        <label for="date-from" class="form-label">
-                                            De:
-                                        </label>
-                                        <div class="date-selects">
-                                            <select class="date-select">
-                                                <option>Ano:</option>
-                                                <option>2023</option>
-                                                <option>2022</option>
-                                                <option>2021</option>
-                                            </select>
-                                            <select class="date-select">
-                                                <option>Mês:</option>
-                                                <option>01</option>
-                                                <option>02</option>
-                                                <option>03</option>
-                                            </select>
-                                            <select class="date-select">
-                                                <option>Dia:</option>
-                                                <option>01</option>
-                                                <option>02</option>
-                                                <option>03</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="date-field">
-                                        <label for="date-to" class="form-label">
-                                            Até:
-                                        </label>
-                                        <div class="date-selects">
-                                            <select class="date-select">
-                                                <option>Ano:</option>
-                                                <option>2023</option>
-                                                <option>2022</option>
-                                                <option>2021</option>
-                                            </select>
-                                            <select class="date-select">
-                                                <option>Mês:</option>
-                                                <option>01</option>
-                                                <option>02</option>
-                                                <option>03</option>
-                                            </select>
-                                            <select class="date-select">
-                                                <option>Dia:</option>
-                                                <option>01</option>
-                                                <option>02</option>
-                                                <option>03</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-field location-container">
-                                <label class="form-label">
-                                    Local de Execução (País, Distrito, Concelho)
-                                </label>
-                                <select class="form-select location-select">
-                                    <option>Todos</option>
-                                    <option>Portugal</option>
-                                    <option>Espanha</option>
-                                </select>
-                                <select class="form-select location-select">
-                                    <option>Todos</option>
-                                    <option>Lisboa</option>
-                                    <option>Porto</option>
-                                    <option>Faro</option>
-                                </select>
-                                <select class="form-select location-select">
-                                    <option>Todos</option>
-                                    <option>Lisboa</option>
-                                    <option>Cascais</option>
-                                    <option>Sintra</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Form Buttons -->
-                        <div class="form-buttons">
-                            <button id="clear-form-btn" class="clear-button">
-                                <i data-lucide="x" class="icon-small"></i>
-                                <span>LIMPAR</span>
-                            </button>
-                            <button class="submit-button">
-                                <i data-lucide="search" class="icon-small"></i>
-                                <span>PESQUISAR</span>
-                            </button>
-                        </div>
+                        <h2 class="card-title">Estatísticas Operadores Económicos</h2>
+                        <p class="card-description">
+                            Aceda a dados sobre operadores económicos e concursos públicos.
+                        </p>
+                        <a href="/estatisticas_operadores_economicos" class="card-button">
+                            <span>Ver as Estatísticas Operadores Económicos</span>
+                            <i data-lucide="arrow-right" class="icon-small"></i>
+                        </a>
                     </div>
                 </div>
-            </div>
+
+                <!-- Bottom Row - 2 Cards -->
+                <div class="services-row bottom-row">
+
+                    <!-- Card 4 - Oportunidade Contratação Pública -->
+                    <div class="service-card">
+                        <div class="card-icon">
+                            <i data-lucide="file-search" class="icon-large"></i>
+                        </div>
+                        <h2 class="card-title">Oportunidade Contratação Pública</h2>
+                        <p class="card-description">
+                            Explore concursos públicos e oportunidades de contratação.
+                        </p>
+                        <a href="/oportunidade_contratacao_publica" class="card-button">
+                            <span>Consultar as Oportunidade Contratação Pública</span>
+                            <i data-lucide="arrow-right" class="icon-small"></i>
+                        </a>
+                    </div>
+
+                    <!-- Card 5 - Outros -->
+                    <div class="service-card">
+                        <div class="card-icon">
+                            <i data-lucide="life-buoy" class="icon-large"></i>
+                        </div>
+                        <h2 class="card-title">Outros</h2>
+                        <p class="card-description">
+                            Obtenha apoio e informações complementares sobre os serviços.
+                        </p>
+                        <a href="/outros" class="card-button">
+                            <span>Outros</span>
+                            <i data-lucide="arrow-right" class="icon-small"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+            <!-- <%- include('components/button_top') %> -->
+
         </main>
         <%- include('components/footer') %>
+
 
             <script>
                 document.addEventListener('DOMContentLoaded', function () {
                     // Initialize Lucide icons
-                    // Declare lucide if it's not already available globally
                     if (typeof lucide === 'undefined') {
                         console.warn('Lucide is not globally defined. Ensure Lucide library is properly included.');
-                        // You might want to initialize a placeholder or load the library here if possible.
-                        // Example placeholder:
                         lucide = { createIcons: function () { } };
                     }
                     lucide.createIcons();
 
-                    // Dropdown functionality
-                    const dropdownContainer = document.getElementById('contracts-dropdown');
-                    const dropdownButton = document.getElementById('dropdown-button');
-                    const dropdownText = document.getElementById('selected-contract');
-                    const dropdownMenu = document.getElementById('dropdown-menu');
-                    const dropdownItems = document.querySelectorAll('.dropdown-item');
-                    const dropdownIcon = dropdownButton.querySelector('[data-lucide="chevron-down"]');
+                    // Add hover effect to service cards
+                    const serviceCards = document.querySelectorAll('.service-card');
 
-                    // Toggle dropdown menu when clicking on the button
-                    dropdownButton.addEventListener('click', function (e) {
-                        e.stopPropagation();
-                        dropdownContainer.classList.toggle('active');
+                    serviceCards.forEach(card => {
+                        card.addEventListener('mouseenter', function () {
+                            this.classList.add('card-hover');
+                        });
 
-                        // Update ARIA attributes
-                        const isExpanded = dropdownContainer.classList.contains('active');
-                        dropdownButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
-                    });
+                        card.addEventListener('mouseleave', function () {
+                            this.classList.remove('card-hover');
+                        });
 
-                    // Close dropdown when clicking outside
-                    document.addEventListener('click', function () {
-                        dropdownContainer.classList.remove('active');
-                        dropdownButton.setAttribute('aria-expanded', 'false');
-                    });
-
-                    // Prevent closing when clicking inside the dropdown menu
-                    dropdownMenu.addEventListener('click', function (e) {
-                        e.stopPropagation();
-                    });
-
-                    // Select dropdown item
-                    dropdownItems.forEach(function (item) {
-                        item.addEventListener('click', function () {
-                            const value = this.getAttribute('data-value');
-                            dropdownText.textContent = value;
-                            dropdownContainer.classList.remove('active');
-                            dropdownButton.setAttribute('aria-expanded', 'false');
-
-                            // You could trigger an action here based on selection
-                            console.log('Selected:', value);
+                        // Make the entire card clickable
+                        card.addEventListener('click', function (e) {
+                            // Only trigger if the click wasn't on the button itself
+                            if (!e.target.closest('.card-button')) {
+                                const link = this.querySelector('.card-button');
+                                if (link) {
+                                    link.click();
+                                }
+                            }
                         });
                     });
 
-                    // Close dropdown when pressing Escape key
-                    document.addEventListener('keydown', function (e) {
-                        if (e.key === 'Escape') {
-                            dropdownContainer.classList.remove('active');
-                            dropdownButton.setAttribute('aria-expanded', 'false');
-                        }
-                    });
+                    // Add animation on scroll
+                    function checkScroll() {
+                        const topRowCards = document.querySelectorAll('.top-row .service-card');
+                        const bottomRowCards = document.querySelectorAll('.bottom-row .service-card');
+                        const triggerBottom = window.innerHeight * 0.8;
 
-                    // Advanced Search Form functionality
-                    const advancedSearchBtn = document.getElementById('advanced-search-btn');
-                    const advancedSearchForm = document.getElementById('advanced-search-form');
+                        // Animate top row
+                        topRowCards.forEach((card, index) => {
+                            const cardTop = card.getBoundingClientRect().top;
 
-                    advancedSearchBtn.addEventListener('click', function () {
-                        advancedSearchForm.classList.toggle('visible');
-
-                        // Scroll to form if it's now visible
-                        if (advancedSearchForm.classList.contains('visible')) {
-                            setTimeout(function () {
-                                advancedSearchForm.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                            }, 100);
-                        }
-                    });
-
-                    // Clear button functionality
-                    const clearBtn = document.getElementById('clear-form-btn');
-
-                    clearBtn.addEventListener('click', function () {
-                        // Reset all form inputs
-                        const inputs = advancedSearchForm.querySelectorAll('input');
-                        const selects = advancedSearchForm.querySelectorAll('select');
-
-                        inputs.forEach(function (input) {
-                            if (input.type === 'checkbox') {
-                                input.checked = false;
-                            } else {
-                                input.value = '';
+                            if (cardTop < triggerBottom) {
+                                setTimeout(() => {
+                                    card.classList.add('show');
+                                }, index * 100); // Staggered animation
                             }
                         });
 
-                        selects.forEach(function (select) {
-                            select.selectedIndex = 0;
+                        // Animate bottom row with a slight delay
+                        bottomRowCards.forEach((card, index) => {
+                            const cardTop = card.getBoundingClientRect().top;
+
+                            if (cardTop < triggerBottom) {
+                                setTimeout(() => {
+                                    card.classList.add('show');
+                                }, 300 + (index * 100)); // Delayed staggered animation
+                            }
                         });
-                    });
+                    }
 
-                    // Search button functionality
-                    const searchBtn = document.querySelector('.submit-button');
+                    // Run on initial load
+                    checkScroll();
 
-                    searchBtn.addEventListener('click', function () {
-                        // Collect form data and submit
-                        console.log('Advanced search submitted');
-                        // Here you would typically collect all form data and submit it
-
-                        // Example of collecting form data
-                        const formData = {
-                            specialMeasures: document.getElementById('special-measures').checked,
-                            includeMec: document.getElementById('include-mec').checked,
-                            measureType: document.getElementById('measure-type').value,
-                            procedureType: document.getElementById('procedure-type').value,
-                            entity: document.getElementById('entity').value,
-                            contractType: document.getElementById('contract-type').value,
-                            awardedEntity: document.getElementById('awarded-entity').value,
-                            cpv: document.getElementById('cpv').value,
-                            environmentalCriteria: document.getElementById('environmental-criteria').checked,
-                            dateType: document.getElementById('date-type').value,
-                            // Add more fields as needed
-                        };
-
-                        console.log('Form data:', formData);
-                    });
-
-                    // Make dropdown accessible via keyboard
-                    dropdownButton.addEventListener('keydown', function (e) {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            dropdownContainer.classList.toggle('active');
-
-                            const isExpanded = dropdownContainer.classList.contains('active');
-                            dropdownButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
-                        }
-                    });
+                    // Run on scroll
+                    window.addEventListener('scroll', checkScroll);
                 });
             </script>
 </body>

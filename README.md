@@ -28,6 +28,7 @@ Run project
 ```bash
 npm install
 npm install express
+npm install ejs
 npm start
 ```
 
