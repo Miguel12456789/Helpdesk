@@ -161,16 +161,6 @@ body {
     line-height: 1.5;
 }
 
-/* Special styling for certain fields */
-.procedure-tag {
-    display: inline-block;
-    background-color: rgba(0, 102, 161, 0.1);
-    color: var(--primary-color);
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-weight: 500;
-}
-
 .price-value {
     font-weight: 600;
     color: #2b8a3e;
