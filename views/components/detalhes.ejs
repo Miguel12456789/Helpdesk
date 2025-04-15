@@ -11,11 +11,10 @@
 </head>
 
 <body>
-    <div class="container">
-
+    <div class="container" >
         <!-- Breadcrumb Navigation -->
         <div class="breadcrumb">
-            <a href="/base_gov">Início</a> / Detalhe
+            <a href="/base_gov">Início</a> / Detalhes
         </div>
 
         <!-- Last Update -->
@@ -24,164 +23,367 @@
         </div>
 
         <main class="content-container">
-            <div class="page-header">
-                <div class="title-section">
-                    <h1 class="main-title">DETALHE</h1>
-                    <h2 class="subtitle">Contrato</h2>
+            <!-- Detalhes do Contrato (Inicialmente Ocultos) -->
+            <div id="contract-details-container">
+                <!-- Detalhes do Contrato 1 -->
+                <div class="contract-details" id="details-1">
+                    <div class="page-header">
+                        <div class="title-section">
+                            <h1 class="main-title">DETALHES</h1>
+                            <h2 class="subtitle">Contrato</h2>
+                        </div>
+                        <div class="action-buttons">
+                            <button id="emailButton" class="email-button" aria-label="Enviar detalhe do contrato por email">
+                                <i data-lucide="mail" class="email-icon"></i>
+                                ENVIAR POR EMAIL
+                            </button>
+                        </div>
+                    </div>
+
+                    <section class="detail-section">
+                        <h3 class="section-title">Informação detalhada</h3>
+
+                        <div class="info-card">
+                            <div class="info-table-container">
+                                <table class="info-table">
+                                    <tbody>
+                                        <tr>
+                                            <th>Data da publicação</th>
+                                            <td>08-04-2025</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tipos de contrato</th>
+                                            <td>Aquisição de serviços</td>
+                                        </tr>
+                                        <tr>
+                                            <th>N° do acordo quadro</th>
+                                            <td>N/A</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Descrição do acordo quadro</th>
+                                            <td>N/A</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tipologia da medida especial</th>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tipo de procedimento</th>
+                                            <td>Ajuste Direto Regime Geral</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Descrição</th>
+                                            <td>Prestação de serviços de assessoria jurídica</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Fundamentação</th>
+                                            <td>Artigo 20.º, n.º 1, alínea d) do CCP</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Fundamentação para recurso ao ajuste direto</th>
+                                            <td>Valor do contrato inferior ao limiar</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Objeto do contrato</th>
+                                            <td>Prestação de serviços de assessoria jurídica relativa ao procedimento de licenciamento de obras a que corresponde o Processo n.º 21/2020</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Adjudicante</th>
+                                            <td>Município de Elvas</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Adjudicatário</th>
+                                            <td>MLA - Maricato, Lima & Associados - Sociedade de Advogados,RL</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Preço contratual</th>
+                                            <td class="price-value">6.000,00 €</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="actions-footer">
+                            <button class="back-button close-details" data-contract-id="1">
+                                <i data-lucide="arrow-left" class="back-icon"></i>
+                                Voltar à pesquisa
+                            </button>
+                        </div>
+                    </section>
                 </div>
-                <div class="action-buttons">
-                    <button id="emailButton" class="email-button" aria-label="Enviar detalhe do contrato por email">
-                        <i data-lucide="mail" class="email-icon"></i>
-                        ENVIAR POR EMAIL
-                    </button>
+
+                <!-- Detalhes do Contrato 2 -->
+                <div class="contract-details" id="details-2">
+                    <div class="page-header">
+                        <div class="title-section">
+                            <h1 class="main-title">DETALHES</h1>
+                            <h2 class="subtitle">Contrato</h2>
+                        </div>
+                        <div class="action-buttons">
+                            <button id="emailButton" class="email-button" aria-label="Enviar detalhe do contrato por email">
+                                <i data-lucide="mail" class="email-icon"></i>
+                                ENVIAR POR EMAIL
+                            </button>
+                        </div>
+                    </div>
+
+                    <section class="detail-section">
+                        <h3 class="section-title">Informação detalhada</h3>
+
+                        <div class="info-card">
+                            <div class="info-table-container">
+                                <table class="info-table">
+                                    <tbody>
+                                        <tr>
+                                            <th>Data da publicação</th>
+                                            <td>08-04-2025</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tipos de contrato</th>
+                                            <td>Aquisição de bens móveis</td>
+                                        </tr>
+                                        <tr>
+                                            <th>N° do acordo quadro</th>
+                                            <td>AQ-2023-TIC</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Descrição do acordo quadro</th>
+                                            <td>Acordo Quadro para aquisição de equipamentos TIC</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tipologia da medida especial</th>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tipo de procedimento</th>
+                                            <td>Concurso público</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Descrição</th>
+                                            <td>Aquisição de equipamento informático</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Fundamentação</th>
+                                            <td>Artigo 20.º, n.º 1, alínea b) do CCP</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Fundamentação para recurso ao ajuste direto</th>
+                                            <td>Não aplicável.</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Objeto do contrato</th>
+                                            <td>ADENE_CP_003_2025_USTI Aquisição de equipamento informático</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Adjudicante</th>
+                                            <td>ADENE - Agência para a Energia</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Adjudicatário</th>
+                                            <td>Digibéria Information Technologies S.A.</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Preço contratual</th>
+                                            <td class="price-value">150.800,00 €</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="actions-footer">
+                            <button class="back-button close-details" data-contract-id="2">
+                                <i data-lucide="arrow-left" class="back-icon"></i>
+                                Voltar à pesquisa
+                            </button>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Detalhes do Contrato 3 -->
+                <div class="contract-details" id="details-3">
+                    <div class="page-header">
+                        <div class="title-section">
+                            <h1 class="main-title">DETALHES</h1>
+                            <h2 class="subtitle">Contrato</h2>
+                        </div>
+                        <div class="action-buttons">
+                            <button id="emailButton" class="email-button" aria-label="Enviar detalhe do contrato por email">
+                                <i data-lucide="mail" class="email-icon"></i>
+                                ENVIAR POR EMAIL
+                            </button>
+                        </div>
+                    </div>
+
+                    <section class="detail-section">
+                        <h3 class="section-title">Informação detalhada</h3>
+
+                        <div class="info-card">
+                            <div class="info-table-container">
+                                <table class="info-table">
+                                    <tbody>
+                                        <tr>
+                                            <th>Data da publicação</th>
+                                            <td>08-04-2025</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tipos de contrato</th>
+                                            <td>Aquisição de serviços</td>
+                                        </tr>
+                                        <tr>
+                                            <th>N° do acordo quadro</th>
+                                            <td>N/A</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Descrição do acordo quadro</th>
+                                            <td>N/A</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tipologia da medida especial</th>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tipo de procedimento</th>
+                                            <td>Ajuste Direto Regime Geral</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Descrição</th>
+                                            <td>Aquisição de serviços continuados de manutenção preventiva e corretiva da Infraestrutura TIC</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Fundamentação</th>
+                                            <td>Artigo 20.º, n.º 1, alínea d) do CCP</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Fundamentação para recurso ao ajuste direto</th>
+                                            <td>Valor do contrato inferior ao limiar</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Objeto do contrato</th>
+                                            <td>Aquisição de serviços continuados de manutenção preventiva e corretiva da Infraestrutura TIC da CIM Viseu Dão Lafões</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Adjudicante</th>
+                                            <td>Comunidade Intermunicipal Viseu Dão Lafões</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Adjudicatário</th>
+                                            <td>BPO CONSULTING, UNIPESSOAL LDA</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Preço contratual</th>
+                                            <td class="price-value">7.500,00 €</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="actions-footer">
+                            <button class="back-button close-details" data-contract-id="3">
+                                <i data-lucide="arrow-left" class="back-icon"></i>
+                                Voltar à pesquisa
+                            </button>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Detalhes do Contrato 4 -->
+                <div class="contract-details" id="details-4">
+                    <div class="page-header">
+                        <div class="title-section">
+                            <h1 class="main-title">DETALHES</h1>
+                            <h2 class="subtitle">Contrato</h2>
+                        </div>
+                        <div class="action-buttons">
+                            <button id="emailButton" class="email-button" aria-label="Enviar detalhe do contrato por email">
+                                <i data-lucide="mail" class="email-icon"></i>
+                                ENVIAR POR EMAIL
+                            </button>
+                        </div>
+                    </div>
+
+                    <section class="detail-section">
+                        <h3 class="section-title">Informação detalhada</h3>
+
+                        <div class="info-card">
+                            <div class="info-table-container">
+                                <table class="info-table">
+                                    <tbody>
+                                        <tr>
+                                            <th>Data da publicação</th>
+                                            <td>08-04-2025</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tipos de contrato</th>
+                                            <td>Aquisição de bens móveis</td>
+                                        </tr>
+                                        <tr>
+                                            <th>N° do acordo quadro</th>
+                                            <td>AQ-2023-TIC</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Descrição do acordo quadro</th>
+                                            <td>Acordo Quadro para aquisição de equipamentos TIC</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tipologia da medida especial</th>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tipo de procedimento</th>
+                                            <td>Concurso público</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Descrição</th>
+                                            <td>Aquisição de equipamento informático</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Fundamentação</th>
+                                            <td>Artigo 20.º, n.º 1, alínea b) do CCP</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Fundamentação para recurso ao ajuste direto</th>
+                                            <td>Não aplicável.</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Objeto do contrato</th>
+                                            <td>ADENE_CP_003_2025_USTI Aquisição de equipamento informático</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Adjudicante</th>
+                                            <td>ADENE - Agência para a Energia</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Adjudicatário</th>
+                                            <td>Páginas aos Blocos, Lda.</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Preço contratual</th>
+                                            <td class="price-value">3.501,45 €</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="actions-footer">
+                            <button class="back-button close-details" data-contract-id="4">
+                                <i data-lucide="arrow-left" class="back-icon"></i>
+                                Voltar à pesquisa
+                            </button>
+                        </div>
+                    </section>
                 </div>
             </div>
-
-            <section class="detail-section">
-                <h3 class="section-title">Informação detalhada</h3>
-
-                <div class="info-card">
-                    <div class="info-table-container">
-                        <table class="info-table">
-                            <tbody>
-                                <tr>
-                                    <th>Data da publicação</th>
-                                    <td>0 contrato.dataPublicacao %></td>
-                                </tr>
-                                <tr>
-                                    <th>Tipos de contrato</th>
-                                    <td>0 contrato.tipoContrato %></td>
-                                </tr>
-                                <tr>
-                                    <th>N° do acordo quadro</th>
-                                    <td>0 contrato.numeroAcordoQuadro %></td>
-                                </tr>
-                                <tr>
-                                    <th>Descrição do acordo quadro</th>
-                                    <td>0 contrato.descricaoAcordoQuadro %></td>
-                                </tr>
-                                <tr>
-                                    <th>Tipologia da medida especial</th>
-                                    <td>0 contrato.tipologiaMedidaEspecial || '-' %></td>
-                                </tr>
-                                <tr>
-                                    <th>Tipo de procedimento</th>
-                                    <td>0 contrato.tipoProcedimento %></span></td>
-                                </tr>
-                                <tr>
-                                    <th>Descrição</th>
-                                    <td>0 contrato.descricao %></td>
-                                </tr>
-                                <tr>
-                                    <th>Fundamentação</th>
-                                    <td>0 contrato.fundamentacao %></td>
-                                </tr>
-                                <tr>
-                                    <th>Fundamentação para recurso ao ajuste direto</th>
-                                    <td>0 contrato.fundamentacaoAjusteDireto || 'Não aplicável.' %></td>
-                                </tr>
-                                <tr>
-                                    <th>Objeto do contrato</th>
-                                    <td>0 contrato.objeto %></td>
-                                </tr>
-                                <tr>
-                                    <th>Adjudicante</th>
-                                    <td>0 contrato.adjudicante %></td>
-                                </tr>
-                                <tr>
-                                    <th>Adjudicatário</th>
-                                    <td>0 contrato.adjudicatario %></td>
-                                </tr>
-                                <tr>
-                                    <th>Preço contratual</th>
-                                    <td class="price-value">0 contrato.preco.toLocaleString('pt-PT') %> €</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="actions-footer">
-                    <a href="/contratos" class="back-button">
-                        <i data-lucide="arrow-left" class="back-icon"></i>
-                        Voltar à pesquisa
-                    </a>
-                </div>
-            </section>
         </main>
     </div>
     <script>
-
         document.addEventListener('DOMContentLoaded', function () {
-            // Print functionality
-            const printButton = document.getElementById('printButton');
-            if (printButton) {
-                printButton.addEventListener('click', function () {
-                    window.print();
-                });
-            }
-
-            // Add hover effect to table rows
-            const tableRows = document.querySelectorAll('.info-table tr');
-            tableRows.forEach(row => {
-                row.addEventListener('mouseenter', function () {
-                    this.style.transition = 'background-color 0.2s ease';
-                });
-            });
-
-            // Add smooth scrolling for back button
-            const backButton = document.querySelector('.back-button');
-            if (backButton) {
-                backButton.addEventListener('click', function (e) {
-                    // Only apply if navigating within the same site
-                    const href = this.getAttribute('href');
-                    if (href.startsWith('/') || href.startsWith('#')) {
-                        e.preventDefault();
-
-                        // Add a subtle fade-out effect
-                        document.querySelector('.content-container').style.opacity = '0.8';
-                        document.querySelector('.content-container').style.transform = 'translateY(10px)';
-                        document.querySelector('.content-container').style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-
-                        // Navigate after the animation
-                        setTimeout(() => {
-                            window.location.href = href;
-                        }, 300);
-                    }
-                });
-            }
-
-            // Add focus styles for accessibility
-            const focusableElements = document.querySelectorAll('button, a');
-            focusableElements.forEach(element => {
-                element.addEventListener('focus', function () {
-                    this.style.outline = '2px solid rgba(0, 102, 161, 0.5)';
-                    this.style.outlineOffset = '2px';
-                });
-
-                element.addEventListener('blur', function () {
-                    this.style.outline = 'none';
-                });
-            });
-
-            // Optimize animations for users who prefer reduced motion
-            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.documentElement.style.setProperty('--transition-speed', '0s');
-
-                // Remove animations
-                const animatedElements = document.querySelectorAll('.content-container, .info-table tr');
-                animatedElements.forEach(element => {
-                    element.style.animation = 'none';
-                    element.style.opacity = '1';
-                    element.style.transform = 'none';
-                });
-            }
-        });
-        // Initialize Lucide icons after the DOM is loaded
-        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize Lucide icons
             lucide.createIcons();
         });
-
     </script>
 </body>
 
