@@ -457,8 +457,8 @@
                             document.addEventListener('DOMContentLoaded', function () {
                                 const searchButtons = document.querySelectorAll('.search-button, .submit-button'); // Seleciona ambos os botões
                                 const resultsTable = document.getElementById('results-table');
-                                const veiwDetails = document.getElementById('details-button');
-                                const resultDetails = document.getElementById('results-table');
+                                // const veiwDetails = document.getElementById('details-button');
+                                // const resultDetails = document.getElementById('results-table');
 
 
                                 searchButtons.forEach(button => {
@@ -471,15 +471,15 @@
                                     });
                                 });
 
-                                veiwDetails.forEach(button => {
-                                    button.addEventListener('click', function () {
-                                        // Exibe a tabela
-                                        resultDetails.style.display = 'block';
+                                // veiwDetails.forEach(button => {
+                                //     button.addEventListener('click', function () {
+                                //         // Exibe a tabela
+                                //         resultDetails.style.display = 'block';
 
-                                        // Opcional: Role até a tabela
-                                        resultDetails.scrollIntoView({ behavior: 'smooth' });
-                                    });
-                                });
+                                //         // Opcional: Role até a tabela
+                                //         resultDetails.scrollIntoView({ behavior: 'smooth' });
+                                //     });
+                                // });
                             });
 
 

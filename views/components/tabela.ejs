@@ -29,6 +29,13 @@
                 <h1>PESQUISA</h1>
                 <h2>Contratos</h2>
 
+                <!-- Contador de Resultados -->
+                <div class="results-counter">
+                    <div id="count-display" class="count-display">
+                        <span id="count-number">0</span> contratos encontrados
+                    </div>
+                </div>
+
                 <!-- Results Table -->
                 <div class="results-section">
                     <h3 class="section-title">Informação detalhada</h3>
@@ -41,7 +48,7 @@
                                     <th>Adjudicante</th>
                                     <th>Adjudicatário</th>
                                     <th>Preço contratual <i class="fas fa-sort"></i></th>
-                                    <th>Publicação <i class="fas fa-sort"></i></th>
+                                    <th>Data de publicação <i class="fas fa-sort"></i></th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -95,6 +102,75 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Elementos do DOM
+            const showCountBtn = document.getElementById('show-count-btn');
+            const countDisplay = document.getElementById('count-display');
+            const countNumber = document.getElementById('count-number');
+
+            // Obter o número de linhas na tabela (excluindo o cabeçalho)
+            const tableRows = document.querySelectorAll('.results-table tbody tr');
+            const contractCount = tableRows.length;
+
+            // Atualizar o número no contador
+            countNumber.textContent = contractCount;
+
+            // Mostrar o contador automaticamente quando a página carregar
+            countDisplay.classList.add('visible');
+
+            // Animar a contagem
+            animateCount(0, contractCount);
+
+            // Função para mostrar/esconder o contador
+            showCountBtn.addEventListener('click', function () {
+                // Alternar a visibilidade do contador
+                if (countDisplay.classList.contains('visible')) {
+                    countDisplay.classList.remove('visible');
+                    showCountBtn.querySelector('span').textContent = 'Ver número de contratos';
+                } else {
+                    countDisplay.classList.add('visible');
+                    showCountBtn.querySelector('span').textContent = 'Esconder número de contratos';
+
+                    // Adicionar efeito de contagem animada
+                    animateCount(0, contractCount);
+                }
+            });
+
+            // Função para animar a contagem
+            function animateCount(start, end) {
+                // Resetar o contador para começar do zero
+                countNumber.textContent = start;
+
+                // Se o contador já estiver visível, não precisamos animar novamente
+                if (start === end) return;
+
+                // Calcular a duração da animação baseada no número de contratos
+                const duration = Math.min(1500, Math.max(500, end * 100));
+                const increment = end > 100 ? 5 : 1;
+                const steps = Math.ceil(end / increment);
+                const stepDuration = duration / steps;
+
+                let current = start;
+
+                // Função para incrementar o contador
+                function step() {
+                    current += increment;
+                    if (current > end) current = end;
+
+                    countNumber.textContent = current;
+
+                    if (current < end) {
+                        setTimeout(step, stepDuration);
+                    }
+                }
+
+                // Iniciar a animação
+                setTimeout(step, stepDuration);
+            }
+        });
+    </script>
 </body>
 
 </html>
