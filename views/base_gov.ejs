@@ -260,7 +260,6 @@
 
                         <script>
                             document.addEventListener('DOMContentLoaded', function () {
-
                                 // === Função para preencher anos, meses e dias dinamicamente ===
                                 function populateDateSelectors(yearId, monthId, dayId) {
                                     const yearSelect = document.getElementById(yearId);
@@ -320,13 +319,14 @@
                                 // === Inicializar selects de data para "De" e "Até" ===
                                 populateDateSelectors('from-year', 'from-month', 'from-day');
                                 populateDateSelectors('to-year', 'to-month', 'to-day');
+
                                 // Initialize Lucide icons
                                 // Declare lucide if it's not already available globally
                                 if (typeof lucide === 'undefined') {
                                     console.warn('Lucide is not globally defined. Ensure Lucide library is properly included.');
                                     // You might want to initialize a placeholder or load the library here if possible.
                                     // Example placeholder:
-                                    lucide = { createIcons: function () { } };
+                                    window.lucide = { createIcons: function () { } };
                                 }
                                 lucide.createIcons();
 
@@ -452,143 +452,136 @@
                                         dropdownButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
                                     }
                                 });
-                            });
 
-                            document.addEventListener('DOMContentLoaded', function () {
-                                const searchButtons = document.querySelectorAll('.search-button, .submit-button'); // Seleciona ambos os botões
+                                // Mostrar tabela de resultados quando os botões de pesquisa são clicados
+                                const searchButtons = document.querySelectorAll('.search-button, .submit-button');
                                 const resultsTable = document.getElementById('results-table');
-                                // const veiwDetails = document.getElementById('details-button');
-                                // const resultDetails = document.getElementById('results-table');
-
 
                                 searchButtons.forEach(button => {
                                     button.addEventListener('click', function () {
                                         // Exibe a tabela
-                                        resultsTable.style.display = 'block';
-
-                                        // Opcional: Role até a tabela
-                                        resultsTable.scrollIntoView({ behavior: 'smooth' });
+                                        if (resultsTable) {
+                                            resultsTable.style.display = 'block';
+                                            // Opcional: Role até a tabela
+                                            resultsTable.scrollIntoView({ behavior: 'smooth' });
+                                        }
                                     });
                                 });
 
-                                // veiwDetails.forEach(button => {
-                                //     button.addEventListener('click', function () {
-                                //         // Exibe a tabela
-                                //         resultDetails.style.display = 'block';
+                                // === NOVA FUNCIONALIDADE: Controle de visibilidade do container principal de detalhes ===
 
-                                //         // Opcional: Role até a tabela
-                                //         resultDetails.scrollIntoView({ behavior: 'smooth' });
-                                //     });
-                                // });
-                            });
+                                // Selecionar todos os botões de detalhes na tabela
+                                const detailsButtons = document.querySelectorAll('.details-button');
 
-                            // Selecionar todos os botões de detalhes na tabela
-                            const detailsButtons = document.querySelectorAll('.details-button');
+                                // Selecionar todos os elementos de detalhes
+                                const contractDetails = document.querySelectorAll('.contract-details');
 
-                            // Selecionar todos os elementos de detalhes
-                            const contractDetails = document.querySelectorAll('.contract-details');
+                                // Selecionar todos os botões de voltar
+                                const closeButtons = document.querySelectorAll('.close-details');
 
-                            // Selecionar todos os botões de voltar
-                            const closeButtons = document.querySelectorAll('.close-details');
+                                // Inicialmente ocultar todos os detalhes
+                                contractDetails.forEach(detail => {
+                                    detail.style.display = 'none';
+                                });
 
-                            // Inicialmente ocultar todos os detalhes
-                            contractDetails.forEach(detail => {
-                                detail.style.display = 'none';
-                            });
+                                // Adicionar evento de clique aos botões de detalhes
+                                detailsButtons.forEach(button => {
+                                    button.addEventListener('click', function () {
+                                        // Obter o ID do contrato do atributo data-contract-id
+                                        const contractId = this.getAttribute('data-contract-id');
 
-                            // Adicionar evento de clique aos botões de detalhes
-                            detailsButtons.forEach(button => {
-                                button.addEventListener('click', function () {
-                                    // Obter o ID do contrato do atributo data-contract-id
-                                    const contractId = this.getAttribute('data-contract-id');
-                                    const detailsElement = document.getElementById(`details-${contractId}`);
-
-                                    // Verificar se o elemento de detalhes existe
-                                    if (!detailsElement) return;
-
-                                    // Ocultar todos os outros detalhes
-                                    contractDetails.forEach(detail => {
-                                        if (detail.id !== `details-${contractId}`) {
-                                            detail.style.display = 'none';
+                                        // Mostrar o container principal de detalhes
+                                        const mainContainer = document.getElementById('main-container');
+                                        if (mainContainer) {
+                                            mainContainer.style.display = 'block';
                                         }
-                                    });
 
-                                    // Restaurar os ícones de todos os outros botões
-                                    detailsButtons.forEach(btn => {
-                                        if (btn !== this) {
-                                            btn.querySelector('i').classList.remove('fa-minus-circle');
-                                            btn.querySelector('i').classList.add('fa-plus-circle');
-                                        }
-                                    });
+                                        // Verificar se o elemento de detalhes existe
+                                        const detailsElement = document.getElementById(`details-${contractId}`);
+                                        if (!detailsElement) return;
 
-                                    // Alternar a visibilidade dos detalhes do contrato clicado
-                                    if (detailsElement.style.display === 'none' || !detailsElement.style.display) {
-                                        // Mostrar os detalhes
+                                        // Ocultar todos os outros detalhes
+                                        contractDetails.forEach(detail => {
+                                            if (detail.id !== `details-${contractId}`) {
+                                                detail.style.display = 'none';
+                                            }
+                                        });
+
+                                        // Restaurar os ícones de todos os outros botões
+                                        detailsButtons.forEach(btn => {
+                                            if (btn !== this) {
+                                                const icon = btn.querySelector('i');
+                                                if (icon) {
+                                                    icon.classList.remove('fa-minus-circle');
+                                                    icon.classList.add('fa-plus-circle');
+                                                }
+                                            }
+                                        });
+
+                                        // Mostrar os detalhes do contrato clicado
                                         detailsElement.style.display = 'block';
 
                                         // Alterar o ícone do botão para indicar que está expandido
-                                        this.querySelector('i').classList.remove('fa-plus-circle');
-                                        this.querySelector('i').classList.add('fa-minus-circle');
+                                        const icon = this.querySelector('i');
+                                        if (icon) {
+                                            icon.classList.remove('fa-plus-circle');
+                                            icon.classList.add('fa-minus-circle');
+                                        }
 
                                         // Rolar suavemente até os detalhes
-                                        detailsElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                    } else {
-                                        // Ocultar os detalhes
-                                        detailsElement.style.display = 'none';
-
-                                        // Restaurar o ícone original
-                                        this.querySelector('i').classList.remove('fa-minus-circle');
-                                        this.querySelector('i').classList.add('fa-plus-circle');
-                                    }
-                                });
-                            });
-
-                            // Adicionar evento de clique aos botões de voltar
-                            closeButtons.forEach(button => {
-                                button.addEventListener('click', function () {
-                                    // Obter o ID do contrato do atributo data-contract-id
-                                    const contractId = this.getAttribute('data-contract-id');
-                                    const detailsElement = document.getElementById(`details-${contractId}`);
-
-                                    // Ocultar os detalhes
-                                    if (detailsElement) {
-                                        detailsElement.style.display = 'none';
-                                    }
-
-                                    // Encontrar o botão correspondente na tabela e restaurar seu ícone
-                                    const detailsButton = document.querySelector(`.details-button[data-contract-id="${contractId}"]`);
-                                    if (detailsButton) {
-                                        const icon = detailsButton.querySelector('i');
-                                        if (icon) {
-                                            icon.classList.remove('fa-minus-circle');
-                                            icon.classList.add('fa-plus-circle');
+                                        if (mainContainer) {
+                                            mainContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
                                         }
-                                    }
-
-                                    // Rolar de volta para a tabela
-                                    const resultsTable = document.querySelector('.results-table');
-                                    if (resultsTable) {
-                                        resultsTable.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                    }
+                                    });
                                 });
-                            });
 
-                            // Adicionar suporte para navegação por teclado
-                            detailsButtons.forEach(button => {
-                                button.addEventListener('keydown', function (e) {
-                                    if (e.key === 'Enter' || e.key === ' ') {
-                                        e.preventDefault();
-                                        this.click();
-                                    }
+                                // Adicionar evento de clique aos botões de voltar
+                                closeButtons.forEach(button => {
+                                    button.addEventListener('click', function () {
+                                        // Obter o ID do contrato do atributo data-contract-id
+                                        const contractId = this.getAttribute('data-contract-id');
+
+                                        // Ocultar o container principal
+                                        const mainContainer = document.getElementById('main-container');
+                                        if (mainContainer) {
+                                            mainContainer.style.display = 'none';
+                                        }
+
+                                        // Encontrar o botão correspondente na tabela e restaurar seu ícone
+                                        const detailsButton = document.querySelector(`.details-button[data-contract-id="${contractId}"]`);
+                                        if (detailsButton) {
+                                            const icon = detailsButton.querySelector('i');
+                                            if (icon) {
+                                                icon.classList.remove('fa-minus-circle');
+                                                icon.classList.add('fa-plus-circle');
+                                            }
+                                        }
+
+                                        // Rolar de volta para a tabela
+                                        const resultsTable = document.querySelector('.results-table');
+                                        if (resultsTable) {
+                                            resultsTable.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                        }
+                                    });
                                 });
-                            });
 
-                            closeButtons.forEach(button => {
-                                button.addEventListener('keydown', function (e) {
-                                    if (e.key === 'Enter' || e.key === ' ') {
-                                        e.preventDefault();
-                                        this.click();
-                                    }
+                                // Adicionar suporte para navegação por teclado
+                                detailsButtons.forEach(button => {
+                                    button.addEventListener('keydown', function (e) {
+                                        if (e.key === 'Enter' || e.key === ' ') {
+                                            e.preventDefault();
+                                            this.click();
+                                        }
+                                    });
+                                });
+
+                                closeButtons.forEach(button => {
+                                    button.addEventListener('keydown', function (e) {
+                                        if (e.key === 'Enter' || e.key === ' ') {
+                                            e.preventDefault();
+                                            this.click();
+                                        }
+                                    });
                                 });
                             });
 
