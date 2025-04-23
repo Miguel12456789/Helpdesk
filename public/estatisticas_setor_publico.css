@@ -51,12 +51,6 @@ header {
     padding-bottom: 1rem;
 }
 
-.text-xl {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #1f2937;
-}
-
 /* Main content */
 main {
     padding-top: 2rem;
