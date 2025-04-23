@@ -59,7 +59,8 @@
                                     <td>MLA - Maricato, Lima & Associados - Sociedade de Advogados,RL</td>
                                     <td>6.000,00 €</td>
                                     <td>08-04-2025</td>
-                                    <td><button class="details-button" aria-label="Ver detalhes" data-contract-id="1"><i class="fas fa-plus-circle"></i></button>
+                                    <td><button class="details-button" aria-label="Ver detalhes" data-contract-id="1"><i
+                                                class="fas fa-plus-circle"></i></button>
                                     </td>
                                 </tr>
                                 <tr data-contract-id="2">
@@ -69,7 +70,8 @@
                                     <td>Digibéria Information Technologies S.A.</td>
                                     <td>150.800,00 €</td>
                                     <td>08-04-2025</td>
-                                    <td><button class="details-button" aria-label="Ver detalhes" data-contract-id="2"><i class="fas fa-plus-circle"></i></button>
+                                    <td><button class="details-button" aria-label="Ver detalhes" data-contract-id="2"><i
+                                                class="fas fa-plus-circle"></i></button>
                                     </td>
                                 </tr>
                                 <tr data-contract-id="3">
@@ -80,7 +82,8 @@
                                     <td>BPO CONSULTING, UNIPESSOAL LDA</td>
                                     <td>7.500,00 €</td>
                                     <td>08-04-2025</td>
-                                    <td><button class="details-button" aria-label="Ver detalhes" data-contract-id="3"><i class="fas fa-plus-circle"></i></button>
+                                    <td><button class="details-button" aria-label="Ver detalhes" data-contract-id="3"><i
+                                                class="fas fa-plus-circle"></i></button>
                                     </td>
                                 </tr>
                                 <tr data-contract-id="4">
@@ -90,15 +93,51 @@
                                     <td>Páginas aos Blocos, Lda.</td>
                                     <td>3.501,45 €</td>
                                     <td>08-04-2025</td>
-                                    <td><button class="details-button" aria-label="Ver detalhes" data-contract-id="4"><i class="fas fa-plus-circle"></i></button>
+                                    <td><button class="details-button" aria-label="Ver detalhes" data-contract-id="4"><i
+                                                class="fas fa-plus-circle"></i></button>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
+
+                <div class="pagination-container">
+                    <div class="pagination-info">
+                        <span id="showing-entries">Mostrando 1-25 de 100 registros</span>
+                    </div>
+                    <div class="pagination-controls">
+                        <div class="items-per-page">
+                            <label for="items-select">Itens por página:</label>
+                            <select id="items-select" class="items-select">
+                                <option value="25" selected>25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                        <div class="page-navigation">
+                            <button id="prev-page" class="page-button" disabled>
+                                <i data-lucide="chevron-left" class="page-icon"></i>
+                            </button>
+                            <div id="page-numbers" class="page-numbers">
+                                <button class="page-number active">1</button>
+                                <button class="page-number">2</button>
+                                <button class="page-number">3</button>
+                                <button class="page-number">4</button>
+                            </div>
+                            <button id="next-page" class="page-button">
+                                <i data-lucide="chevron-right" class="page-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            
         </div>
+
+        
+
     </div>
 
     <script>

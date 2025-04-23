@@ -34,7 +34,8 @@
                             <h2 class="subtitle">Contrato</h2>
                         </div>
                         <div class="action-buttons">
-                            <button id="emailButton" class="email-button" aria-label="Enviar detalhe do contrato por email">
+                            <button id="emailButton" class="email-button"
+                                aria-label="Enviar detalhe do contrato por email">
                                 <i data-lucide="mail" class="email-icon"></i>
                                 ENVIAR POR EMAIL
                             </button>
@@ -86,7 +87,8 @@
                                         </tr>
                                         <tr>
                                             <th>Objeto do contrato</th>
-                                            <td>Prestação de serviços de assessoria jurídica relativa ao procedimento de licenciamento de obras a que corresponde o Processo n.º 21/2020</td>
+                                            <td>Prestação de serviços de assessoria jurídica relativa ao procedimento de
+                                                licenciamento de obras a que corresponde o Processo n.º 21/2020</td>
                                         </tr>
                                         <tr>
                                             <th>Adjudicante</th>
@@ -122,7 +124,8 @@
                             <h2 class="subtitle">Contrato</h2>
                         </div>
                         <div class="action-buttons">
-                            <button id="emailButton" class="email-button" aria-label="Enviar detalhe do contrato por email">
+                            <button id="emailButton" class="email-button"
+                                aria-label="Enviar detalhe do contrato por email">
                                 <i data-lucide="mail" class="email-icon"></i>
                                 ENVIAR POR EMAIL
                             </button>
@@ -210,7 +213,8 @@
                             <h2 class="subtitle">Contrato</h2>
                         </div>
                         <div class="action-buttons">
-                            <button id="emailButton" class="email-button" aria-label="Enviar detalhe do contrato por email">
+                            <button id="emailButton" class="email-button"
+                                aria-label="Enviar detalhe do contrato por email">
                                 <i data-lucide="mail" class="email-icon"></i>
                                 ENVIAR POR EMAIL
                             </button>
@@ -250,7 +254,8 @@
                                         </tr>
                                         <tr>
                                             <th>Descrição</th>
-                                            <td>Aquisição de serviços continuados de manutenção preventiva e corretiva da Infraestrutura TIC</td>
+                                            <td>Aquisição de serviços continuados de manutenção preventiva e corretiva
+                                                da Infraestrutura TIC</td>
                                         </tr>
                                         <tr>
                                             <th>Fundamentação</th>
@@ -262,7 +267,8 @@
                                         </tr>
                                         <tr>
                                             <th>Objeto do contrato</th>
-                                            <td>Aquisição de serviços continuados de manutenção preventiva e corretiva da Infraestrutura TIC da CIM Viseu Dão Lafões</td>
+                                            <td>Aquisição de serviços continuados de manutenção preventiva e corretiva
+                                                da Infraestrutura TIC da CIM Viseu Dão Lafões</td>
                                         </tr>
                                         <tr>
                                             <th>Adjudicante</th>
@@ -298,7 +304,8 @@
                             <h2 class="subtitle">Contrato</h2>
                         </div>
                         <div class="action-buttons">
-                            <button id="emailButton" class="email-button" aria-label="Enviar detalhe do contrato por email">
+                            <button id="emailButton" class="email-button"
+                                aria-label="Enviar detalhe do contrato por email">
                                 <i data-lucide="mail" class="email-icon"></i>
                                 ENVIAR POR EMAIL
                             </button>
@@ -376,6 +383,37 @@
                             </button>
                         </div>
                     </section>
+                </div>
+            </div>
+
+            <!-- Componente de Paginação -->
+            <div class="pagination-container">
+                <div class="pagination-info">
+                    <span id="showing-entries">Mostrando 1-25 de 100 registros</span>
+                </div>
+                <div class="pagination-controls">
+                    <div class="items-per-page">
+                        <label for="items-select">Itens por página:</label>
+                        <select id="items-select" class="items-select">
+                            <option value="25" selected>25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+                    <div class="page-navigation">
+                        <button id="prev-page" class="page-button" disabled>
+                            <i data-lucide="chevron-left" class="page-icon"></i>
+                        </button>
+                        <div id="page-numbers" class="page-numbers">
+                            <button class="page-number active">1</button>
+                            <button class="page-number">2</button>
+                            <button class="page-number">3</button>
+                            <button class="page-number">4</button>
+                        </div>
+                        <button id="next-page" class="page-button">
+                            <i data-lucide="chevron-right" class="page-icon"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </main>

@@ -396,11 +396,6 @@ main {
     /* Alinha os itens na parte inferior */
 }
 
-/* Utility classes */
-.mt-2 {
-    margin-top: 0.5rem;
-}
-
 /* Estilo para o grupo de inputs */
 .input-group {
   display: flex;
@@ -432,6 +427,8 @@ main {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  margin-top: -2rem;
+
 }
 
 /* Responsive styles */
