@@ -11,10 +11,8 @@
 </head>
 
 <body>
-    <!-- Inclui o ficheiro nav.ejs -->
-    <%- include('components/nav') %>
-
         <main class="container py-8">
+            <h1 class="main-title">Estatísticas Setor Público</h1>
             <div class="banner">
                 <p>
                     Bem-vindo! O Helpdesk Público centraliza o apoio e informações sobre serviços públicos,
@@ -256,7 +254,6 @@
         <%- include('components/tabela') %> 
             <%- include('components/detalhes') %>
                 <%- include('components/button') %>
-                    <%- include('components/footer') %>
 
                         <script>
                             document.addEventListener('DOMContentLoaded', function () {

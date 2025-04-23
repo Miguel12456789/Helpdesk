@@ -11,9 +11,8 @@
 </head>
 
 <body>
-    <!-- Inclui o ficheiro nav.ejs -->
-    <%- include('components/nav') %>
         <main class="container py-8">
+            <h1 class="main-title">Estatísticas Setor Público</h1>
             <div class="banner">
                 <p>
                     Bem-vindo! O Helpdesk Público centraliza o apoio e informações sobre serviços públicos,
@@ -38,7 +37,6 @@
                                         <option>Espanha</option>
                                         <option>França</option>
                                     </select>
-                                    <i data-lucide="chevron-down" class="select-icon"></i>
                                 </div>
                             </div>
 
@@ -51,7 +49,6 @@
                                         <option>Privado</option>
                                         <option>Misto</option>
                                     </select>
-                                    <i data-lucide="chevron-down" class="select-icon"></i>
                                 </div>
                             </div>
 
@@ -64,7 +61,6 @@
                                         <option>Administração Local</option>
                                         <option>Empresas Públicas</option>
                                     </select>
-                                    <i data-lucide="chevron-down" class="select-icon"></i>
                                 </div>
                             </div>
 
@@ -77,11 +73,10 @@
                                         <option>Categoria 2</option>
                                         <option>Categoria 3</option>
                                     </select>
-                                    <i data-lucide="chevron-down" class="select-icon"></i>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Input centralizado para Nº / Valor -->
                         <div class="centered-input-container">
                             <div class="centered-input-field">
@@ -119,7 +114,6 @@
                                         <option>Estatuto 1</option>
                                         <option>Estatuto 2</option>
                                     </select>
-                                    <i data-lucide="chevron-down" class="select-icon"></i>
                                 </div>
                                 <input type="text" class="form-input mt-2" placeholder="Nº / Valor">
                             </div>
@@ -132,7 +126,6 @@
                                         <option>Detentor 1</option>
                                         <option>Detentor 2</option>
                                     </select>
-                                    <i data-lucide="chevron-down" class="select-icon"></i>
                                 </div>
                                 <input type="text" class="form-input mt-2" placeholder="Nº / Valor">
                             </div>
@@ -144,7 +137,7 @@
 
                             <div class="form-field">
                                 <label class="form-label">Registo Atividade Portal Base</label>
-                                <input type="text" class="form-input" placeholder="%/Percentagem">
+                                <input type="text" class="form-input" placeholder="% / Percentagem">
                             </div>
                         </div>
 
@@ -162,7 +155,6 @@
                                         <option>Alentejo</option>
                                         <option>Algarve</option>
                                     </select>
-                                    <i data-lucide="chevron-down" class="select-icon"></i>
                                 </div>
                                 <input type="text" class="form-input mt-2" placeholder="Nº / Valor">
                             </div>
@@ -177,7 +169,6 @@
                                         <option>Faro</option>
                                         <option>Braga</option>
                                     </select>
-                                    <i data-lucide="chevron-down" class="select-icon"></i>
                                 </div>
                                 <input type="text" class="form-input mt-2" placeholder="Nº / Valor">
                             </div>
@@ -192,12 +183,11 @@
                                         <option>Sintra</option>
                                         <option>Oeiras</option>
                                     </select>
-                                    <i data-lucide="chevron-down" class="select-icon"></i>
                                 </div>
                                 <input type="text" class="form-input mt-2" placeholder="Nº / Valor">
                             </div>
                         </div>
-                        
+
                         <!-- Botão LIMPAR movido para fora da última form-row e posicionado mais abaixo -->
                         <div class="clear-selection-container">
                             <button class="clear-selection-button">
@@ -209,6 +199,8 @@
                 </div>
             </div>
         </main>
+
+        <%- include('components/button') %>
 
         <script>
             document.addEventListener('DOMContentLoaded', function () {
@@ -338,8 +330,6 @@
             });
         </script>
 </body>
-<%- include('components/button') %>
 
-    <%- include('components/footer') %>
 
 </html>
