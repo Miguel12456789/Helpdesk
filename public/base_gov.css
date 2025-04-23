@@ -47,7 +47,7 @@ body {
 header {
   background-color: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  padding-top: 1rem;
+  padding-top: rem;
   padding-bottom: 1rem;
 }
 
@@ -63,7 +63,7 @@ main {
   padding-bottom: 2rem;
 }
 
-.main-title {
+.titulo {
   font-size: 1.75rem;
   font-weight: 700;
   color: #1a1a1a;
@@ -71,7 +71,6 @@ main {
   margin-bottom: 2rem;
 }
 
-/* Banner */
 .banner {
   background-color: #3c6c2a;
   color: white;

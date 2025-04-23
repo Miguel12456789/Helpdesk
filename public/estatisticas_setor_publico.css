@@ -41,7 +41,7 @@ body {
     padding-right: 2rem;
     margin-top: 1rem;
     margin-bottom: 10rem;
-}
+  }
 
 /* Header */
 header {
@@ -57,7 +57,7 @@ main {
     padding-bottom: 2rem;
 }
 
-.main-title {
+.titulo {
     font-size: 1.75rem;
     font-weight: 700;
     color: #1a1a1a;
