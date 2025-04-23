@@ -21,42 +21,30 @@
             </p>
         </div>
 
-            <div class="search-container">
-                <div class="search-row">
-                    <!-- Dropdown -->
-                    <div class="dropdown" id="contracts-dropdown">
-                        <button id="dropdown-button" class="dropdown-select" aria-haspopup="true" aria-expanded="false">
-                            <span class="dropdown-text" id="selected-contract">Contratos</span>
-                            <i data-lucide="chevron-down" class="dropdown-icon"></i>
-                        </button>
+        <div class="search-container">
+            <div class="search-row">
+                <div class="dropdown" id="contracts-dropdown">
+                    <button id="dropdown-button" class="dropdown-select" aria-haspopup="true" aria-expanded="false">
+                        <span class="dropdown-text" id="selected-contract">Contrato</span>
+                        <i data-lucide="chevron-down" class="dropdown-icon"></i>
+                    </button>
 
-                        <div class="dropdown-menu" id="dropdown-menu">
-                            <div class="dropdown-item" data-value="Anúncios">Anúncios</div>
-                            <div class="dropdown-item" data-value="Entidades">Entidades</div>
-                            <div class="dropdown-item" data-value="Modificações contratuais">Modificações contratuais
-                            </div>
-                            <div class="dropdown-item" data-value="Bens móveis">Bens móveis</div>
-                            <div class="dropdown-item" data-value="Não Celebrações de contrato">Não Celebrações de
-                                contrato</div>
-                            <div class="dropdown-item" data-value="Impugnação">Impugnação</div>
-                        </div>
+                    <div class="dropdown-menu" id="dropdown-menu">
+                        <div class="dropdown-item" data-value="Contrato">Contrato</div>
+                        <div class="dropdown-item" data-value="Entidades">Entidades</div>
+                        <div class="dropdown-item" data-value="Modificações contratuais">Modificações contratuais</div>
+                        <div class="dropdown-item" data-value="Bens móveis">Bens móveis</div>
+                        <div class="dropdown-item" data-value="Não Celebrações de contrato">Não Celebrações de contrato</div>
+                        <div class="dropdown-item" data-value="Impugnação">Impugnação</div>
                     </div>
-
-                    <!-- Search Input -->
-                    <input type="text" placeholder="Pesquisar pelo objeto do Contrato" class="search-input" />
-
-                    <!-- Search Button -->
-                    <button class="search-button">
-                        <i data-lucide="search" class="icon-small"></i>
-                        <span>Pesquisar</span>
-                    </button>
-
-                    <!-- Advanced Search Button -->
-                    <button id="advanced-search-btn" class="advanced-search-button">
-                        <i data-lucide="sliders-horizontal" class="icon-small"></i>
-                        <span>Pesquisa Avanc.</span>
-                    </button>
                 </div>
+
+                <input type="text" placeholder="Pesquisar pelo objeto do Contrato" class="search-input" />
+                <button class="search-button">
+                    <i data-lucide="search" class="icon-small"></i>
+                    <span>Pesquisar</span>
+                </button>
+            </div>
 
                 <!-- Advanced Search Form -->
                 <div id="advanced-search-form" class="advanced-search-form">
@@ -256,6 +244,49 @@
                 <%- include('components/button') %>
 
                         <script>
+                            
+                            document.addEventListener("DOMContentLoaded", () => {
+            const dropdownButton = document.getElementById("dropdown-button")
+            const dropdownMenu = document.getElementById("dropdown-menu")
+            const selectedContractText = document.getElementById("selected-contract")
+            const dropdownItems = document.querySelectorAll(".dropdown-item")
+            const searchInput = document.querySelector(".search-input")
+
+            dropdownButton.addEventListener("click", function () {
+                const expanded = this.getAttribute("aria-expanded") === "true"
+                this.setAttribute("aria-expanded", !expanded)
+                dropdownMenu.style.display = expanded ? "none" : "block"
+            })
+
+            document.addEventListener("click", (event) => {
+                if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                    dropdownButton.setAttribute("aria-expanded", "false")
+                    dropdownMenu.style.display = "none"
+                }
+            })
+
+            const placeholderTexts = {
+                Contrato: "Pesquisar pelo número ou objeto do Contrato",
+                Entidades: "Pesquisar pelo nome da Entidade",
+                "Modificações contratuais": "Pesquisar pela modificação contratual",
+                "Bens móveis": "Pesquisar pelo bem móvel",
+                "Não Celebrações de contrato": "Pesquisar pela não celebração",
+                Impugnação: "Pesquisar pela impugnação",
+            }
+
+            dropdownItems.forEach((item) => {
+                item.addEventListener("click", function () {
+                    const selectedValue = this.getAttribute("data-value")
+                    selectedContractText.textContent = selectedValue
+                    searchInput.placeholder = placeholderTexts[selectedValue] || `Pesquisar pelo ${selectedValue.toLowerCase()}`
+                    dropdownButton.setAttribute("aria-expanded", "false")
+                    dropdownMenu.style.display = "none"
+                })
+            })
+
+            const initialSelection = selectedContractText.textContent
+            searchInput.placeholder = placeholderTexts[initialSelection] || `Pesquisar pelo ${initialSelection.toLowerCase()}`
+        })
                             document.addEventListener('DOMContentLoaded', function () {
                                 // === Função para preencher anos, meses e dias dinamicamente ===
                                 function populateDateSelectors(yearId, monthId, dayId) {
@@ -374,21 +405,6 @@
                                     if (e.key === 'Escape') {
                                         dropdownContainer.classList.remove('active');
                                         dropdownButton.setAttribute('aria-expanded', 'false');
-                                    }
-                                });
-
-                                // Advanced Search Form functionality
-                                const advancedSearchBtn = document.getElementById('advanced-search-btn');
-                                const advancedSearchForm = document.getElementById('advanced-search-form');
-
-                                advancedSearchBtn.addEventListener('click', function () {
-                                    advancedSearchForm.classList.toggle('visible');
-
-                                    // Scroll to form if it's now visible
-                                    if (advancedSearchForm.classList.contains('visible')) {
-                                        setTimeout(function () {
-                                            advancedSearchForm.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                                        }, 100);
                                     }
                                 });
 
@@ -580,6 +596,62 @@
                                         }
                                     });
                                 });
+                                document.addEventListener("DOMContentLoaded", () => {
+  // Get references to the elements
+  const dropdownButton = document.getElementById("dropdown-button")
+  const dropdownMenu = document.getElementById("dropdown-menu")
+  const selectedContractText = document.getElementById("selected-contract")
+  const dropdownItems = document.querySelectorAll(".dropdown-item")
+  const searchInput = document.querySelector(".search-input")
+
+  // Toggle dropdown menu when button is clicked
+  dropdownButton.addEventListener("click", function () {
+    const expanded = this.getAttribute("aria-expanded") === "true"
+    this.setAttribute("aria-expanded", !expanded)
+    dropdownMenu.style.display = expanded ? "none" : "block"
+  })
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", (event) => {
+    if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+      dropdownButton.setAttribute("aria-expanded", "false")
+      dropdownMenu.style.display = "none"
+    }
+  })
+
+  // Define placeholder texts for each option
+  const placeholderTexts = {
+    Contratos: "Pesquisar pelo objeto do Contrato",
+    Anúncios: "Pesquisar pelo objeto do Anúncio",
+    Entidades: "Pesquisar pelo nome da Entidade",
+    "Modificações contratuais": "Pesquisar pela modificação contratual",
+    "Bens móveis": "Pesquisar pelo bem móvel",
+    "Não Celebrações de contrato": "Pesquisar pela não celebração",
+    Impugnação: "Pesquisar pela impugnação",
+  }
+
+  // Handle dropdown item selection
+  dropdownItems.forEach((item) => {
+    item.addEventListener("click", function () {
+      const selectedValue = this.getAttribute("data-value")
+
+      // Update the dropdown button text
+      selectedContractText.textContent = selectedValue
+
+      // Update the search input placeholder
+      searchInput.placeholder = placeholderTexts[selectedValue] || `Pesquisar pelo ${selectedValue.toLowerCase()}`
+
+      // Close the dropdown
+      dropdownButton.setAttribute("aria-expanded", "false")
+      dropdownMenu.style.display = "none"
+    })
+  })
+
+  // Set initial placeholder based on default selection
+  const initialSelection = selectedContractText.textContent
+  searchInput.placeholder = placeholderTexts[initialSelection] || `Pesquisar pelo ${initialSelection.toLowerCase()}`
+})
+
                             });
 
 
