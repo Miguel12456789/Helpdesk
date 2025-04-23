@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estatísticas Setor Privado</title>
+  <link rel="stylesheet" href="setor_priv.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="min-h-screen">
+  <div class="container">
+    <h1 class="main-title">Estatísticas Setor Privado</h1>
+    
+    <div class="banner">
+      <p>Bem-vindo! O Helpdesk Público centraliza o apoio e informações sobre serviços públicos, facilitando a comunicação e resolução de questões relacionadas com a administração pública em Portugal.</p>
+    </div>
+    
+    <div class="form-container">
+      
+      <!-- Geographic Selection Section -->
+      <div class="section">
+        <h2 class="section-title">Seleção Geográfica</h2>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="pais">País</label>
+            <div class="select-wrapper">
+              <select id="pais" class="form-select">
+                <option>Todos</option>
+                <option>Portugal</option>
+                <option>Espanha</option>
+                <option>França</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="regiao">Região</label>
+            <div class="select-wrapper">
+              <select id="regiao" class="form-select">
+                <option>Todos</option>
+                <option>Norte</option>
+                <option>Centro</option>
+                <option>Lisboa</option>
+                <option>Alentejo</option>
+                <option>Algarve</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="distritos">Distritos</label>
+            <div class="select-wrapper">
+              <select id="distritos" class="form-select">
+                <option>Todos</option>
+                <option>Lisboa</option>
+                <option>Porto</option>
+                <option>Braga</option>
+                <option>Faro</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="concelhos">Concelhos</label>
+            <input type="text" id="concelhos" class="form-input">
+          </div>
+        </div>
+        
+        <div class="centered-input-container">
+          <div class="centered-input-field">
+            <label for="valor1">Nº / Valor</label>
+            <input type="text" id="valor1" class="form-input">
+          </div>
+        </div>
+      </div>
+      
+      <hr class="section-divider">
+      
+      <!-- Economic Activity Sector Section -->
+      <div class="section">
+        <h2 class="section-title">Setor Atividade Económica</h2>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="setor">Setor atividade Económica</label>
+            <input type="text" id="setor" class="form-input">
+            <input type="text" id="setor2" class="form-input mt-10">
+            <label for="valorSetor" class="mt-10">Nº / Valor</label>
+            <input type="text" id="valorSetor" class="form-input">
+          </div>
+          
+          <div class="form-group">
+            <label for="volume">Volume de negócios por área económica</label>
+            <input type="text" id="volume" class="form-input">
+            <input type="text" id="volume2" class="form-input mt-10">
+            <label for="valorVolume" class="mt-10">Nº / Valor</label>
+            <input type="text" id="valorVolume" class="form-input">
+          </div>
+          
+          <div class="form-group">
+            <label for="empresasCriadas">Nº Empresas Criadas último exercício</label>
+            <input type="text" id="empresasCriadas" class="form-input">
+            <input type="text" id="empresasCriadas2" class="form-input mt-10">
+            <label for="valorEmpresas" class="mt-10">Nº / Valor</label>
+            <input type="text" id="valorEmpresas" class="form-input">
+          </div>
+          
+          <div class="form-group">
+            <label for="empresasEncerradas">Nº Empresas Encerradas</label>
+            <input type="text" id="empresasEncerradas" class="form-input">
+            <input type="text" id="empresasEncerradas2" class="form-input mt-10">
+            <label for="valorEncerradas" class="mt-10">Nº / Valor</label>
+            <input type="text" id="valorEncerradas" class="form-input">
+          </div>
+        </div>
+      </div>
+      
+      <hr class="section-divider">
+      
+      <!-- Public Market Activity Section -->
+      <div class="section">
+        <h2 class="section-title">Atividade no Mercado Público</h2>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="entidades">Entidades Com Atividade Registado No Portal Base</label>
+            <input type="text" id="entidades" class="form-input">
+            <label for="valorEntidades" class="mt-10">Nº / Valor</label>
+            <input type="text" id="valorEntidades" class="form-input">
+          </div>
+          
+          <div class="form-group">
+            <label for="percentagem">% Entidades Com Atividade Registado No Portal Base</label>
+            <input type="text" id="percentagem" class="form-input">
+            <label for="valorPercentagem" class="mt-10">%/Percentagem</label>
+            <input type="text" id="valorPercentagem" class="form-input">
+          </div>
+          
+          <div class="form-group button-container">
+            <button id="limparSelecao" class="btn-limpar">LIMPAR SELEÇÃO</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Referência ao botão de limpar seleção
+  const btnLimpar = document.getElementById("limparSelecao")
+
+  // Adiciona evento de clique ao botão
+  btnLimpar.addEventListener("click", () => {
+    // Limpa todos os selects
+    document.querySelectorAll("select").forEach((select) => {
+      select.selectedIndex = 0
+    })
+
+    // Limpa todos os inputs
+    document.querySelectorAll("input").forEach((input) => {
+      input.value = ""
+    })
+
+    alert("Todos os campos foram limpos!")
+  })
+
+  // Função para atualizar os distritos com base na região selecionada
+  document.getElementById("regiao").addEventListener("change", function () {
+    const regiao = this.value
+    const distritos = document.getElementById("distritos")
+
+    // Limpa as opções atuais
+    distritos.innerHTML = "<option>Todos</option>"
+
+    // Se a região for "Norte", adiciona distritos do norte
+    if (regiao === "Norte") {
+      const distritosNorte = ["Porto", "Braga", "Viana do Castelo", "Vila Real", "Bragança"]
+      distritosNorte.forEach((distrito) => {
+        const option = document.createElement("option")
+        option.textContent = distrito
+        distritos.appendChild(option)
+      })
+    }
+    // Se a região for "Centro", adiciona distritos do centro
+    else if (regiao === "Centro") {
+      const distritosCentro = ["Aveiro", "Viseu", "Coimbra", "Leiria", "Castelo Branco", "Guarda"]
+      distritosCentro.forEach((distrito) => {
+        const option = document.createElement("option")
+        option.textContent = distrito
+        distritos.appendChild(option)
+      })
+    }
+    // Se a região for "Lisboa", adiciona distritos de Lisboa
+    else if (regiao === "Lisboa") {
+      const distritosLisboa = ["Lisboa", "Setúbal"]
+      distritosLisboa.forEach((distrito) => {
+        const option = document.createElement("option")
+        option.textContent = distrito
+        distritos.appendChild(option)
+      })
+    }
+    // Se a região for "Alentejo", adiciona distritos do Alentejo
+    else if (regiao === "Alentejo") {
+      const distritosAlentejo = ["Portalegre", "Évora", "Beja"]
+      distritosAlentejo.forEach((distrito) => {
+        const option = document.createElement("option")
+        option.textContent = distrito
+        distritos.appendChild(option)
+      })
+    }
+    // Se a região for "Algarve", adiciona Faro
+    else if (regiao === "Algarve") {
+      const option = document.createElement("option")
+      option.textContent = "Faro"
+      distritos.appendChild(option)
+    }
+  })
+
+  // Add input validation for numeric fields
+  const numericInputs = ["valor1", "valor2", "valor3", "valor4", "valor5", "valor6", "valor7"]
+
+  numericInputs.forEach((id) => {
+    const input = document.getElementById(id)
+    if (input) {
+      input.addEventListener("input", function () {
+        // Replace any non-numeric characters except for decimal point
+        this.value = this.value.replace(/[^0-9.]/g, "")
+      })
+    }
+  })
+
+  // Add animation effect when sections are in view
+  const sections = document.querySelectorAll(".section")
+
+  const observerOptions = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.1,
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = "1"
+        entry.target.style.transform = "translateY(0)"
+      }
+    })
+  }, observerOptions)
+
+  sections.forEach((section) => {
+    section.style.opacity = "0"
+    section.style.transform = "translateY(20px)"
+    section.style.transition = "opacity 0.5s ease, transform 0.5s ease"
+    observer.observe(section)
+  })
+})
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Get form elements
+  const form = document.querySelector(".search-form")
+  const limparBtn = document.getElementById("limparBtn")
+  const pesquisarBtn = document.getElementById("pesquisarBtn")
+
+  // Get all form inputs
+  const inputs = form.querySelectorAll("input, select")
+
+  // Add event listener for the clear button
+  limparBtn.addEventListener("click", () => {
+    // Reset all text inputs
+    form.querySelectorAll('input[type="text"]').forEach((input) => {
+      input.value = ""
+    })
+
+    // Uncheck all checkboxes
+    form.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
+      checkbox.checked = false
+    })
+
+    // Reset all selects to first option
+    form.querySelectorAll("select").forEach((select) => {
+      select.selectedIndex = 0
+    })
+  })
+
+  // Add event listener for the search button
+  pesquisarBtn.addEventListener("click", (e) => {
+    e.preventDefault()
+
+    // Collect form data
+    const formData = {}
+    inputs.forEach((input) => {
+      if (input.type === "checkbox") {
+        formData[input.id] = input.checked
+      } else {
+        formData[input.id] = input.value
+      }
+    })
+
+    // Log form data (in a real application, you would send this to a server)
+    console.log("Form data:", formData)
+
+    // Show success message
+    alert("Pesquisa realizada com sucesso!")
+  })
+
+  // Dynamic population of districts based on country selection
+  const paisSelect = document.getElementById("pais")
+  const distritoSelect = document.getElementById("distrito")
+
+  paisSelect.addEventListener("change", function () {
+    // Clear current options except the first one
+    while (distritoSelect.options.length > 1) {
+      distritoSelect.remove(1)
+    }
+
+    // If Portugal is selected, add Portuguese districts
+    if (this.value === "Portugal") {
+      const distritos = [
+        "Aveiro",
+        "Beja",
+        "Braga",
+        "Bragança",
+        "Castelo Branco",
+        "Coimbra",
+        "Évora",
+        "Faro",
+        "Guarda",
+        "Leiria",
+        "Lisboa",
+        "Portalegre",
+        "Porto",
+        "Santarém",
+        "Setúbal",
+        "Viana do Castelo",
+        "Vila Real",
+        "Viseu",
+      ]
+
+      distritos.forEach((distrito) => {
+        const option = document.createElement("option")
+        option.textContent = distrito
+        option.value = distrito
+        distritoSelect.appendChild(option)
+      })
+    }
+    // If Spain is selected, add Spanish provinces
+    else if (this.value === "Espanha") {
+      const provincias = [
+        "Madrid",
+        "Barcelona",
+        "Valencia",
+        "Sevilla",
+        "Zaragoza",
+        "Málaga",
+        "Murcia",
+        "Palma",
+        "Las Palmas",
+        "Bilbao",
+      ]
+
+      provincias.forEach((provincia) => {
+        const option = document.createElement("option")
+        option.textContent = provincia
+        option.value = provincia
+        distritoSelect.appendChild(option)
+      })
+    }
+  })
+
+  // Dynamic population of municipalities based on district selection
+  const concelhoSelect = document.getElementById("concelho")
+
+  distritoSelect.addEventListener("change", function () {
+    // Clear current options except the first one
+    while (concelhoSelect.options.length > 1) {
+      concelhoSelect.remove(1)
+    }
+
+    // Add municipalities based on selected district
+    if (this.value === "Lisboa") {
+      const concelhos = [
+        "Lisboa",
+        "Amadora",
+        "Cascais",
+        "Loures",
+        "Mafra",
+        "Odivelas",
+        "Oeiras",
+        "Sintra",
+        "Vila Franca de Xira",
+      ]
+
+      concelhos.forEach((concelho) => {
+        const option = document.createElement("option")
+        option.textContent = concelho
+        option.value = concelho
+        concelhoSelect.appendChild(option)
+      })
+    } else if (this.value === "Porto") {
+      const concelhos = [
+        "Porto",
+        "Gondomar",
+        "Maia",
+        "Matosinhos",
+        "Valongo",
+        "Vila Nova de Gaia",
+        "Póvoa de Varzim",
+        "Vila do Conde",
+      ]
+
+      concelhos.forEach((concelho) => {
+        const option = document.createElement("option")
+        option.textContent = concelho
+        option.value = concelho
+        concelhoSelect.appendChild(option)
+      })
+    }
+  })
+
+  // Populate days in date selects based on month and year
+  const updateDays = (yearSelect, monthSelect, daySelect) => {
+    const year = Number.parseInt(yearSelect.value)
+    const month = Number.parseInt(monthSelect.value)
+
+    // Get number of days in the selected month
+    const daysInMonth = new Date(year, month, 0).getDate()
+
+    // Save current selection if possible
+    const currentDay = daySelect.value
+
+    // Clear current options except the first one
+    while (daySelect.options.length > 1) {
+      daySelect.remove(1)
+    }
+
+    // Add day options
+    for (let i = 1; i <= daysInMonth; i++) {
+      const day = i < 10 ? "0" + i : i.toString()
+      const option = document.createElement("option")
+      option.textContent = day
+      option.value = day
+      daySelect.appendChild(option)
+    }
+
+    // Try to restore previous selection if valid
+    if (currentDay !== "Dia:" && Number.parseInt(currentDay) <= daysInMonth) {
+      daySelect.value = currentDay
+    }
+  }
+
+  // Get date select elements
+  const anoInicio = document.getElementById("anoInicio")
+  const mesInicio = document.getElementById("mesInicio")
+  const diaInicio = document.getElementById("diaInicio")
+  const anoFim = document.getElementById("anoFim")
+  const mesFim = document.getElementById("mesFim")
+  const diaFim = document.getElementById("diaFim")
+
+  // Add event listeners to update days when month or year changes
+  anoInicio.addEventListener("change", () => updateDays(anoInicio, mesInicio, diaInicio))
+  mesInicio.addEventListener("change", () => updateDays(anoInicio, mesInicio, diaInicio))
+  anoFim.addEventListener("change", () => updateDays(anoFim, mesFim, diaFim))
+  mesFim.addEventListener("change", () => updateDays(anoFim, mesFim, diaFim))
+
+  // Initialize days in date selects
+  updateDays(anoInicio, mesInicio, diaInicio)
+  updateDays(anoFim, mesFim, diaFim)
+
+  // Add form validation
+  form.addEventListener("submit", (e) => {
+    e.preventDefault()
+
+    let isValid = true
+    let errorMessage = ""
+
+    // Validate date range
+    const startDate = new Date(
+      Number.parseInt(anoInicio.value),
+      Number.parseInt(mesInicio.value) - 1,
+      diaInicio.value === "Dia:" ? 1 : Number.parseInt(diaInicio.value),
+    )
+
+    const endDate = new Date(
+      Number.parseInt(anoFim.value),
+      Number.parseInt(mesFim.value) - 1,
+      diaFim.value === "Dia:" ? 1 : Number.parseInt(diaFim.value),
+    )
+
+    if (startDate > endDate) {
+      isValid = false
+      errorMessage = "A data de início não pode ser posterior à data de fim."
+    }
+
+    if (isValid) {
+      // Submit form
+      console.log("Form submitted successfully")
+      alert("Pesquisa realizada com sucesso!")
+    } else {
+      alert(errorMessage)
+    }
+  })
+})
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Reference to the clear selection button
+  const btnLimpar = document.getElementById("limparSelecao")
+
+  // Add click event to the button
+  btnLimpar.addEventListener("click", () => {
+    // Clear all selects
+    document.querySelectorAll("select").forEach((select) => {
+      select.selectedIndex = 0
+    })
+
+    // Clear all inputs
+    document.querySelectorAll("input").forEach((input) => {
+      input.value = ""
+    })
+
+    alert("Todos os campos foram limpos!")
+  })
+
+  // Function to update districts based on selected region
+  document.getElementById("regiao").addEventListener("change", function () {
+    const regiao = this.value
+    const distritos = document.getElementById("distritos")
+
+    // Clear current options
+    distritos.innerHTML = "<option>Todos</option>"
+
+    // If region is "Norte", add northern districts
+    if (regiao === "Norte") {
+      const distritosNorte = ["Porto", "Braga", "Viana do Castelo", "Vila Real", "Bragança"]
+      distritosNorte.forEach((distrito) => {
+        const option = document.createElement("option")
+        option.textContent = distrito
+        distritos.appendChild(option)
+      })
+    }
+    // If region is "Centro", add central districts
+    else if (regiao === "Centro") {
+      const distritosCentro = ["Aveiro", "Viseu", "Coimbra", "Leiria", "Castelo Branco", "Guarda"]
+      distritosCentro.forEach((distrito) => {
+        const option = document.createElement("option")
+        option.textContent = distrito
+        distritos.appendChild(option)
+      })
+    }
+    // If region is "Lisboa", add Lisbon districts
+    else if (regiao === "Lisboa") {
+      const distritosLisboa = ["Lisboa", "Setúbal"]
+      distritosLisboa.forEach((distrito) => {
+        const option = document.createElement("option")
+        option.textContent = distrito
+        distritos.appendChild(option)
+      })
+    }
+    // If region is "Alentejo", add Alentejo districts
+    else if (regiao === "Alentejo") {
+      const distritosAlentejo = ["Portalegre", "Évora", "Beja"]
+      distritosAlentejo.forEach((distrito) => {
+        const option = document.createElement("option")
+        option.textContent = distrito
+        distritos.appendChild(option)
+      })
+    }
+    // If region is "Algarve", add Faro
+    else if (regiao === "Algarve") {
+      const option = document.createElement("option")
+      option.textContent = "Faro"
+      distritos.appendChild(option)
+    }
+  })
+
+  // Function to update municipalities based on selected district
+  document.getElementById("distritos").addEventListener("change", function () {
+    const distrito = this.value
+    const concelhos = document.getElementById("concelhos")
+
+    // Clear current value
+    concelhos.value = ""
+
+    // If district is "Lisboa", suggest some municipalities
+    if (distrito === "Lisboa") {
+      concelhos.placeholder = "Ex: Lisboa, Sintra, Cascais..."
+    }
+    // If district is "Porto", suggest some municipalities
+    else if (distrito === "Porto") {
+      concelhos.placeholder = "Ex: Porto, Gaia, Matosinhos..."
+    }
+    // Default placeholder
+    else {
+      concelhos.placeholder = ""
+    }
+  })
+
+  // Add input validation for numeric fields
+  const numericInputs = [
+    "valor1",
+    "valorSetor",
+    "valorVolume",
+    "valorEmpresas",
+    "valorEncerradas",
+    "valorEntidades",
+    "valorPercentagem",
+  ]
+
+  numericInputs.forEach((id) => {
+    const input = document.getElementById(id)
+    if (input) {
+      input.addEventListener("input", function () {
+        // Replace any non-numeric characters except for decimal point
+        this.value = this.value.replace(/[^0-9.]/g, "")
+      })
+    }
+  })
+
+  // Add percentage validation for percentage field
+  const percentageInput = document.getElementById("percentagem")
+  if (percentageInput) {
+    percentageInput.addEventListener("input", function () {
+      // Replace any non-numeric characters except for decimal point
+      this.value = this.value.replace(/[^0-9.]/g, "")
+
+      // Ensure value doesn't exceed 100
+      if (Number.parseFloat(this.value) > 100) {
+        this.value = "100"
+      }
+    })
+  }
+
+  // Add form submission handling
+  const form = document.querySelector(".form-container")
+  form.addEventListener("submit", (e) => {
+    e.preventDefault()
+
+    // Collect form data
+    const formData = {}
+
+    // Get all inputs and selects
+    const inputs = form.querySelectorAll("input")
+    const selects = form.querySelectorAll("select")
+
+    // Process inputs
+    inputs.forEach((input) => {
+      formData[input.id] = input.value
+    })
+
+    // Process selects
+    selects.forEach((select) => {
+      formData[select.id] = select.value
+    })
+
+    // Log form data (in a real application, you would send this to a server)
+    console.log("Form data:", formData)
+
+    alert("Formulário enviado com sucesso!")
+  })
+
+  // Add animation effect when sections are in view
+  const sections = document.querySelectorAll(".section")
+
+  const observerOptions = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.1,
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = "1"
+        entry.target.style.transform = "translateY(0)"
+      }
+    })
+  }, observerOptions)
+
+  sections.forEach((section) => {
+    section.style.opacity = "0"
+    section.style.transform = "translateY(20px)"
+    section.style.transition = "opacity 0.5s ease, transform 0.5s ease"
+    observer.observe(section)
+  })
+
+  // Add data persistence using localStorage
+  const saveFormData = () => {
+    const formData = {}
+
+    // Get all inputs and selects
+    const inputs = document.querySelectorAll("input")
+    const selects = document.querySelectorAll("select")
+
+    // Process inputs
+    inputs.forEach((input) => {
+      formData[input.id] = input.value
+    })
+
+    // Process selects
+    selects.forEach((select) => {
+      formData[select.id] = select.value
+    })
+
+    // Save to localStorage
+    localStorage.setItem("estatisticasSetorPrivadoForm", JSON.stringify(formData))
+  }
+
+  // Load saved form data if available
+  const loadFormData = () => {
+    const savedData = localStorage.getItem("estatisticasSetorPrivadoForm")
+
+    if (savedData) {
+      const formData = JSON.parse(savedData)
+
+      // Set input values
+      Object.keys(formData).forEach((key) => {
+        const element = document.getElementById(key)
+        if (element) {
+          element.value = formData[key]
+        }
+      })
+    }
+  }
+
+  // Save form data when inputs change
+  document.querySelectorAll("input, select").forEach((element) => {
+    element.addEventListener("change", saveFormData)
+  })
+
+  // Load saved form data on page load
+  loadFormData()
+})
+
+  </script>
+</body>
+</html>
