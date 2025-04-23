@@ -337,10 +337,6 @@ main {
     pointer-events: none;
 }
 
-.mt-2 {
-    margin-top: 0.5rem;
-}
-
 /* Estilos para o input centralizado */
 .centered-input-container {
     display: flex;
