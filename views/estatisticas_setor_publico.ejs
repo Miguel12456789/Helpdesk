@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="estatisticas_setor_publico.css">
     <!-- Include Lucide icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <title>Helpdesk Público</title>
@@ -13,14 +13,333 @@
 <body>
     <!-- Inclui o ficheiro nav.ejs -->
     <%- include('components/nav') %>
+        <main class="container py-8">
+            <div class="banner">
+                <p>
+                    Bem-vindo! O Helpdesk Público centraliza o apoio e informações sobre serviços públicos,
+                    facilitando a comunicação e resolução de questões relacionadas com a administração pública em
+                    Portugal.
+                </p>
+            </div>
 
-    <%- include('components/button') %>
+            <div class="search-container">
+                <!-- Entity Selection Form -->
+                <div id="advanced-search-form">
+                    <div class="form-content">
+                        <!-- Entity Type Selection Section - Modificado para ter apenas um input centralizado -->
+                        <h2 class="form-section-title">Seleção tipo de Entidade</h2>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label class="form-label">País</label>
+                                <div class="custom-select">
+                                    <select class="form-select">
+                                        <option>Todos</option>
+                                        <option>Portugal</option>
+                                        <option>Espanha</option>
+                                        <option>França</option>
+                                    </select>
+                                    <i data-lucide="chevron-down" class="select-icon"></i>
+                                </div>
+                            </div>
 
-        <%- include('components/footer') %>
+                            <div class="form-field">
+                                <label class="form-label">Setor</label>
+                                <div class="custom-select">
+                                    <select class="form-select">
+                                        <option>Todos</option>
+                                        <option>Público</option>
+                                        <option>Privado</option>
+                                        <option>Misto</option>
+                                    </select>
+                                    <i data-lucide="chevron-down" class="select-icon"></i>
+                                </div>
+                            </div>
 
-            <script>
-               
-            </script>
+                            <div class="form-field">
+                                <label class="form-label">Subsetor</label>
+                                <div class="custom-select">
+                                    <select class="form-select">
+                                        <option>Todos</option>
+                                        <option>Administração Central</option>
+                                        <option>Administração Local</option>
+                                        <option>Empresas Públicas</option>
+                                    </select>
+                                    <i data-lucide="chevron-down" class="select-icon"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-field">
+                                <label class="form-label">Categorização</label>
+                                <div class="custom-select">
+                                    <select class="form-select">
+                                        <option>Todos</option>
+                                        <option>Categoria 1</option>
+                                        <option>Categoria 2</option>
+                                        <option>Categoria 3</option>
+                                    </select>
+                                    <i data-lucide="chevron-down" class="select-icon"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Input centralizado para Nº / Valor -->
+                        <div class="centered-input-container">
+                            <div class="centered-input-field">
+                                <input type="text" class="form-input" placeholder="Nº / Valor">
+                            </div>
+                        </div>
+
+                        <!-- Movements and Changes Section -->
+                        <h2 class="form-section-title">Movimentos e Alterações das Entidades</h2>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label class="form-label">Inclusões</label>
+                                <input type="text" class="form-input" placeholder="Nº / Valor">
+                            </div>
+
+                            <div class="form-field">
+                                <label class="form-label">Exclusões</label>
+                                <input type="text" class="form-input" placeholder="Nº / Valor">
+                            </div>
+
+                            <div class="form-field">
+                                <label class="form-label">Extinções</label>
+                                <input type="text" class="form-input" placeholder="Nº / Valor">
+                            </div>
+                        </div>
+
+                        <!-- Define Text Section 1 -->
+                        <h2 class="form-section-title">Defenir Texto</h2>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label class="form-label">Estatuto</label>
+                                <div class="custom-select">
+                                    <select class="form-select">
+                                        <option>Todos</option>
+                                        <option>Estatuto 1</option>
+                                        <option>Estatuto 2</option>
+                                    </select>
+                                    <i data-lucide="chevron-down" class="select-icon"></i>
+                                </div>
+                                <input type="text" class="form-input mt-2" placeholder="Nº / Valor">
+                            </div>
+
+                            <div class="form-field">
+                                <label class="form-label">Detentor</label>
+                                <div class="custom-select">
+                                    <select class="form-select">
+                                        <option>Todos</option>
+                                        <option>Detentor 1</option>
+                                        <option>Detentor 2</option>
+                                    </select>
+                                    <i data-lucide="chevron-down" class="select-icon"></i>
+                                </div>
+                                <input type="text" class="form-input mt-2" placeholder="Nº / Valor">
+                            </div>
+
+                            <div class="form-field">
+                                <label class="form-label">Enquadramento Sujeito CCP</label>
+                                <input type="text" class="form-input" placeholder="Nº / Valor">
+                            </div>
+
+                            <div class="form-field">
+                                <label class="form-label">Registo Atividade Portal Base</label>
+                                <input type="text" class="form-input" placeholder="%/Percentagem">
+                            </div>
+                        </div>
+
+                        <!-- Define Text Section 2 -->
+                        <h2 class="form-section-title">Defenir Texto</h2>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label class="form-label">Região</label>
+                                <div class="custom-select">
+                                    <select class="form-select">
+                                        <option>Todos</option>
+                                        <option>Norte</option>
+                                        <option>Centro</option>
+                                        <option>Lisboa</option>
+                                        <option>Alentejo</option>
+                                        <option>Algarve</option>
+                                    </select>
+                                    <i data-lucide="chevron-down" class="select-icon"></i>
+                                </div>
+                                <input type="text" class="form-input mt-2" placeholder="Nº / Valor">
+                            </div>
+
+                            <div class="form-field">
+                                <label class="form-label">Distritos</label>
+                                <div class="custom-select">
+                                    <select class="form-select">
+                                        <option>Todos</option>
+                                        <option>Lisboa</option>
+                                        <option>Porto</option>
+                                        <option>Faro</option>
+                                        <option>Braga</option>
+                                    </select>
+                                    <i data-lucide="chevron-down" class="select-icon"></i>
+                                </div>
+                                <input type="text" class="form-input mt-2" placeholder="Nº / Valor">
+                            </div>
+
+                            <div class="form-field">
+                                <label class="form-label">Concelhos</label>
+                                <div class="custom-select">
+                                    <select class="form-select">
+                                        <option>Todos</option>
+                                        <option>Lisboa</option>
+                                        <option>Cascais</option>
+                                        <option>Sintra</option>
+                                        <option>Oeiras</option>
+                                    </select>
+                                    <i data-lucide="chevron-down" class="select-icon"></i>
+                                </div>
+                                <input type="text" class="form-input mt-2" placeholder="Nº / Valor">
+                            </div>
+                        </div>
+                        
+                        <!-- Botão LIMPAR movido para fora da última form-row e posicionado mais abaixo -->
+                        <div class="clear-selection-container">
+                            <button class="clear-selection-button">
+                                <i data-lucide="x" class="icon-small"></i>
+                                <span>LIMPAR</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Initialize Lucide icons
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                } else {
+                    console.warn('Lucide is not globally defined. Ensure Lucide library is properly included.');
+                    window.lucide = { createIcons: function () { } };
+                }
+
+                // Dropdown functionality
+                const dropdownContainer = document.getElementById('contracts-dropdown');
+                const dropdownButton = document.getElementById('dropdown-button');
+                const dropdownText = document.getElementById('selected-contract');
+                const dropdownMenu = document.getElementById('dropdown-menu');
+                const dropdownItems = document.querySelectorAll('.dropdown-item');
+
+                // Toggle dropdown menu when clicking on the button
+                if (dropdownButton) {
+                    dropdownButton.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        dropdownContainer.classList.toggle('active');
+
+                        // Update ARIA attributes
+                        const isExpanded = dropdownContainer.classList.contains('active');
+                        dropdownButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+                    });
+                }
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function () {
+                    if (dropdownContainer) {
+                        dropdownContainer.classList.remove('active');
+                        if (dropdownButton) {
+                            dropdownButton.setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                });
+
+                // Prevent closing when clicking inside the dropdown menu
+                if (dropdownMenu) {
+                    dropdownMenu.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                    });
+                }
+
+                // Select dropdown item
+                dropdownItems.forEach(function (item) {
+                    item.addEventListener('click', function () {
+                        const value = this.getAttribute('data-value');
+                        if (dropdownText) {
+                            dropdownText.textContent = value;
+                        }
+                        if (dropdownContainer) {
+                            dropdownContainer.classList.remove('active');
+                        }
+                        if (dropdownButton) {
+                            dropdownButton.setAttribute('aria-expanded', 'false');
+                        }
+
+                        // You could trigger an action here based on selection
+                        console.log('Selected:', value);
+                    });
+                });
+
+                // Close dropdown when pressing Escape key
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape' && dropdownContainer) {
+                        dropdownContainer.classList.remove('active');
+                        if (dropdownButton) {
+                            dropdownButton.setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                });
+
+                // Advanced Search Form functionality
+                const advancedSearchBtn = document.getElementById('advanced-search-btn');
+                const advancedSearchForm = document.getElementById('advanced-search-form');
+
+                if (advancedSearchBtn && advancedSearchForm) {
+                    advancedSearchBtn.addEventListener('click', function () {
+                        advancedSearchForm.classList.toggle('visible');
+
+                        // Scroll to form if it's now visible
+                        if (advancedSearchForm.classList.contains('visible')) {
+                            setTimeout(function () {
+                                advancedSearchForm.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                            }, 100);
+                        }
+                    });
+                }
+
+                // Clear selection button functionality
+                const clearSelectionBtn = document.querySelector('.clear-selection-button');
+
+                if (clearSelectionBtn) {
+                    clearSelectionBtn.addEventListener('click', function () {
+                        // Reset all selects to first option
+                        const selects = document.querySelectorAll('.form-select');
+                        selects.forEach(select => {
+                            select.selectedIndex = 0;
+                        });
+
+                        // Clear all input fields
+                        const inputs = document.querySelectorAll('.form-input');
+                        inputs.forEach(input => {
+                            input.value = '';
+                        });
+                    });
+                }
+
+                // Make dropdown accessible via keyboard
+                if (dropdownButton) {
+                    dropdownButton.addEventListener('keydown', function (e) {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            if (dropdownContainer) {
+                                dropdownContainer.classList.toggle('active');
+
+                                const isExpanded = dropdownContainer.classList.contains('active');
+                                dropdownButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+                            }
+                        }
+                    });
+                }
+            });
+        </script>
 </body>
+<%- include('components/button') %>
+
+    <%- include('components/footer') %>
 
 </html>
