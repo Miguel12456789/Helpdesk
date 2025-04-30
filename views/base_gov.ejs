@@ -240,380 +240,26 @@
             </div>
         </div>
     </main>
-    <%- include('components/tabela') %>
+    <%- include('components/tab_base') %>
         <%- include('components/detalhes') %>
             <%- include('components/mail_receive') %>
                 <%- include('components/button') %>
-                
-                <script>
 
-                    document.addEventListener("DOMContentLoaded", () => {
-                        const dropdownButton = document.getElementById("dropdown-button")
-                        const dropdownMenu = document.getElementById("dropdown-menu")
-                        const selectedContractText = document.getElementById("selected-contract")
-                        const dropdownItems = document.querySelectorAll(".dropdown-item")
-                        const searchInput = document.querySelector(".search-input")
+                    <script>
 
-                        dropdownButton.addEventListener("click", function () {
-                            const expanded = this.getAttribute("aria-expanded") === "true"
-                            this.setAttribute("aria-expanded", !expanded)
-                            dropdownMenu.style.display = expanded ? "none" : "block"
-                        })
-
-                        document.addEventListener("click", (event) => {
-                            if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                                dropdownButton.setAttribute("aria-expanded", "false")
-                                dropdownMenu.style.display = "none"
-                            }
-                        })
-
-                        const placeholderTexts = {
-                            Contrato: "Pesquisar pelo número ou objeto do Contrato",
-                            Entidades: "Pesquisar pelo nome da Entidade",
-                            "Modificações contratuais": "Pesquisar pela modificação contratual",
-                            "Bens móveis": "Pesquisar pelo bem móvel",
-                            "Não Celebrações de contrato": "Pesquisar pela não celebração",
-                            Impugnação: "Pesquisar pela impugnação",
-                        }
-
-                        dropdownItems.forEach((item) => {
-                            item.addEventListener("click", function () {
-                                const selectedValue = this.getAttribute("data-value")
-                                selectedContractText.textContent = selectedValue
-                                searchInput.placeholder = placeholderTexts[selectedValue] || `Pesquisar pelo ${selectedValue.toLowerCase()}`
-                                dropdownButton.setAttribute("aria-expanded", "false")
-                                dropdownMenu.style.display = "none"
-                            })
-                        })
-
-                        const initialSelection = selectedContractText.textContent
-                        searchInput.placeholder = placeholderTexts[initialSelection] || `Pesquisar pelo ${initialSelection.toLowerCase()}`
-                    })
-                    document.addEventListener('DOMContentLoaded', function () {
-                        // === Função para preencher anos, meses e dias dinamicamente ===
-                        function populateDateSelectors(yearId, monthId, dayId) {
-                            const yearSelect = document.getElementById(yearId);
-                            const monthSelect = document.getElementById(monthId);
-                            const daySelect = document.getElementById(dayId);
-
-                            const currentYear = new Date().getFullYear();
-
-                            // Placeholder
-                            yearSelect.innerHTML = '<option disabled selected>Ano:</option>';
-                            monthSelect.innerHTML = '<option disabled selected>Mês:</option>';
-                            daySelect.innerHTML = '<option disabled selected>Dia:</option>';
-
-                            // Preenche anos (ex: 1900 até atual)
-                            for (let y = currentYear; y >= 1900; y--) {
-                                const option = document.createElement('option');
-                                option.value = y;
-                                option.text = y;
-                                yearSelect.appendChild(option);
-                            }
-
-                            // Preenche meses (1 a 12)
-                            for (let m = 1; m <= 12; m++) {
-                                const option = document.createElement('option');
-                                option.value = m;
-                                option.text = m.toString().padStart(2, '0');
-                                monthSelect.appendChild(option);
-                            }
-
-                            // Atualiza os dias com base no ano e mês
-                            function updateDays() {
-                                const year = parseInt(yearSelect.value);
-                                const month = parseInt(monthSelect.value);
-
-                                if (!year || !month) return;
-
-                                const daysInMonth = new Date(year, month, 0).getDate();
-                                daySelect.innerHTML = '<option disabled selected>Dia:</option>';
-
-                                for (let d = 1; d <= daysInMonth; d++) {
-                                    const option = document.createElement('option');
-                                    option.value = d;
-                                    option.text = d.toString().padStart(2, '0');
-                                    daySelect.appendChild(option);
-                                }
-                            }
-
-                            yearSelect.addEventListener('change', updateDays);
-                            monthSelect.addEventListener('change', updateDays);
-
-                            // Inicializar selects com o ano atual e mês 1
-                            yearSelect.value = currentYear;
-                            monthSelect.value = 1;
-                            updateDays();
-                        }
-
-                        // === Inicializar selects de data para "De" e "Até" ===
-                        populateDateSelectors('from-year', 'from-month', 'from-day');
-                        populateDateSelectors('to-year', 'to-month', 'to-day');
-
-                        // Initialize Lucide icons
-                        // Declare lucide if it's not already available globally
-                        if (typeof lucide === 'undefined') {
-                            console.warn('Lucide is not globally defined. Ensure Lucide library is properly included.');
-                            // You might want to initialize a placeholder or load the library here if possible.
-                            // Example placeholder:
-                            window.lucide = { createIcons: function () { } };
-                        }
-                        lucide.createIcons();
-
-                        // Dropdown functionality
-                        const dropdownContainer = document.getElementById('contracts-dropdown');
-                        const dropdownButton = document.getElementById('dropdown-button');
-                        const dropdownText = document.getElementById('selected-contract');
-                        const dropdownMenu = document.getElementById('dropdown-menu');
-                        const dropdownItems = document.querySelectorAll('.dropdown-item');
-                        const dropdownIcon = dropdownButton.querySelector('[data-lucide="chevron-down"]');
-
-                        // Toggle dropdown menu when clicking on the button
-                        dropdownButton.addEventListener('click', function (e) {
-                            e.stopPropagation();
-                            dropdownContainer.classList.toggle('active');
-
-                            // Update ARIA attributes
-                            const isExpanded = dropdownContainer.classList.contains('active');
-                            dropdownButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
-                        });
-
-                        // Close dropdown when clicking outside
-                        document.addEventListener('click', function () {
-                            dropdownContainer.classList.remove('active');
-                            dropdownButton.setAttribute('aria-expanded', 'false');
-                        });
-
-                        // Prevent closing when clicking inside the dropdown menu
-                        dropdownMenu.addEventListener('click', function (e) {
-                            e.stopPropagation();
-                        });
-
-                        // Select dropdown item
-                        dropdownItems.forEach(function (item) {
-                            item.addEventListener('click', function () {
-                                const value = this.getAttribute('data-value');
-                                dropdownText.textContent = value;
-                                dropdownContainer.classList.remove('active');
-                                dropdownButton.setAttribute('aria-expanded', 'false');
-
-                                // You could trigger an action here based on selection
-                                console.log('Selected:', value);
-                            });
-                        });
-
-                        // Close dropdown when pressing Escape key
-                        document.addEventListener('keydown', function (e) {
-                            if (e.key === 'Escape') {
-                                dropdownContainer.classList.remove('active');
-                                dropdownButton.setAttribute('aria-expanded', 'false');
-                            }
-                        });
-
-                        // Clear button functionality
-                        const clearBtn = document.getElementById('clear-form-btn');
-
-                        clearBtn.addEventListener('click', function () {
-                            // Reset all form inputs
-                            const inputs = advancedSearchForm.querySelectorAll('input');
-                            const selects = advancedSearchForm.querySelectorAll('select');
-
-                            inputs.forEach(function (input) {
-                                if (input.type === 'checkbox') {
-                                    input.checked = false;
-                                } else {
-                                    input.value = '';
-                                }
-                            });
-
-                            selects.forEach(function (select) {
-                                select.selectedIndex = 0;
-                            });
-                        });
-
-                        // Search button functionality
-                        const searchBtn = document.querySelector('.submit-button');
-
-                        searchBtn.addEventListener('click', function () {
-                            // Collect form data and submit
-                            console.log('Advanced search submitted');
-                            // Here you would typically collect all form data and submit it
-
-                            // Example of collecting form data
-                            const formData = {
-                                specialMeasures: document.getElementById('special-measures').checked,
-                                includeMec: document.getElementById('include-mec').checked,
-                                measureType: document.getElementById('measure-type').value,
-                                procedureType: document.getElementById('procedure-type').value,
-                                entity: document.getElementById('entity').value,
-                                contractType: document.getElementById('contract-type').value,
-                                awardedEntity: document.getElementById('awarded-entity').value,
-                                cpv: document.getElementById('cpv').value,
-                                environmentalCriteria: document.getElementById('environmental-criteria').checked,
-                                dateType: document.getElementById('date-type').value,
-                                // Add more fields as needed
-                            };
-
-                            console.log('Form data:', formData);
-                        });
-
-                        // Make dropdown accessible via keyboard
-                        dropdownButton.addEventListener('keydown', function (e) {
-                            if (e.key === 'Enter' || e.key === ' ') {
-                                e.preventDefault();
-                                dropdownContainer.classList.toggle('active');
-
-                                const isExpanded = dropdownContainer.classList.contains('active');
-                                dropdownButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
-                            }
-                        });
-
-                        // Mostrar tabela de resultados quando os botões de pesquisa são clicados
-                        const searchButtons = document.querySelectorAll('.search-button, .submit-button');
-                        const resultsTable = document.getElementById('results-table');
-
-                        searchButtons.forEach(button => {
-                            button.addEventListener('click', function () {
-                                // Exibe a tabela
-                                if (resultsTable) {
-                                    resultsTable.style.display = 'block';
-                                    // Opcional: Role até a tabela
-                                    resultsTable.scrollIntoView({ behavior: 'smooth' });
-                                }
-                            });
-                        });
-
-                        // === NOVA FUNCIONALIDADE: Controle de visibilidade do container principal de detalhes ===
-
-                        // Selecionar todos os botões de detalhes na tabela
-                        const detailsButtons = document.querySelectorAll('.details-button');
-
-                        // Selecionar todos os elementos de detalhes
-                        const contractDetails = document.querySelectorAll('.contract-details');
-
-                        // Selecionar todos os botões de voltar
-                        const closeButtons = document.querySelectorAll('.close-details');
-
-                        // Inicialmente ocultar todos os detalhes
-                        contractDetails.forEach(detail => {
-                            detail.style.display = 'none';
-                        });
-
-                        // Adicionar evento de clique aos botões de detalhes
-                        detailsButtons.forEach(button => {
-                            button.addEventListener('click', function () {
-                                // Obter o ID do contrato do atributo data-contract-id
-                                const contractId = this.getAttribute('data-contract-id');
-
-                                // Mostrar o container principal de detalhes
-                                const mainContainer = document.getElementById('main-container');
-                                if (mainContainer) {
-                                    mainContainer.style.display = 'block';
-                                }
-
-                                // Verificar se o elemento de detalhes existe
-                                const detailsElement = document.getElementById(`details-${contractId}`);
-                                if (!detailsElement) return;
-
-                                // Ocultar todos os outros detalhes
-                                contractDetails.forEach(detail => {
-                                    if (detail.id !== `details-${contractId}`) {
-                                        detail.style.display = 'none';
-                                    }
-                                });
-
-                                // Restaurar os ícones de todos os outros botões
-                                detailsButtons.forEach(btn => {
-                                    if (btn !== this) {
-                                        const icon = btn.querySelector('i');
-                                        if (icon) {
-                                            icon.classList.remove('fa-minus-circle');
-                                            icon.classList.add('fa-plus-circle');
-                                        }
-                                    }
-                                });
-
-                                // Mostrar os detalhes do contrato clicado
-                                detailsElement.style.display = 'block';
-
-                                // Alterar o ícone do botão para indicar que está expandido
-                                const icon = this.querySelector('i');
-                                if (icon) {
-                                    icon.classList.remove('fa-plus-circle');
-                                    icon.classList.add('fa-minus-circle');
-                                }
-
-                                // Rolar suavemente até os detalhes
-                                if (mainContainer) {
-                                    mainContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                }
-                            });
-                        });
-
-                        // Adicionar evento de clique aos botões de voltar
-                        closeButtons.forEach(button => {
-                            button.addEventListener('click', function () {
-                                // Obter o ID do contrato do atributo data-contract-id
-                                const contractId = this.getAttribute('data-contract-id');
-
-                                // Ocultar o container principal
-                                const mainContainer = document.getElementById('main-container');
-                                if (mainContainer) {
-                                    mainContainer.style.display = 'none';
-                                }
-
-                                // Encontrar o botão correspondente na tabela e restaurar seu ícone
-                                const detailsButton = document.querySelector(`.details-button[data-contract-id="${contractId}"]`);
-                                if (detailsButton) {
-                                    const icon = detailsButton.querySelector('i');
-                                    if (icon) {
-                                        icon.classList.remove('fa-minus-circle');
-                                        icon.classList.add('fa-plus-circle');
-                                    }
-                                }
-
-                                // Rolar de volta para a tabela
-                                const resultsTable = document.querySelector('.results-table');
-                                if (resultsTable) {
-                                    resultsTable.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                }
-                            });
-                        });
-
-                        // Adicionar suporte para navegação por teclado
-                        detailsButtons.forEach(button => {
-                            button.addEventListener('keydown', function (e) {
-                                if (e.key === 'Enter' || e.key === ' ') {
-                                    e.preventDefault();
-                                    this.click();
-                                }
-                            });
-                        });
-
-                        closeButtons.forEach(button => {
-                            button.addEventListener('keydown', function (e) {
-                                if (e.key === 'Enter' || e.key === ' ') {
-                                    e.preventDefault();
-                                    this.click();
-                                }
-                            });
-                        });
                         document.addEventListener("DOMContentLoaded", () => {
-                            // Get references to the elements
                             const dropdownButton = document.getElementById("dropdown-button")
                             const dropdownMenu = document.getElementById("dropdown-menu")
                             const selectedContractText = document.getElementById("selected-contract")
                             const dropdownItems = document.querySelectorAll(".dropdown-item")
                             const searchInput = document.querySelector(".search-input")
 
-                            // Toggle dropdown menu when button is clicked
                             dropdownButton.addEventListener("click", function () {
                                 const expanded = this.getAttribute("aria-expanded") === "true"
                                 this.setAttribute("aria-expanded", !expanded)
                                 dropdownMenu.style.display = expanded ? "none" : "block"
                             })
 
-                            // Close dropdown when clicking outside
                             document.addEventListener("click", (event) => {
                                 if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
                                     dropdownButton.setAttribute("aria-expanded", "false")
@@ -621,10 +267,8 @@
                                 }
                             })
 
-                            // Define placeholder texts for each option
                             const placeholderTexts = {
-                                Contratos: "Pesquisar pelo objeto do Contrato",
-                                Anúncios: "Pesquisar pelo objeto do Anúncio",
+                                Contrato: "Pesquisar pelo número ou objeto do Contrato",
                                 Entidades: "Pesquisar pelo nome da Entidade",
                                 "Modificações contratuais": "Pesquisar pela modificação contratual",
                                 "Bens móveis": "Pesquisar pelo bem móvel",
@@ -632,33 +276,396 @@
                                 Impugnação: "Pesquisar pela impugnação",
                             }
 
-                            // Handle dropdown item selection
                             dropdownItems.forEach((item) => {
                                 item.addEventListener("click", function () {
                                     const selectedValue = this.getAttribute("data-value")
-
-                                    // Update the dropdown button text
                                     selectedContractText.textContent = selectedValue
-
-                                    // Update the search input placeholder
                                     searchInput.placeholder = placeholderTexts[selectedValue] || `Pesquisar pelo ${selectedValue.toLowerCase()}`
-
-                                    // Close the dropdown
                                     dropdownButton.setAttribute("aria-expanded", "false")
                                     dropdownMenu.style.display = "none"
                                 })
                             })
 
-                            // Set initial placeholder based on default selection
                             const initialSelection = selectedContractText.textContent
                             searchInput.placeholder = placeholderTexts[initialSelection] || `Pesquisar pelo ${initialSelection.toLowerCase()}`
                         })
+                        document.addEventListener('DOMContentLoaded', function () {
+                            // === Função para preencher anos, meses e dias dinamicamente ===
+                            function populateDateSelectors(yearId, monthId, dayId) {
+                                const yearSelect = document.getElementById(yearId);
+                                const monthSelect = document.getElementById(monthId);
+                                const daySelect = document.getElementById(dayId);
 
-                    });
+                                const currentYear = new Date().getFullYear();
+
+                                // Placeholder
+                                yearSelect.innerHTML = '<option disabled selected>Ano:</option>';
+                                monthSelect.innerHTML = '<option disabled selected>Mês:</option>';
+                                daySelect.innerHTML = '<option disabled selected>Dia:</option>';
+
+                                // Preenche anos (ex: 1900 até atual)
+                                for (let y = currentYear; y >= 1900; y--) {
+                                    const option = document.createElement('option');
+                                    option.value = y;
+                                    option.text = y;
+                                    yearSelect.appendChild(option);
+                                }
+
+                                // Preenche meses (1 a 12)
+                                for (let m = 1; m <= 12; m++) {
+                                    const option = document.createElement('option');
+                                    option.value = m;
+                                    option.text = m.toString().padStart(2, '0');
+                                    monthSelect.appendChild(option);
+                                }
+
+                                // Atualiza os dias com base no ano e mês
+                                function updateDays() {
+                                    const year = parseInt(yearSelect.value);
+                                    const month = parseInt(monthSelect.value);
+
+                                    if (!year || !month) return;
+
+                                    const daysInMonth = new Date(year, month, 0).getDate();
+                                    daySelect.innerHTML = '<option disabled selected>Dia:</option>';
+
+                                    for (let d = 1; d <= daysInMonth; d++) {
+                                        const option = document.createElement('option');
+                                        option.value = d;
+                                        option.text = d.toString().padStart(2, '0');
+                                        daySelect.appendChild(option);
+                                    }
+                                }
+
+                                yearSelect.addEventListener('change', updateDays);
+                                monthSelect.addEventListener('change', updateDays);
+
+                                // Inicializar selects com o ano atual e mês 1
+                                yearSelect.value = currentYear;
+                                monthSelect.value = 1;
+                                updateDays();
+                            }
+
+                            // === Inicializar selects de data para "De" e "Até" ===
+                            populateDateSelectors('from-year', 'from-month', 'from-day');
+                            populateDateSelectors('to-year', 'to-month', 'to-day');
+
+                            // Initialize Lucide icons
+                            // Declare lucide if it's not already available globally
+                            if (typeof lucide === 'undefined') {
+                                console.warn('Lucide is not globally defined. Ensure Lucide library is properly included.');
+                                // You might want to initialize a placeholder or load the library here if possible.
+                                // Example placeholder:
+                                window.lucide = { createIcons: function () { } };
+                            }
+                            lucide.createIcons();
+
+                            // Dropdown functionality
+                            const dropdownContainer = document.getElementById('contracts-dropdown');
+                            const dropdownButton = document.getElementById('dropdown-button');
+                            const dropdownText = document.getElementById('selected-contract');
+                            const dropdownMenu = document.getElementById('dropdown-menu');
+                            const dropdownItems = document.querySelectorAll('.dropdown-item');
+                            const dropdownIcon = dropdownButton.querySelector('[data-lucide="chevron-down"]');
+
+                            // Toggle dropdown menu when clicking on the button
+                            dropdownButton.addEventListener('click', function (e) {
+                                e.stopPropagation();
+                                dropdownContainer.classList.toggle('active');
+
+                                // Update ARIA attributes
+                                const isExpanded = dropdownContainer.classList.contains('active');
+                                dropdownButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+                            });
+
+                            // Close dropdown when clicking outside
+                            document.addEventListener('click', function () {
+                                dropdownContainer.classList.remove('active');
+                                dropdownButton.setAttribute('aria-expanded', 'false');
+                            });
+
+                            // Prevent closing when clicking inside the dropdown menu
+                            dropdownMenu.addEventListener('click', function (e) {
+                                e.stopPropagation();
+                            });
+
+                            // Select dropdown item
+                            dropdownItems.forEach(function (item) {
+                                item.addEventListener('click', function () {
+                                    const value = this.getAttribute('data-value');
+                                    dropdownText.textContent = value;
+                                    dropdownContainer.classList.remove('active');
+                                    dropdownButton.setAttribute('aria-expanded', 'false');
+
+                                    // You could trigger an action here based on selection
+                                    console.log('Selected:', value);
+                                });
+                            });
+
+                            // Close dropdown when pressing Escape key
+                            document.addEventListener('keydown', function (e) {
+                                if (e.key === 'Escape') {
+                                    dropdownContainer.classList.remove('active');
+                                    dropdownButton.setAttribute('aria-expanded', 'false');
+                                }
+                            });
+
+                            // Clear button functionality
+                            const clearBtn = document.getElementById('clear-form-btn');
+
+                            clearBtn.addEventListener('click', function () {
+                                // Reset all form inputs
+                                const inputs = advancedSearchForm.querySelectorAll('input');
+                                const selects = advancedSearchForm.querySelectorAll('select');
+
+                                inputs.forEach(function (input) {
+                                    if (input.type === 'checkbox') {
+                                        input.checked = false;
+                                    } else {
+                                        input.value = '';
+                                    }
+                                });
+
+                                selects.forEach(function (select) {
+                                    select.selectedIndex = 0;
+                                });
+                            });
+
+                            // Search button functionality
+                            const searchBtn = document.querySelector('.submit-button');
+
+                            searchBtn.addEventListener('click', function () {
+                                // Collect form data and submit
+                                console.log('Advanced search submitted');
+                                // Here you would typically collect all form data and submit it
+
+                                // Example of collecting form data
+                                const formData = {
+                                    specialMeasures: document.getElementById('special-measures').checked,
+                                    includeMec: document.getElementById('include-mec').checked,
+                                    measureType: document.getElementById('measure-type').value,
+                                    procedureType: document.getElementById('procedure-type').value,
+                                    entity: document.getElementById('entity').value,
+                                    contractType: document.getElementById('contract-type').value,
+                                    awardedEntity: document.getElementById('awarded-entity').value,
+                                    cpv: document.getElementById('cpv').value,
+                                    environmentalCriteria: document.getElementById('environmental-criteria').checked,
+                                    dateType: document.getElementById('date-type').value,
+                                    // Add more fields as needed
+                                };
+
+                                console.log('Form data:', formData);
+                            });
+
+                            // Make dropdown accessible via keyboard
+                            dropdownButton.addEventListener('keydown', function (e) {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    dropdownContainer.classList.toggle('active');
+
+                                    const isExpanded = dropdownContainer.classList.contains('active');
+                                    dropdownButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+                                }
+                            });
+
+                            // Mostrar tabela de resultados quando os botões de pesquisa são clicados
+                            const searchButtons = document.querySelectorAll('.search-button, .submit-button');
+                            const resultsTable = document.getElementById('results-table');
+                            const notificationContainer = document.getElementById('notificacao-container'); // Referência ao popup
+
+                            searchButtons.forEach(button => {
+                                button.addEventListener('click', function () {
+                                    // Exibe a tabela de resultados
+                                    if (resultsTable) {
+                                        resultsTable.style.display = 'block';
+                                        resultsTable.scrollIntoView({ behavior: 'smooth' });
+                                    }
+
+                                    // Exibe o popup de notificação
+                                    if (notificationContainer) {
+                                        notificationContainer.style.display = 'block';
+                                    }
+                                });
+                            });
+
+                            // === NOVA FUNCIONALIDADE: Controle de visibilidade do container principal de detalhes ===
+
+                            // Selecionar todos os botões de detalhes na tabela
+                            const detailsButtons = document.querySelectorAll('.details-button');
+
+                            // Selecionar todos os elementos de detalhes
+                            const contractDetails = document.querySelectorAll('.contract-details');
+
+                            // Selecionar todos os botões de voltar
+                            const closeButtons = document.querySelectorAll('.close-details');
+
+                            // Inicialmente ocultar todos os detalhes
+                            contractDetails.forEach(detail => {
+                                detail.style.display = 'none';
+                            });
+
+                            // Adicionar evento de clique aos botões de detalhes
+                            detailsButtons.forEach(button => {
+                                button.addEventListener('click', function () {
+                                    // Obter o ID do contrato do atributo data-contract-id
+                                    const contractId = this.getAttribute('data-contract-id');
+
+                                    // Mostrar o container principal de detalhes
+                                    const mainContainer = document.getElementById('main-container');
+                                    if (mainContainer) {
+                                        mainContainer.style.display = 'block';
+                                    }
+
+                                    // Verificar se o elemento de detalhes existe
+                                    const detailsElement = document.getElementById(`details-${contractId}`);
+                                    if (!detailsElement) return;
+
+                                    // Ocultar todos os outros detalhes
+                                    contractDetails.forEach(detail => {
+                                        if (detail.id !== `details-${contractId}`) {
+                                            detail.style.display = 'none';
+                                        }
+                                    });
+
+                                    // Restaurar os ícones de todos os outros botões
+                                    detailsButtons.forEach(btn => {
+                                        if (btn !== this) {
+                                            const icon = btn.querySelector('i');
+                                            if (icon) {
+                                                icon.classList.remove('fa-minus-circle');
+                                                icon.classList.add('fa-plus-circle');
+                                            }
+                                        }
+                                    });
+
+                                    // Mostrar os detalhes do contrato clicado
+                                    detailsElement.style.display = 'block';
+
+                                    // Alterar o ícone do botão para indicar que está expandido
+                                    const icon = this.querySelector('i');
+                                    if (icon) {
+                                        icon.classList.remove('fa-plus-circle');
+                                        icon.classList.add('fa-minus-circle');
+                                    }
+
+                                    // Rolar suavemente até os detalhes
+                                    if (mainContainer) {
+                                        mainContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                    }
+                                });
+                            });
+
+                            // Adicionar evento de clique aos botões de voltar
+                            closeButtons.forEach(button => {
+                                button.addEventListener('click', function () {
+                                    // Obter o ID do contrato do atributo data-contract-id
+                                    const contractId = this.getAttribute('data-contract-id');
+
+                                    // Ocultar o container principal
+                                    const mainContainer = document.getElementById('main-container');
+                                    if (mainContainer) {
+                                        mainContainer.style.display = 'none';
+                                    }
+
+                                    // Encontrar o botão correspondente na tabela e restaurar seu ícone
+                                    const detailsButton = document.querySelector(`.details-button[data-contract-id="${contractId}"]`);
+                                    if (detailsButton) {
+                                        const icon = detailsButton.querySelector('i');
+                                        if (icon) {
+                                            icon.classList.remove('fa-minus-circle');
+                                            icon.classList.add('fa-plus-circle');
+                                        }
+                                    }
+
+                                    // Rolar de volta para a tabela
+                                    const resultsTable = document.querySelector('.results-table');
+                                    if (resultsTable) {
+                                        resultsTable.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                    }
+                                });
+                            });
+
+                            // Adicionar suporte para navegação por teclado
+                            detailsButtons.forEach(button => {
+                                button.addEventListener('keydown', function (e) {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                        e.preventDefault();
+                                        this.click();
+                                    }
+                                });
+                            });
+
+                            closeButtons.forEach(button => {
+                                button.addEventListener('keydown', function (e) {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                        e.preventDefault();
+                                        this.click();
+                                    }
+                                });
+                            });
+                            document.addEventListener("DOMContentLoaded", () => {
+                                // Get references to the elements
+                                const dropdownButton = document.getElementById("dropdown-button")
+                                const dropdownMenu = document.getElementById("dropdown-menu")
+                                const selectedContractText = document.getElementById("selected-contract")
+                                const dropdownItems = document.querySelectorAll(".dropdown-item")
+                                const searchInput = document.querySelector(".search-input")
+
+                                // Toggle dropdown menu when button is clicked
+                                dropdownButton.addEventListener("click", function () {
+                                    const expanded = this.getAttribute("aria-expanded") === "true"
+                                    this.setAttribute("aria-expanded", !expanded)
+                                    dropdownMenu.style.display = expanded ? "none" : "block"
+                                })
+
+                                // Close dropdown when clicking outside
+                                document.addEventListener("click", (event) => {
+                                    if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                                        dropdownButton.setAttribute("aria-expanded", "false")
+                                        dropdownMenu.style.display = "none"
+                                    }
+                                })
+
+                                // Define placeholder texts for each option
+                                const placeholderTexts = {
+                                    Contratos: "Pesquisar pelo objeto do Contrato",
+                                    Anúncios: "Pesquisar pelo objeto do Anúncio",
+                                    Entidades: "Pesquisar pelo nome da Entidade",
+                                    "Modificações contratuais": "Pesquisar pela modificação contratual",
+                                    "Bens móveis": "Pesquisar pelo bem móvel",
+                                    "Não Celebrações de contrato": "Pesquisar pela não celebração",
+                                    Impugnação: "Pesquisar pela impugnação",
+                                }
+
+                                // Handle dropdown item selection
+                                dropdownItems.forEach((item) => {
+                                    item.addEventListener("click", function () {
+                                        const selectedValue = this.getAttribute("data-value")
+
+                                        // Update the dropdown button text
+                                        selectedContractText.textContent = selectedValue
+
+                                        // Update the search input placeholder
+                                        searchInput.placeholder = placeholderTexts[selectedValue] || `Pesquisar pelo ${selectedValue.toLowerCase()}`
+
+                                        // Close the dropdown
+                                        dropdownButton.setAttribute("aria-expanded", "false")
+                                        dropdownMenu.style.display = "none"
+                                    })
+                                })
+
+                                // Set initial placeholder based on default selection
+                                const initialSelection = selectedContractText.textContent
+                                searchInput.placeholder = placeholderTexts[initialSelection] || `Pesquisar pelo ${initialSelection.toLowerCase()}`
+                            })
 
 
 
-                </script>
+                        });
+
+
+
+                    </script>
 </body>
 
 </html>
