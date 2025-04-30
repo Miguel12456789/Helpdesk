@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="paginacao.css">
+    <title>paginação</title>
+</head>
+<body>
+    <div class="pagination-container">
+        <div class="pagination-info">
+            <span id="showing-entries">Mostrando 1-25 de 100 registros</span>
+        </div>
+        <div class="pagination-controls">
+            <div class="items-per-page">
+                <label for="items-select">Itens por página:</label>
+                <select id="items-select" class="items-select">
+                    <option value="25" selected>25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
+            <div class="page-navigation">
+                <button id="prev-page" class="page-button" disabled>
+                    <i data-lucide="chevron-left" class="page-icon"></i>
+                </button>
+                <div id="page-numbers" class="page-numbers">
+                    <button class="page-number active">1</button>
+                    <button class="page-number">2</button>
+                    <button class="page-number">3</button>
+                    <button class="page-number">4</button>
+                </div>
+                <button id="next-page" class="page-button">
+                    <i data-lucide="chevron-right" class="page-icon"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    </div>    
+</body>
+</html>
