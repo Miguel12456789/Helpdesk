@@ -15,9 +15,13 @@
     }
 
     .notificacao-container {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      width: calc(100% - 40px);
       max-width: 1140px;
-      margin: 20px auto;
-      position: relative;
     }
 
     .notificacao {
@@ -27,7 +31,7 @@
       padding: 16px 24px;
       border-radius: 8px;
       background-color: #ffffff;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
       animation: slideIn 0.5s ease forwards;
     }
@@ -64,7 +68,6 @@
     }
 
     .notificacao a:hover {
-      color: #3c6c2a;
       text-decoration: underline;
     }
 
@@ -72,10 +75,9 @@
       background: none;
       border: none;
       color: #aaa;
-      font-size: 18px;
+      font-size: 20px;
       cursor: pointer;
-      padding: 5px;
-      margin-left: 10px;
+      padding: 5px 10px;
       transition: color 0.2s;
     }
 
@@ -86,7 +88,7 @@
     @keyframes slideIn {
       from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(20px);
       }
       to {
         opacity: 1;
@@ -96,26 +98,32 @@
 
     @media (max-width: 768px) {
       .notificacao {
+        flex-direction: column;
+        align-items: flex-start;
         padding: 14px 16px;
       }
-      
+
       .notificacao .icone {
         width: 32px;
         height: 32px;
         font-size: 16px;
         margin-right: 12px;
       }
-      
+
       .notificacao .texto {
         font-size: 14px;
+      }
+
+      .fechar-btn {
+        align-self: flex-end;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="notificacao-container">
-    <div class="notificacao" id="notificacao">
+  <div class="notificacao-container" id="notificacao-container">
+    <div class="notificacao">
       <div class="notificacao-conteudo">
         <div class="icone">
           <i class="fas fa-envelope"></i>
@@ -125,7 +133,11 @@
           <a href="#">Clique aqui</a> e mantenha-se sempre bem informado.
         </div>
       </div>
+      <button class="fechar-btn" onclick="document.getElementById('notificacao-container').style.display='none'">
+        &times;
+      </button>
     </div>
   </div>
+
 </body>
 </html>
