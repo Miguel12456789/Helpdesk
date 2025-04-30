@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-pt">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -91,6 +92,7 @@
         opacity: 0;
         transform: translateY(20px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
@@ -121,24 +123,26 @@
     }
   </style>
 </head>
+
 <body>
 
   <div class="notificacao-container" id="notificacao-container" style="display: none;">
     <div class="notificacao">
-        <div class="notificacao-conteudo">
-            <div class="icone">
-                <i class="fas fa-envelope"></i>
-            </div>
-            <div class="texto">
-                Deseja receber todas as informações pesquisadas diretamente no seu e-mail? 
-                <a href="#">Clique aqui</a> e mantenha-se sempre bem informado.
-            </div>
+      <div class="notificacao-conteudo">
+        <div class="icone">
+          <i class="fas fa-envelope"></i>
         </div>
-        <button class="fechar-btn" onclick="document.getElementById('notificacao-container').style.display='none'">
-            &times;
-        </button>
+        <div class="texto">
+          Deseja fazer download desta informação?
+          <a href="#">Clique aqui</a> e após inserir os seus dados iniciar-se-á o download.
+        </div>
+      </div>
+      <button class="fechar-btn" onclick="document.getElementById('notificacao-container').style.display='none'">
+        &times;
+      </button>
     </div>
-</div>
+  </div>
 
 </body>
+
 </html>
