@@ -5,15 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Helpdesk Público</title>
-    <link rel="stylesheet" href="tabela.css">
+    <link rel="stylesheet" href="tab_public.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-
     <div id="results-table" style="display: none;">
         <div class="container">
-
             <!-- Breadcrumb Navigation -->
             <div class="breadcrumb">
                 <a href="/base_gov">Início</a> / Pesquisa
@@ -53,7 +51,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr data-contract-id="1">
                                     <td>Prestação de serviços de assessoria jurídica relativa ao procedimento de
                                         licenciamento de obras a que corresponde o Processo n.º 21/2020</td>
                                     <td>Ajuste Direto Regime Geral</td>
@@ -61,20 +59,22 @@
                                     <td>MLA - Maricato, Lima & Associados - Sociedade de Advogados,RL</td>
                                     <td>6.000,00 €</td>
                                     <td>08-04-2025</td>
-                                    <td><button class="details-button"><i class="fas fa-plus-circle"></i></button>
+                                    <td><button class="details-button" aria-label="Ver detalhes" data-contract-id="1"><i
+                                                class="fas fa-plus-circle"></i></button>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr data-contract-id="2">
                                     <td>ADENE_CP_003_2025_USTI Aquisição de equipamento informático</td>
                                     <td>Concurso público</td>
                                     <td>ADENE - Agência para a Energia</td>
                                     <td>Digibéria Information Technologies S.A.</td>
                                     <td>150.800,00 €</td>
                                     <td>08-04-2025</td>
-                                    <td><button class="details-button"><i class="fas fa-plus-circle"></i></button>
+                                    <td><button class="details-button" aria-label="Ver detalhes" data-contract-id="2"><i
+                                                class="fas fa-plus-circle"></i></button>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr data-contract-id="3">
                                     <td>Aquisição de serviços continuados de manutenção preventiva e corretiva da
                                         Infraestrutura TIC da CIM Viseu Dão Lafões</td>
                                     <td>Ajuste Direto Regime Geral</td>
@@ -82,31 +82,37 @@
                                     <td>BPO CONSULTING, UNIPESSOAL LDA</td>
                                     <td>7.500,00 €</td>
                                     <td>08-04-2025</td>
-                                    <td><button class="details-button"><i class="fas fa-plus-circle"></i></button>
+                                    <td><button class="details-button" aria-label="Ver detalhes" data-contract-id="3"><i
+                                                class="fas fa-plus-circle"></i></button>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr data-contract-id="4">
                                     <td>ADENE_CP_003_2025_USTI Aquisição de equipamento informático</td>
                                     <td>Concurso público</td>
                                     <td>ADENE - Agência para a Energia</td>
                                     <td>Páginas aos Blocos, Lda.</td>
                                     <td>3.501,45 €</td>
                                     <td>08-04-2025</td>
-                                    <td><button class="details-button"><i class="fas fa-plus-circle"></i></button>
+                                    <td><button class="details-button" aria-label="Ver detalhes" data-contract-id="4"><i
+                                                class="fas fa-plus-circle"></i></button>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-            </div>
+
+                
+                <%- include('paginacao') %>
+
         </div>
+
+
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Elementos do DOM
-            const showCountBtn = document.getElementById('show-count-btn');
             const countDisplay = document.getElementById('count-display');
             const countNumber = document.getElementById('count-number');
 
@@ -122,21 +128,6 @@
 
             // Animar a contagem
             animateCount(0, contractCount);
-
-            // Função para mostrar/esconder o contador
-            showCountBtn.addEventListener('click', function () {
-                // Alternar a visibilidade do contador
-                if (countDisplay.classList.contains('visible')) {
-                    countDisplay.classList.remove('visible');
-                    showCountBtn.querySelector('span').textContent = 'Ver número de contratos';
-                } else {
-                    countDisplay.classList.add('visible');
-                    showCountBtn.querySelector('span').textContent = 'Esconder número de contratos';
-
-                    // Adicionar efeito de contagem animada
-                    animateCount(0, contractCount);
-                }
-            });
 
             // Função para animar a contagem
             function animateCount(start, end) {

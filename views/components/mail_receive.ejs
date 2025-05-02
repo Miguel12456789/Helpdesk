@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notificação</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      padding: 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .notificacao-container {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      width: calc(100% - 40px);
+      max-width: 1140px;
+    }
+
+    .notificacao {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      border-radius: 8px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      animation: slideIn 0.5s ease forwards;
+      border-left: 4px solid #3c6c2a;
+    }
+
+    .notificacao-conteudo {
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+
+    .notificacao .icone {
+      margin-right: 16px;
+      font-size: 20px;
+      color: #3c6c2a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(76, 175, 80, 0.1);
+      border-radius: 50%;
+    }
+
+    .notificacao .texto {
+      font-size: 15px;
+      color: #555;
+    }
+
+    .notificacao a {
+      color: #3c6c2a;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .notificacao a:hover {
+      text-decoration: underline;
+    }
+
+    .fechar-btn {
+      background: none;
+      border: none;
+      color: #aaa;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 5px 10px;
+      transition: color 0.2s;
+    }
+
+    .fechar-btn:hover {
+      color: #666;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .notificacao {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 14px 16px;
+      }
+
+      .notificacao .icone {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+        margin-right: 12px;
+      }
+
+      .notificacao .texto {
+        font-size: 14px;
+      }
+
+      .fechar-btn {
+        align-self: flex-end;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="notificacao-container" id="notificacao-container" style="display: none;">
+    <div class="notificacao">
+      <div class="notificacao-conteudo">
+        <div class="icone">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <div class="texto">
+          Deseja fazer download desta informação?
+          <a href="#">Clique aqui</a> e após inserir os seus dados iniciar-se-á o download.
+        </div>
+      </div>
+      <button class="fechar-btn" onclick="document.getElementById('notificacao-container').style.display='none'">
+        &times;
+      </button>
+    </div>
+  </div>
+
+</body>
+
+</html>

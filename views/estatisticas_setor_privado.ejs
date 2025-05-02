@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="setor_priv.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Helpdesk Privado</title>
+</head>
+
+<body>
+    <main class="container py-8">
+        <h1 class="titulo">Estatísticas Setor Privado</h1>
+        <div class="banner">
+            <p>
+                Bem-vindo! O Helpdesk Público centraliza o apoio e informações sobre serviços públicos,
+                facilitando a comunicação e resolução de questões relacionadas com a administração pública em
+                Portugal.
+            </p>
+        </div>
+
+        <div class="search-container">
+            <!-- Entity Selection Form -->
+            <div id="advanced-search-form">
+                <div class="form-content">
+                    <!-- Seleção Geográfica Section -->
+                    <h2 class="form-section-title">Seleção Geográfica</h2>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label class="form-label">País</label>
+                            <div class="custom-select">
+                                <select class="form-select">
+                                    <option>Todos</option>
+                                    <option>Portugal</option>
+                                    <option>Outros</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-field">
+                            <label class="form-label">Região</label>
+                            <div class="custom-select">
+                                <select class="form-select">
+                                    <option>Todos</option>
+                                    <option>Norte</option>
+                                    <option>Centro</option>
+                                    <option>Lisboa</option>
+                                    <option>Alentejo</option>
+                                    <option>Algarve</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-field">
+                            <label class="form-label">Distritos</label>
+                            <div class="custom-select">
+                                <select class="form-select">
+                                    <option>Todos</option>
+                                    <option>Lisboa</option>
+                                    <option>Porto</option>
+                                    <option>Braga</option>
+                                    <option>Faro</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-field">
+                            <label class="form-label">Concelhos</label>
+                            <input type="text" class="form-input">
+                        </div>
+                    </div>
+
+                    <!-- Input centralizado para Nº / Valor -->
+                    <div class="centered-input-container">
+                        <div class="centered-input-field">
+                            <input type="text" class="form-input" placeholder="Nº / Valor">
+                        </div>
+                    </div>
+
+                    <!-- Setor Atividade Económica Section -->
+                    <h2 class="form-section-title">Setor Atividade Económica</h2>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label class="form-label">Setor atividade Económica</label>
+                            <div class="input-group">
+                                <input type="text" class="form-input">
+                                <input type="text" class="form-input" placeholder="Nº / Valor">
+                            </div>
+                        </div>
+
+                        <div class="form-field">
+                            <label class="form-label">Volume de negócios por área económica</label>
+                            <div class="input-group">
+                                <input type="text" class="form-input">
+                                <input type="text" class="form-input" placeholder="Nº / Valor">
+                            </div>
+                        </div>
+
+                        <div class="form-field">
+                            <label class="form-label">Nº Empresas Criadas último exercício</label>
+                            <div class="input-group">
+                                <input type="text" class="form-input">
+                                <input type="text" class="form-input" placeholder="Nº / Valor">
+                            </div>
+                        </div>
+
+                        <div class="form-field">
+                            <label class="form-label">Nº Empresas Encerradas</label>
+                            <div class="input-group">
+                                <input type="text" class="form-input">
+                                <input type="text" class="form-input" placeholder="Nº / Valor">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Atividade no Mercado Público Section -->
+                    <h2 class="form-section-title">Atividade no Mercado Público</h2>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label class="form-label">Entidades Com Atividade Registado No Portal Base</label>
+                            <div class="input-group">
+                                <input type="text" class="form-input">
+                                <input type="text" class="form-input" placeholder="Nº / Valor">
+                            </div>
+                        </div>
+
+                        <div class="form-field">
+                            <label class="form-label">% Entidades Com Atividade Registado No Portal Base</label>
+                            <div class="input-group">
+                                <input type="text" class="form-input">
+                                <input type="text" class="form-input" placeholder="% / Percentagem">
+                            </div>
+                        </div>
+
+                        <div class="form-field">
+                            <!-- Espaço vazio para manter o grid alinhado -->
+                        </div>
+
+                        <div class="form-field">
+                            <!-- Espaço vazio para manter o grid alinhado -->
+                        </div>
+                    </div>
+
+                    <!-- Botão LIMPAR -->
+                    <div class="clear-selection-container">
+                        <button class="clear-selection-button">
+                            <i data-lucide="x" class="icon-small"></i>
+                            <span>LIMPAR</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <%- include('components/button') %>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize Lucide icons
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            } else {
+                console.warn('Lucide is not globally defined. Ensure Lucide library is properly included.');
+                window.lucide = { createIcons: function () { } };
+            }
+
+            // Clear selection button functionality
+            const clearSelectionBtn = document.querySelector('.clear-selection-button');
+
+            if (clearSelectionBtn) {
+                clearSelectionBtn.addEventListener('click', function () {
+                    // Reset all selects to first option
+                    const selects = document.querySelectorAll('.form-select');
+                    selects.forEach(select => {
+                        select.selectedIndex = 0;
+                    });
+
+                    // Clear all input fields
+                    const inputs = document.querySelectorAll('.form-input');
+                    inputs.forEach(input => {
+                        input.value = '';
+                    });
+                });
+            }
+
+            // Function to update districts based on selected region
+            document.querySelectorAll('.custom-select select').forEach(select => {
+                if (select.previousElementSibling && select.previousElementSibling.textContent === 'Região') {
+                    select.addEventListener('change', function () {
+                        const regiao = this.value;
+                        const distritos = document.querySelectorAll('.custom-select select')[2]; // Terceiro select (Distritos)
+
+                        // Limpa as opções atuais
+                        distritos.innerHTML = "<option>Todos</option>";
+
+                        // Se a região for "Norte", adiciona distritos do norte
+                        if (regiao === "Norte") {
+                            const distritosNorte = ["Porto", "Braga", "Viana do Castelo", "Vila Real", "Bragança"];
+                            distritosNorte.forEach((distrito) => {
+                                const option = document.createElement("option");
+                                option.textContent = distrito;
+                                distritos.appendChild(option);
+                            });
+                        }
+                        // Se a região for "Centro", adiciona distritos do centro
+                        else if (regiao === "Centro") {
+                            const distritosCentro = ["Aveiro", "Viseu", "Coimbra", "Leiria", "Castelo Branco", "Guarda"];
+                            distritosCentro.forEach((distrito) => {
+                                const option = document.createElement("option");
+                                option.textContent = distrito;
+                                distritos.appendChild(option);
+                            });
+                        }
+                        // Se a região for "Lisboa", adiciona distritos de Lisboa
+                        else if (regiao === "Lisboa") {
+                            const distritosLisboa = ["Lisboa", "Setúbal"];
+                            distritosLisboa.forEach((distrito) => {
+                                const option = document.createElement("option");
+                                option.textContent = distrito;
+                                distritos.appendChild(option);
+                            });
+                        }
+                        // Se a região for "Alentejo", adiciona distritos do Alentejo
+                        else if (regiao === "Alentejo") {
+                            const distritosAlentejo = ["Portalegre", "Évora", "Beja"];
+                            distritosAlentejo.forEach((distrito) => {
+                                const option = document.createElement("option");
+                                option.textContent = distrito;
+                                distritos.appendChild(option);
+                            });
+                        }
+                        // Se a região for "Algarve", adiciona Faro
+                        else if (regiao === "Algarve") {
+                            const option = document.createElement("option");
+                            option.textContent = "Faro";
+                            distritos.appendChild(option);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

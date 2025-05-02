@@ -11,480 +11,659 @@
 </head>
 
 <body>
-    <!-- Inclui o ficheiro nav.ejs -->
-    <%- include('components/nav') %>
+    <main class="container py-8">
+        <h1 class="titulo">Mercado Público</h1>
+        <div class="banner">
+            <p>
+                Bem-vindos à página de estatísticas do Helpdesk Público. <br>
+                Aqui encontra toda a informação pública sobre os Contratos de Compras Públicas. <br>
+                Consulte todas as informações sobre os Contratos Públicos de forma mais ágil e prática. <br>
 
-        <main class="container py-8">
-            <div class="banner">
-                <p>
-                    Bem-vindo! O Helpdesk Público centraliza o apoio e informações sobre serviços públicos,
-                    facilitando a comunicação e resolução de questões relacionadas com a administração pública em
-                    Portugal.
-                </p>
+            </p>
+        </div>
+
+        <div class="search-container">
+            <div class="search-row">
+                <div class="dropdown" id="contracts-dropdown">
+                    <button id="dropdown-button" class="dropdown-select" aria-haspopup="true" aria-expanded="false">
+                        <span class="dropdown-text" id="selected-contract">Contrato</span>
+                        <i data-lucide="chevron-down" class="dropdown-icon"></i>
+                    </button>
+
+                    <div class="dropdown-menu" id="dropdown-menu">
+                        <div class="dropdown-item" data-value="Contrato">Contrato</div>
+                        <div class="dropdown-item" data-value="Entidades">Entidades</div>
+                        <div class="dropdown-item" data-value="Modificações contratuais">Modificações contratuais</div>
+                        <div class="dropdown-item" data-value="Bens móveis">Bens móveis</div>
+                        <div class="dropdown-item" data-value="Não Celebrações de contrato">Não Celebrações de contrato
+                        </div>
+                        <div class="dropdown-item" data-value="Impugnação">Impugnação</div>
+                    </div>
+                </div>
+
+                <input type="text" placeholder="Pesquisar pelo objeto do Contrato" class="search-input" />
+                <button class="search-button">
+                    <i data-lucide="search" class="icon-small"></i>
+                    <span>Pesquisar</span>
+                </button>
             </div>
 
-            <div class="search-container">
-                <div class="search-row">
-                    <!-- Dropdown -->
-                    <div class="dropdown" id="contracts-dropdown">
-                        <button id="dropdown-button" class="dropdown-select" aria-haspopup="true" aria-expanded="false">
-                            <span class="dropdown-text" id="selected-contract">Contratos</span>
-                            <i data-lucide="chevron-down" class="dropdown-icon"></i>
-                        </button>
+            <!-- Advanced Search Form -->
+            <div id="advanced-search-form" class="advanced-search-form">
+                <div class="form-content">
+                    <!-- First Row -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="checkbox" id="special-measures" class="form-checkbox" />
+                            <label for="special-measures" class="form-label">
+                                Medidas especiais
+                            </label>
+                        </div>
 
-                        <div class="dropdown-menu" id="dropdown-menu">
-                            <div class="dropdown-item" data-value="Anúncios">Anúncios</div>
-                            <div class="dropdown-item" data-value="Entidades">Entidades</div>
-                            <div class="dropdown-item" data-value="Modificações contratuais">Modificações contratuais
-                            </div>
-                            <div class="dropdown-item" data-value="Bens móveis">Bens móveis</div>
-                            <div class="dropdown-item" data-value="Não Celebrações de contrato">Não Celebrações de
-                                contrato</div>
-                            <div class="dropdown-item" data-value="Impugnação">Impugnação</div>
+                        <div class="form-group">
+                            <input type="checkbox" id="include-mec" class="form-checkbox" />
+                            <label for="include-mec" class="form-label">
+                                Incluir MEC ao abrigo do CCP
+                            </label>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="measure-type" class="form-label">
+                                Tipologia da medida especial
+                            </label>
+                            <select id="measure-type" class="form-select">
+                                <option>Todos</option>
+                                <option>Opção 1</option>
+                                <option>Opção 2</option>
+                            </select>
                         </div>
                     </div>
 
-                    <!-- Search Input -->
-                    <input type="text" placeholder="Pesquisar pelo objeto do Contrato" class="search-input" />
+                    <hr class="form-divider" />
 
-                    <!-- Search Button -->
-                    <button class="search-button">
-                        <i data-lucide="search" class="icon-small"></i>
-                        <span>Pesquisar</span>
-                    </button>
-
-                    <!-- Advanced Search Button -->
-                    <button id="advanced-search-btn" class="advanced-search-button">
-                        <i data-lucide="sliders-horizontal" class="icon-small"></i>
-                        <span>Pesquisa Avanc.</span>
-                    </button>
-                </div>
-
-                <!-- Advanced Search Form -->
-                <div id="advanced-search-form" class="advanced-search-form">
-                    <div class="form-content">
-                        <!-- First Row -->
-                        <div class="form-row">
-                            <div class="form-group">
-                                <input type="checkbox" id="special-measures" class="form-checkbox" />
-                                <label for="special-measures" class="form-label">
-                                    Medidas especiais
-                                </label>
-                            </div>
-
-                            <div class="form-group">
-                                <input type="checkbox" id="include-mec" class="form-checkbox" />
-                                <label for="include-mec" class="form-label">
-                                    Incluir MEC ao abrigo do CCP
-                                </label>
-                            </div>
-
-                            <div class="form-field">
-                                <label for="measure-type" class="form-label">
-                                    Tipologia da medida especial
-                                </label>
-                                <select id="measure-type" class="form-select">
-                                    <option>Todos</option>
-                                    <option>Opção 1</option>
-                                    <option>Opção 2</option>
-                                </select>
-                            </div>
+                    <!-- Second Row -->
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="procedure-type" class="form-label">
+                                Tipo de Procedimento
+                            </label>
+                            <select id="procedure-type" class="form-select">
+                                <option value="0">Todos</option>
+                                <option value="8">Consulta Prévia</option>
+                                <option value="1">Ajuste Direto Regime Geral</option>
+                                <option value="2">Concurso público</option>
+                                <option value="3">Concurso limitado por prévia qualificação</option>
+                                <option value="4">Procedimento de negociação</option>
+                                <option value="5">Diálogo concorrencial</option>
+                                <option value="6">Ao abrigo de acordo-quadro (art.º 258.º)</option>
+                                <option value="7">Ao abrigo de acordo-quadro (art.º 259.º)</option>
+                                <option value="9">Parceria para a inovação</option>
+                                <option value="10">Disponibilização de bens móveis</option>
+                                <option value="11">Serviços sociais e outros serviços específicos</option>
+                                <option value="13">Concurso de conceção simplificado</option>
+                                <option value="14">Concurso de ideias simplificado</option>
+                                <option value="15">Consulta Prévia Simplificada</option>
+                                <option value="16">Concurso público simplificado</option>
+                                <option value="17">Concurso limitado por prévia qualificação simplificado</option>
+                                <option value="18">Ajuste Direto Regime Geral ao abrigo do artigo 7º da Lei n.º
+                                    30/2021, de 21.05</option>
+                                <option value="19">Consulta prévia ao abrigo do artigo 7º da Lei n.º 30/2021, de
+                                    21.05</option>
+                                <option value="20">Ajuste direto simplificado</option>
+                                <option value="21">Ajuste direto simplificado ao abrigo da Lei n.º 30/2021, de 21.05
+                                </option>
+                                <option value="22">Setores especiais – isenção parte II</option>
+                                <option value="23">Contratação excluída II</option>
+                            </select>
                         </div>
 
-                        <hr class="form-divider" />
+                        <div class="form-field">
+                            <label for="entity" class="form-label">
+                                Entidade Adjudicante
+                            </label>
+                            <input type="text" id="entity" class="form-input" />
+                        </div>
+                    </div>
 
-                        <!-- Second Row -->
-                        <div class="form-row">
-                            <div class="form-field">
-                                <label for="procedure-type" class="form-label">
-                                    Tipo de Procedimento
-                                </label>
-                                <select id="procedure-type" class="form-select">
-                                    <option value="0">Todos</option>
-                                    <option value="8">Consulta Prévia</option>
-                                    <option value="1">Ajuste Direto Regime Geral</option>
-                                    <option value="2">Concurso público</option>
-                                    <option value="3">Concurso limitado por prévia qualificação</option>
-                                    <option value="4">Procedimento de negociação</option>
-                                    <option value="5">Diálogo concorrencial</option>
-                                    <option value="6">Ao abrigo de acordo-quadro (art.º 258.º)</option>
-                                    <option value="7">Ao abrigo de acordo-quadro (art.º 259.º)</option>
-                                    <option value="9">Parceria para a inovação</option>
-                                    <option value="10">Disponibilização de bens móveis</option>
-                                    <option value="11">Serviços sociais e outros serviços específicos</option>
-                                    <option value="13">Concurso de conceção simplificado</option>
-                                    <option value="14">Concurso de ideias simplificado</option>
-                                    <option value="15">Consulta Prévia Simplificada</option>
-                                    <option value="16">Concurso público simplificado</option>
-                                    <option value="17">Concurso limitado por prévia qualificação simplificado</option>
-                                    <option value="18">Ajuste Direto Regime Geral ao abrigo do artigo 7º da Lei n.º
-                                        30/2021, de 21.05</option>
-                                    <option value="19">Consulta prévia ao abrigo do artigo 7º da Lei n.º 30/2021, de
-                                        21.05</option>
-                                    <option value="20">Ajuste direto simplificado</option>
-                                    <option value="21">Ajuste direto simplificado ao abrigo da Lei n.º 30/2021, de 21.05
-                                    </option>
-                                    <option value="22">Setores especiais – isenção parte II</option>
-                                    <option value="23">Contratação excluída II</option>
-                                </select>
-                            </div>
-
-                            <div class="form-field">
-                                <label for="entity" class="form-label">
-                                    Entidade Adjudicante
-                                </label>
-                                <input type="text" id="entity" class="form-input" />
-                            </div>
+                    <!-- Third Row -->
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="contract-type" class="form-label">
+                                Tipo de Contrato
+                            </label>
+                            <select id="contract-type" class="form-select">
+                                <option value="0">Todos</option>
+                                <option value="1">Aquisição de bens móveis</option>
+                                <option value="2">Aquisição de serviços</option>
+                                <option value="3">Concessão de obras públicas</option>
+                                <option value="4">Concessão de serviços públicos</option>
+                                <option value="5">Empreitadas de obras públicas</option>
+                                <option value="6">Locação de bens móveis</option>
+                                <option value="7">Sociedade</option>
+                                <option value="8">Outros</option>
+                            </select>
                         </div>
 
-                        <!-- Third Row -->
-                        <div class="form-row">
-                            <div class="form-field">
-                                <label for="contract-type" class="form-label">
-                                    Tipo de Contrato
-                                </label>
-                                <select id="contract-type" class="form-select">
-                                    <option value="0">Todos</option>
-                                    <option value="1">Aquisição de bens móveis</option>
-                                    <option value="2">Aquisição de serviços</option>
-                                    <option value="3">Concessão de obras públicas</option>
-                                    <option value="4">Concessão de serviços públicos</option>
-                                    <option value="5">Empreitadas de obras públicas</option>
-                                    <option value="6">Locação de bens móveis</option>
-                                    <option value="7">Sociedade</option>
-                                    <option value="8">Outros</option>
-                                </select>
-                            </div>
+                        <div class="form-field">
+                            <label for="awarded-entity" class="form-label">
+                                Entidade Adjudicatária
+                            </label>
+                            <input type="text" id="awarded-entity" class="form-input" />
+                        </div>
+                    </div>
 
-                            <div class="form-field">
-                                <label for="awarded-entity" class="form-label">
-                                    Entidade Adjudicatária
-                                </label>
-                                <input type="text" id="awarded-entity" class="form-input" />
-                            </div>
+                    <!-- Fourth Row -->
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="cpv" class="form-label">
+                                CPV
+                            </label>
+                            <input type="text" id="cpv" class="form-input" />
                         </div>
 
-                        <!-- Fourth Row -->
-                        <div class="form-row">
-                            <div class="form-field">
-                                <label for="cpv" class="form-label">
-                                    CPV
-                                </label>
-                                <input type="text" id="cpv" class="form-input" />
-                            </div>
-
-                            <div class="form-group">
-                                <input type="checkbox" id="environmental-criteria" class="form-checkbox" />
-                                <label for="environmental-criteria" class="form-label">
-                                    Critérios ambientais
-                                </label>
-                            </div>
+                        <div class="form-group">
+                            <input type="checkbox" id="environmental-criteria" class="form-checkbox" />
+                            <label for="environmental-criteria" class="form-label">
+                                Critérios ambientais
+                            </label>
                         </div>
+                    </div>
 
-                        <!-- Fifth Row - Dates and Location -->
-                        <div class="form-row">
-                            <div class="form-field date-container">
-                                <label for="date-type" class="form-label">
-                                    Datas
-                                </label>
-                                <select id="date-type" class="form-select">
-                                    <option>Data do Contrato</option>
-                                    <option>Data de Publicação</option>
-                                    <option>Data de Fecho</option>
-                                </select>
+                    <!-- Fifth Row - Dates and Location -->
+                    <div class="form-row">
+                        <div class="form-field date-container">
+                            <label for="date-type" class="form-label">
+                                Datas
+                            </label>
+                            <select id="date-type" class="form-select">
+                                <option>Data do Contrato</option>
+                                <option>Data de Publicação</option>
+                                <option>Data de Fecho</option>
+                            </select>
 
-                                <div class="date-range">
-                                    <div class="date-field">
-                                        <label for="date-from" class="form-label">De:</label>
-                                        <div class="date-selects">
-                                            <select id="from-year" class="date-select"></select>
-                                            <select id="from-month" class="date-select"></select>
-                                            <select id="from-day" class="date-select"></select>
-                                        </div>
+                            <div class="date-range">
+                                <div class="date-field">
+                                    <label for="date-from" class="form-label">De:</label>
+                                    <div class="date-selects">
+                                        <select id="from-year" class="date-select"></select>
+                                        <select id="from-month" class="date-select"></select>
+                                        <select id="from-day" class="date-select"></select>
                                     </div>
+                                </div>
 
-                                    <div class="date-field">
-                                        <label for="date-to" class="form-label">Até:</label>
-                                        <div class="date-selects">
-                                            <select id="to-year" class="date-select"></select>
-                                            <select id="to-month" class="date-select"></select>
-                                            <select id="to-day" class="date-select"></select>
-                                        </div>
+                                <div class="date-field">
+                                    <label for="date-to" class="form-label">Até:</label>
+                                    <div class="date-selects">
+                                        <select id="to-year" class="date-select"></select>
+                                        <select id="to-month" class="date-select"></select>
+                                        <select id="to-day" class="date-select"></select>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="form-field location-container">
-                                <label class="form-label">
-                                    Local de Execução (País, Distrito, Concelho)
-                                </label>
-                                <select class="form-select location-select">
-                                    <option>Todos</option>
-                                    <option>Portugal</option>
-                                    <option>Espanha</option>
-                                </select>
-                                <select class="form-select location-select">
-                                    <option>Todos</option>
-                                    <option>Lisboa</option>
-                                    <option>Porto</option>
-                                    <option>Faro</option>
-                                </select>
-                                <select class="form-select location-select">
-                                    <option>Todos</option>
-                                    <option>Lisboa</option>
-                                    <option>Cascais</option>
-                                    <option>Sintra</option>
-                                </select>
-                            </div>
                         </div>
 
-                        <!-- Form Buttons -->
-                        <div class="form-buttons">
-                            <button id="clear-form-btn" class="clear-button">
-                                <i data-lucide="x" class="icon-small"></i>
-                                <span>LIMPAR</span>
-                            </button>
-                            <button class="submit-button">
-                                <i data-lucide="search" class="icon-small"></i>
-                                <span>PESQUISAR</span>
-                            </button>
+                        <div class="form-field location-container">
+                            <label class="form-label">
+                                Local de Execução (País, Distrito, Concelho)
+                            </label>
+                            <select class="form-select location-select">
+                                <option>Todos</option>
+                                <option>Portugal</option>
+                                <option>Espanha</option>
+                            </select>
+                            <select class="form-select location-select">
+                                <option>Todos</option>
+                                <option>Lisboa</option>
+                                <option>Porto</option>
+                                <option>Faro</option>
+                            </select>
+                            <select class="form-select location-select">
+                                <option>Todos</option>
+                                <option>Lisboa</option>
+                                <option>Cascais</option>
+                                <option>Sintra</option>
+                            </select>
                         </div>
+                    </div>
+
+                    <!-- Form Buttons -->
+                    <div class="form-buttons">
+                        <button id="clear-form-btn" class="clear-button">
+                            <i data-lucide="x" class="icon-small"></i>
+                            <span>LIMPAR</span>
+                        </button>
+                        <button class="submit-button">
+                            <i data-lucide="search" class="icon-small"></i>
+                            <span>PESQUISAR</span>
+                        </button>
                     </div>
                 </div>
             </div>
-        </main>
-        <%- include('components/tabela') %>
-            <%- include('components/detalhes') %>
+        </div>
+    </main>
+    <%- include('components/tab_base') %>
+        <%- include('components/detalhes') %>
+            <%- include('components/mail_receive') %>
                 <%- include('components/button') %>
-                    <%- include('components/footer') %>
 
-                        <script>
-                            document.addEventListener('DOMContentLoaded', function () {
+                    <script>
 
-                                // === Função para preencher anos, meses e dias dinamicamente ===
-                                function populateDateSelectors(yearId, monthId, dayId) {
-                                    const yearSelect = document.getElementById(yearId);
-                                    const monthSelect = document.getElementById(monthId);
-                                    const daySelect = document.getElementById(dayId);
+                        document.addEventListener("DOMContentLoaded", () => {
+                            const dropdownButton = document.getElementById("dropdown-button")
+                            const dropdownMenu = document.getElementById("dropdown-menu")
+                            const selectedContractText = document.getElementById("selected-contract")
+                            const dropdownItems = document.querySelectorAll(".dropdown-item")
+                            const searchInput = document.querySelector(".search-input")
 
-                                    const currentYear = new Date().getFullYear();
+                            dropdownButton.addEventListener("click", function () {
+                                const expanded = this.getAttribute("aria-expanded") === "true"
+                                this.setAttribute("aria-expanded", !expanded)
+                                dropdownMenu.style.display = expanded ? "none" : "block"
+                            })
 
-                                    // Placeholder
-                                    yearSelect.innerHTML = '<option disabled selected>Ano:</option>';
-                                    monthSelect.innerHTML = '<option disabled selected>Mês:</option>';
+                            document.addEventListener("click", (event) => {
+                                if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                                    dropdownButton.setAttribute("aria-expanded", "false")
+                                    dropdownMenu.style.display = "none"
+                                }
+                            })
+
+                            const placeholderTexts = {
+                                Contrato: "Pesquisar pelo número ou objeto do Contrato",
+                                Entidades: "Pesquisar pelo nome da Entidade",
+                                "Modificações contratuais": "Pesquisar pela modificação contratual",
+                                "Bens móveis": "Pesquisar pelo bem móvel",
+                                "Não Celebrações de contrato": "Pesquisar pela não celebração",
+                                Impugnação: "Pesquisar pela impugnação",
+                            }
+
+                            dropdownItems.forEach((item) => {
+                                item.addEventListener("click", function () {
+                                    const selectedValue = this.getAttribute("data-value")
+                                    selectedContractText.textContent = selectedValue
+                                    searchInput.placeholder = placeholderTexts[selectedValue] || `Pesquisar pelo ${selectedValue.toLowerCase()}`
+                                    dropdownButton.setAttribute("aria-expanded", "false")
+                                    dropdownMenu.style.display = "none"
+                                })
+                            })
+
+                            const initialSelection = selectedContractText.textContent
+                            searchInput.placeholder = placeholderTexts[initialSelection] || `Pesquisar pelo ${initialSelection.toLowerCase()}`
+                        })
+                        document.addEventListener('DOMContentLoaded', function () {
+                            // === Função para preencher anos, meses e dias dinamicamente ===
+                            function populateDateSelectors(yearId, monthId, dayId) {
+                                const yearSelect = document.getElementById(yearId);
+                                const monthSelect = document.getElementById(monthId);
+                                const daySelect = document.getElementById(dayId);
+
+                                const currentYear = new Date().getFullYear();
+
+                                // Placeholder
+                                yearSelect.innerHTML = '<option disabled selected>Ano:</option>';
+                                monthSelect.innerHTML = '<option disabled selected>Mês:</option>';
+                                daySelect.innerHTML = '<option disabled selected>Dia:</option>';
+
+                                // Preenche anos (ex: 1900 até atual)
+                                for (let y = currentYear; y >= 1900; y--) {
+                                    const option = document.createElement('option');
+                                    option.value = y;
+                                    option.text = y;
+                                    yearSelect.appendChild(option);
+                                }
+
+                                // Preenche meses (1 a 12)
+                                for (let m = 1; m <= 12; m++) {
+                                    const option = document.createElement('option');
+                                    option.value = m;
+                                    option.text = m.toString().padStart(2, '0');
+                                    monthSelect.appendChild(option);
+                                }
+
+                                // Atualiza os dias com base no ano e mês
+                                function updateDays() {
+                                    const year = parseInt(yearSelect.value);
+                                    const month = parseInt(monthSelect.value);
+
+                                    if (!year || !month) return;
+
+                                    const daysInMonth = new Date(year, month, 0).getDate();
                                     daySelect.innerHTML = '<option disabled selected>Dia:</option>';
 
-                                    // Preenche anos (ex: 1900 até atual)
-                                    for (let y = currentYear; y >= 1900; y--) {
+                                    for (let d = 1; d <= daysInMonth; d++) {
                                         const option = document.createElement('option');
-                                        option.value = y;
-                                        option.text = y;
-                                        yearSelect.appendChild(option);
+                                        option.value = d;
+                                        option.text = d.toString().padStart(2, '0');
+                                        daySelect.appendChild(option);
                                     }
-
-                                    // Preenche meses (1 a 12)
-                                    for (let m = 1; m <= 12; m++) {
-                                        const option = document.createElement('option');
-                                        option.value = m;
-                                        option.text = m.toString().padStart(2, '0');
-                                        monthSelect.appendChild(option);
-                                    }
-
-                                    // Atualiza os dias com base no ano e mês
-                                    function updateDays() {
-                                        const year = parseInt(yearSelect.value);
-                                        const month = parseInt(monthSelect.value);
-
-                                        if (!year || !month) return;
-
-                                        const daysInMonth = new Date(year, month, 0).getDate();
-                                        daySelect.innerHTML = '<option disabled selected>Dia:</option>';
-
-                                        for (let d = 1; d <= daysInMonth; d++) {
-                                            const option = document.createElement('option');
-                                            option.value = d;
-                                            option.text = d.toString().padStart(2, '0');
-                                            daySelect.appendChild(option);
-                                        }
-                                    }
-
-                                    yearSelect.addEventListener('change', updateDays);
-                                    monthSelect.addEventListener('change', updateDays);
-
-                                    // Inicializar selects com o ano atual e mês 1
-                                    yearSelect.value = currentYear;
-                                    monthSelect.value = 1;
-                                    updateDays();
                                 }
 
-                                // === Inicializar selects de data para "De" e "Até" ===
-                                populateDateSelectors('from-year', 'from-month', 'from-day');
-                                populateDateSelectors('to-year', 'to-month', 'to-day');
-                                // Initialize Lucide icons
-                                // Declare lucide if it's not already available globally
-                                if (typeof lucide === 'undefined') {
-                                    console.warn('Lucide is not globally defined. Ensure Lucide library is properly included.');
-                                    // You might want to initialize a placeholder or load the library here if possible.
-                                    // Example placeholder:
-                                    lucide = { createIcons: function () { } };
-                                }
-                                lucide.createIcons();
+                                yearSelect.addEventListener('change', updateDays);
+                                monthSelect.addEventListener('change', updateDays);
 
-                                // Dropdown functionality
-                                const dropdownContainer = document.getElementById('contracts-dropdown');
-                                const dropdownButton = document.getElementById('dropdown-button');
-                                const dropdownText = document.getElementById('selected-contract');
-                                const dropdownMenu = document.getElementById('dropdown-menu');
-                                const dropdownItems = document.querySelectorAll('.dropdown-item');
-                                const dropdownIcon = dropdownButton.querySelector('[data-lucide="chevron-down"]');
+                                // Inicializar selects com o ano atual e mês 1
+                                yearSelect.value = currentYear;
+                                monthSelect.value = 1;
+                                updateDays();
+                            }
 
-                                // Toggle dropdown menu when clicking on the button
-                                dropdownButton.addEventListener('click', function (e) {
-                                    e.stopPropagation();
-                                    dropdownContainer.classList.toggle('active');
+                            // === Inicializar selects de data para "De" e "Até" ===
+                            populateDateSelectors('from-year', 'from-month', 'from-day');
+                            populateDateSelectors('to-year', 'to-month', 'to-day');
 
-                                    // Update ARIA attributes
-                                    const isExpanded = dropdownContainer.classList.contains('active');
-                                    dropdownButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
-                                });
+                            // Initialize Lucide icons
+                            // Declare lucide if it's not already available globally
+                            if (typeof lucide === 'undefined') {
+                                console.warn('Lucide is not globally defined. Ensure Lucide library is properly included.');
+                                // You might want to initialize a placeholder or load the library here if possible.
+                                // Example placeholder:
+                                window.lucide = { createIcons: function () { } };
+                            }
+                            lucide.createIcons();
 
-                                // Close dropdown when clicking outside
-                                document.addEventListener('click', function () {
+                            // Dropdown functionality
+                            const dropdownContainer = document.getElementById('contracts-dropdown');
+                            const dropdownButton = document.getElementById('dropdown-button');
+                            const dropdownText = document.getElementById('selected-contract');
+                            const dropdownMenu = document.getElementById('dropdown-menu');
+                            const dropdownItems = document.querySelectorAll('.dropdown-item');
+                            const dropdownIcon = dropdownButton.querySelector('[data-lucide="chevron-down"]');
+
+                            // Toggle dropdown menu when clicking on the button
+                            dropdownButton.addEventListener('click', function (e) {
+                                e.stopPropagation();
+                                dropdownContainer.classList.toggle('active');
+
+                                // Update ARIA attributes
+                                const isExpanded = dropdownContainer.classList.contains('active');
+                                dropdownButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+                            });
+
+                            // Close dropdown when clicking outside
+                            document.addEventListener('click', function () {
+                                dropdownContainer.classList.remove('active');
+                                dropdownButton.setAttribute('aria-expanded', 'false');
+                            });
+
+                            // Prevent closing when clicking inside the dropdown menu
+                            dropdownMenu.addEventListener('click', function (e) {
+                                e.stopPropagation();
+                            });
+
+                            // Select dropdown item
+                            dropdownItems.forEach(function (item) {
+                                item.addEventListener('click', function () {
+                                    const value = this.getAttribute('data-value');
+                                    dropdownText.textContent = value;
                                     dropdownContainer.classList.remove('active');
                                     dropdownButton.setAttribute('aria-expanded', 'false');
+
+                                    // You could trigger an action here based on selection
+                                    console.log('Selected:', value);
                                 });
+                            });
 
-                                // Prevent closing when clicking inside the dropdown menu
-                                dropdownMenu.addEventListener('click', function (e) {
-                                    e.stopPropagation();
-                                });
+                            // Close dropdown when pressing Escape key
+                            document.addEventListener('keydown', function (e) {
+                                if (e.key === 'Escape') {
+                                    dropdownContainer.classList.remove('active');
+                                    dropdownButton.setAttribute('aria-expanded', 'false');
+                                }
+                            });
 
-                                // Select dropdown item
-                                dropdownItems.forEach(function (item) {
-                                    item.addEventListener('click', function () {
-                                        const value = this.getAttribute('data-value');
-                                        dropdownText.textContent = value;
-                                        dropdownContainer.classList.remove('active');
-                                        dropdownButton.setAttribute('aria-expanded', 'false');
+                            // Clear button functionality
+                            const clearBtn = document.getElementById('clear-form-btn');
 
-                                        // You could trigger an action here based on selection
-                                        console.log('Selected:', value);
-                                    });
-                                });
+                            clearBtn.addEventListener('click', function () {
+                                // Reset all form inputs
+                                const inputs = advancedSearchForm.querySelectorAll('input');
+                                const selects = advancedSearchForm.querySelectorAll('select');
 
-                                // Close dropdown when pressing Escape key
-                                document.addEventListener('keydown', function (e) {
-                                    if (e.key === 'Escape') {
-                                        dropdownContainer.classList.remove('active');
-                                        dropdownButton.setAttribute('aria-expanded', 'false');
+                                inputs.forEach(function (input) {
+                                    if (input.type === 'checkbox') {
+                                        input.checked = false;
+                                    } else {
+                                        input.value = '';
                                     }
                                 });
 
-                                // Advanced Search Form functionality
-                                const advancedSearchBtn = document.getElementById('advanced-search-btn');
-                                const advancedSearchForm = document.getElementById('advanced-search-form');
+                                selects.forEach(function (select) {
+                                    select.selectedIndex = 0;
+                                });
+                            });
 
-                                advancedSearchBtn.addEventListener('click', function () {
-                                    advancedSearchForm.classList.toggle('visible');
+                            // Search button functionality
+                            const searchBtn = document.querySelector('.submit-button');
 
-                                    // Scroll to form if it's now visible
-                                    if (advancedSearchForm.classList.contains('visible')) {
-                                        setTimeout(function () {
-                                            advancedSearchForm.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                                        }, 100);
+                            searchBtn.addEventListener('click', function () {
+                                // Collect form data and submit
+                                console.log('Advanced search submitted');
+                                // Here you would typically collect all form data and submit it
+
+                                // Example of collecting form data
+                                const formData = {
+                                    specialMeasures: document.getElementById('special-measures').checked,
+                                    includeMec: document.getElementById('include-mec').checked,
+                                    measureType: document.getElementById('measure-type').value,
+                                    procedureType: document.getElementById('procedure-type').value,
+                                    entity: document.getElementById('entity').value,
+                                    contractType: document.getElementById('contract-type').value,
+                                    awardedEntity: document.getElementById('awarded-entity').value,
+                                    cpv: document.getElementById('cpv').value,
+                                    environmentalCriteria: document.getElementById('environmental-criteria').checked,
+                                    dateType: document.getElementById('date-type').value,
+                                    // Add more fields as needed
+                                };
+
+                                console.log('Form data:', formData);
+                            });
+
+                            // Make dropdown accessible via keyboard
+                            dropdownButton.addEventListener('keydown', function (e) {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    dropdownContainer.classList.toggle('active');
+
+                                    const isExpanded = dropdownContainer.classList.contains('active');
+                                    dropdownButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+                                }
+                            });
+
+                            // Mostrar tabela de resultados quando os botões de pesquisa são clicados
+                            const searchButtons = document.querySelectorAll('.search-button, .submit-button');
+                            const resultsTable = document.getElementById('results-table');
+                            const notificationContainer = document.getElementById('notificacao-container'); // Referência ao popup
+
+                            searchButtons.forEach(button => {
+                                button.addEventListener('click', function () {
+                                    // Exibe a tabela de resultados
+                                    if (resultsTable) {
+                                        resultsTable.style.display = 'block';
+                                        resultsTable.scrollIntoView({ behavior: 'smooth' });
+                                    }
+
+                                    // Exibe o popup de notificação
+                                    if (notificationContainer) {
+                                        notificationContainer.style.display = 'block';
                                     }
                                 });
+                            });
 
-                                // Clear button functionality
-                                const clearBtn = document.getElementById('clear-form-btn');
+                            // === NOVA FUNCIONALIDADE: Controle de visibilidade do container principal de detalhes ===
 
-                                clearBtn.addEventListener('click', function () {
-                                    // Reset all form inputs
-                                    const inputs = advancedSearchForm.querySelectorAll('input');
-                                    const selects = advancedSearchForm.querySelectorAll('select');
+                            // Selecionar todos os botões de detalhes na tabela
+                            const detailsButtons = document.querySelectorAll('.details-button');
 
-                                    inputs.forEach(function (input) {
-                                        if (input.type === 'checkbox') {
-                                            input.checked = false;
-                                        } else {
-                                            input.value = '';
+                            // Selecionar todos os elementos de detalhes
+                            const contractDetails = document.querySelectorAll('.contract-details');
+
+                            // Selecionar todos os botões de voltar
+                            const closeButtons = document.querySelectorAll('.close-details');
+
+                            // Inicialmente ocultar todos os detalhes
+                            contractDetails.forEach(detail => {
+                                detail.style.display = 'none';
+                            });
+
+                            // Adicionar evento de clique aos botões de detalhes
+                            detailsButtons.forEach(button => {
+                                button.addEventListener('click', function () {
+                                    // Obter o ID do contrato do atributo data-contract-id
+                                    const contractId = this.getAttribute('data-contract-id');
+
+                                    // Mostrar o container principal de detalhes
+                                    const mainContainer = document.getElementById('main-container');
+                                    if (mainContainer) {
+                                        mainContainer.style.display = 'block';
+                                    }
+
+                                    // Verificar se o elemento de detalhes existe
+                                    const detailsElement = document.getElementById(`details-${contractId}`);
+                                    if (!detailsElement) return;
+
+                                    // Ocultar todos os outros detalhes
+                                    contractDetails.forEach(detail => {
+                                        if (detail.id !== `details-${contractId}`) {
+                                            detail.style.display = 'none';
                                         }
                                     });
 
-                                    selects.forEach(function (select) {
-                                        select.selectedIndex = 0;
+                                    // Restaurar os ícones de todos os outros botões
+                                    detailsButtons.forEach(btn => {
+                                        if (btn !== this) {
+                                            const icon = btn.querySelector('i');
+                                            if (icon) {
+                                                icon.classList.remove('fa-minus-circle');
+                                                icon.classList.add('fa-plus-circle');
+                                            }
+                                        }
                                     });
-                                });
 
-                                // Search button functionality
-                                const searchBtn = document.querySelector('.submit-button');
+                                    // Mostrar os detalhes do contrato clicado
+                                    detailsElement.style.display = 'block';
 
-                                searchBtn.addEventListener('click', function () {
-                                    // Collect form data and submit
-                                    console.log('Advanced search submitted');
-                                    // Here you would typically collect all form data and submit it
+                                    // Alterar o ícone do botão para indicar que está expandido
+                                    const icon = this.querySelector('i');
+                                    if (icon) {
+                                        icon.classList.remove('fa-plus-circle');
+                                        icon.classList.add('fa-minus-circle');
+                                    }
 
-                                    // Example of collecting form data
-                                    const formData = {
-                                        specialMeasures: document.getElementById('special-measures').checked,
-                                        includeMec: document.getElementById('include-mec').checked,
-                                        measureType: document.getElementById('measure-type').value,
-                                        procedureType: document.getElementById('procedure-type').value,
-                                        entity: document.getElementById('entity').value,
-                                        contractType: document.getElementById('contract-type').value,
-                                        awardedEntity: document.getElementById('awarded-entity').value,
-                                        cpv: document.getElementById('cpv').value,
-                                        environmentalCriteria: document.getElementById('environmental-criteria').checked,
-                                        dateType: document.getElementById('date-type').value,
-                                        // Add more fields as needed
-                                    };
-
-                                    console.log('Form data:', formData);
-                                });
-
-                                // Make dropdown accessible via keyboard
-                                dropdownButton.addEventListener('keydown', function (e) {
-                                    if (e.key === 'Enter' || e.key === ' ') {
-                                        e.preventDefault();
-                                        dropdownContainer.classList.toggle('active');
-
-                                        const isExpanded = dropdownContainer.classList.contains('active');
-                                        dropdownButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+                                    // Rolar suavemente até os detalhes
+                                    if (mainContainer) {
+                                        mainContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
                                     }
                                 });
                             });
 
-                            document.addEventListener('DOMContentLoaded', function () {
-                                const searchButtons = document.querySelectorAll('.search-button, .submit-button'); // Seleciona ambos os botões
-                                const resultsTable = document.getElementById('results-table');
-                                // const veiwDetails = document.getElementById('details-button');
-                                // const resultDetails = document.getElementById('results-table');
+                            // Adicionar evento de clique aos botões de voltar
+                            closeButtons.forEach(button => {
+                                button.addEventListener('click', function () {
+                                    // Obter o ID do contrato do atributo data-contract-id
+                                    const contractId = this.getAttribute('data-contract-id');
 
+                                    // Ocultar o container principal
+                                    const mainContainer = document.getElementById('main-container');
+                                    if (mainContainer) {
+                                        mainContainer.style.display = 'none';
+                                    }
 
-                                searchButtons.forEach(button => {
-                                    button.addEventListener('click', function () {
-                                        // Exibe a tabela
-                                        resultsTable.style.display = 'block';
+                                    // Encontrar o botão correspondente na tabela e restaurar seu ícone
+                                    const detailsButton = document.querySelector(`.details-button[data-contract-id="${contractId}"]`);
+                                    if (detailsButton) {
+                                        const icon = detailsButton.querySelector('i');
+                                        if (icon) {
+                                            icon.classList.remove('fa-minus-circle');
+                                            icon.classList.add('fa-plus-circle');
+                                        }
+                                    }
 
-                                        // Opcional: Role até a tabela
-                                        resultsTable.scrollIntoView({ behavior: 'smooth' });
-                                    });
+                                    // Rolar de volta para a tabela
+                                    const resultsTable = document.querySelector('.results-table');
+                                    if (resultsTable) {
+                                        resultsTable.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                    }
                                 });
-
-                                // veiwDetails.forEach(button => {
-                                //     button.addEventListener('click', function () {
-                                //         // Exibe a tabela
-                                //         resultDetails.style.display = 'block';
-
-                                //         // Opcional: Role até a tabela
-                                //         resultDetails.scrollIntoView({ behavior: 'smooth' });
-                                //     });
-                                // });
                             });
 
+                            // Adicionar suporte para navegação por teclado
+                            detailsButtons.forEach(button => {
+                                button.addEventListener('keydown', function (e) {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                        e.preventDefault();
+                                        this.click();
+                                    }
+                                });
+                            });
 
+                            closeButtons.forEach(button => {
+                                button.addEventListener('keydown', function (e) {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                        e.preventDefault();
+                                        this.click();
+                                    }
+                                });
+                            });
+                            document.addEventListener("DOMContentLoaded", () => {
+                                // Get references to the elements
+                                const dropdownButton = document.getElementById("dropdown-button")
+                                const dropdownMenu = document.getElementById("dropdown-menu")
+                                const selectedContractText = document.getElementById("selected-contract")
+                                const dropdownItems = document.querySelectorAll(".dropdown-item")
+                                const searchInput = document.querySelector(".search-input")
 
-                        </script>
+                                // Toggle dropdown menu when button is clicked
+                                dropdownButton.addEventListener("click", function () {
+                                    const expanded = this.getAttribute("aria-expanded") === "true"
+                                    this.setAttribute("aria-expanded", !expanded)
+                                    dropdownMenu.style.display = expanded ? "none" : "block"
+                                })
+
+                                // Close dropdown when clicking outside
+                                document.addEventListener("click", (event) => {
+                                    if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                                        dropdownButton.setAttribute("aria-expanded", "false")
+                                        dropdownMenu.style.display = "none"
+                                    }
+                                })
+
+                                // Define placeholder texts for each option
+                                const placeholderTexts = {
+                                    Contratos: "Pesquisar pelo objeto do Contrato",
+                                    Anúncios: "Pesquisar pelo objeto do Anúncio",
+                                    Entidades: "Pesquisar pelo nome da Entidade",
+                                    "Modificações contratuais": "Pesquisar pela modificação contratual",
+                                    "Bens móveis": "Pesquisar pelo bem móvel",
+                                    "Não Celebrações de contrato": "Pesquisar pela não celebração",
+                                    Impugnação: "Pesquisar pela impugnação",
+                                }
+
+                                // Handle dropdown item selection
+                                dropdownItems.forEach((item) => {
+                                    item.addEventListener("click", function () {
+                                        const selectedValue = this.getAttribute("data-value")
+
+                                        // Update the dropdown button text
+                                        selectedContractText.textContent = selectedValue
+
+                                        // Update the search input placeholder
+                                        searchInput.placeholder = placeholderTexts[selectedValue] || `Pesquisar pelo ${selectedValue.toLowerCase()}`
+
+                                        // Close the dropdown
+                                        dropdownButton.setAttribute("aria-expanded", "false")
+                                        dropdownMenu.style.display = "none"
+                                    })
+                                })
+
+                                // Set initial placeholder based on default selection
+                                const initialSelection = selectedContractText.textContent
+                                searchInput.placeholder = placeholderTexts[initialSelection] || `Pesquisar pelo ${initialSelection.toLowerCase()}`
+                            })
+
+                           
+
+                        });
+                    </script>
 </body>
 
 </html>
