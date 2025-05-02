@@ -579,6 +579,7 @@ main {
   font-family: Arial, sans-serif;
   color: #333;
   line-height: 1.5;
+  text-align: justify;
 }
 
 .info-box p {
