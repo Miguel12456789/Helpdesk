@@ -23,12 +23,14 @@
         </div>
 
         <div class="info-box">
-            <p>Nos campos de seleção disponíveis deve selecionar as opções pretendidas para realizar a sua pesquisa, quanto maior for a seleção de campos mais reduzida será a lista de resultados.</p>
+            <p>Nos campos de seleção disponíveis deve selecionar as opções pretendidas para realizar a sua pesquisa,
+                quanto maior for a seleção de campos mais reduzida será a lista de resultados.</p>
             <p>Pode realizar qualquer tipo de seleção, seja um objeto ou um espaço temporal, ou os dois.
 
                 Caso não encontre o resultado desejado, reinicie a página e se possível elimine os cookies.
-                
-                Caso tenha dificuldade e necessite de suporte, regresse à página inicial das estatísticas e procure suporte na janela do chat ou através dos contactos disponibilizados no nosso website.</p>
+
+                Caso tenha dificuldade e necessite de suporte, regresse à página inicial das estatísticas e procure
+                suporte na janela do chat ou através dos contactos disponibilizados no nosso website.</p>
         </div>
 
         <div class="search-container">
@@ -254,32 +256,32 @@
             <div class="popup">
                 <button class="close-btn" id="closeBtn">&times;</button>
                 <h2 class="popup-title">Formulário de Download</h2>
-        
+
                 <form id="downloadForm">
                     <!-- Nome -->
                     <div class="form-group">
                         <label for="nome" class="form-label">Nome</label>
                         <input type="text" id="nome" name="nome" class="form-input" required>
                     </div>
-        
+
                     <!-- Sobrenome -->
                     <div class="form-group">
                         <label for="sobrenome" class="form-label">Sobrenome</label>
                         <input type="text" id="sobrenome" name="sobrenome" class="form-input" required>
                     </div>
-        
+
                     <!-- E-mail Profissional -->
                     <div class="form-group">
                         <label for="email" class="form-label">E-mail Profissional</label>
                         <input type="email" id="email" name="email" class="form-input" required>
                     </div>
-        
+
                     <!-- Telefone Profissional -->
                     <div class="form-group">
                         <label for="telefone" class="form-label">Telefone Profissional</label>
                         <input type="tel" id="telefone" name="telefone" class="form-input" required>
                     </div>
-        
+
                     <!-- Setor de Atividade Profissional -->
                     <div class="form-group">
                         <label for="setor" class="form-label">Setor de Atividade Profissional</label>
@@ -298,7 +300,7 @@
                             <option value="10">10 - Indústrias alimentares</option>
                         </select>
                     </div>
-        
+
                     <!-- Formato de Download -->
                     <div class="form-group">
                         <label class="form-label">Em que formato pretende efetuar o download:</label>
@@ -319,49 +321,51 @@
                             </div>
                         </div>
                     </div>
-        
+
                     <button type="button" id="downloadBtn" class="submit-btn">Fazer Download</button>
                 </form>
             </div>
         </div>
-        
+
         <!-- Popup de CAPTCHA (adicione este código FORA do overlay principal, logo após o fechamento da div overlay) -->
         <div class="overlay captcha-popup" id="captchaOverlay">
             <div class="popup verification-popup">
-              <div class="popup-header">
-                <h2 class="popup-title">Verificação de Segurança</h2>
-                <button class="close-btn" id="closeCaptchaBtn">&times;</button>
-              </div>
-              
-              <div class="popup-body">
-                <div class="info-box">
-                  <p>Enviamos um código de verificação para o seu e-mail.</p>
-                  <p>Por favor, verifique sua caixa de entrada e insira o código de 6 dígitos abaixo para continuar.</p>
+                <div class="popup-header">
+                    <h2 class="popup-title">Verificação de Segurança</h2>
+                    <button class="close-btn" id="closeCaptchaBtn">&times;</button>
                 </div>
-                
-                <div class="form-group">
-                  <label for="verification-code" class="form-label">Código de Verificação</label>
-                  <div class="code-input-container">
-                    <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="one-time-code">
-                    <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
-                    <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
-                    <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
-                    <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
-                    <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
-                  </div>
-                  
-                  <div class="timer">
-                    Código válido por <span id="countdown">05:00</span>
-                    <a class="resend-link" id="resendLink">Reenviar código</a>
-                  </div>
+
+                <div class="popup-body">
+                    <div class="info-box">
+                        <p>Enviamos um código de verificação para o seu e-mail.</p>
+                        <p>Por favor, verifique sua caixa de entrada e insira o código de 6 dígitos abaixo para
+                            continuar.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="verification-code" class="form-label">Código de Verificação</label>
+                        <div class="code-input-container">
+                            <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric"
+                                autocomplete="one-time-code">
+                            <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                            <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                            <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                            <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                            <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                        </div>
+
+                        <div class="timer">
+                            Código válido por <span id="countdown">05:00</span>
+                            <a class="resend-link" id="resendLink">Reenviar código</a>
+                        </div>
+                    </div>
+
+                    <button class="verify-btn" id="verifyBtn" disabled>
+                        Verificar
+                    </button>
                 </div>
-                
-                <button class="verify-btn" id="verifyBtn" disabled>
-                  Verificar
-                </button>
-              </div>
             </div>
-          </div>
+        </div>
     </main>
     <%- include('components/tab_base') %>
         <%- include('components/detalhes') %>
@@ -369,159 +373,159 @@
                 <%- include('components/button') %>
 
                     <script>
-                         document.addEventListener('DOMContentLoaded', function() {
-        // Elementos do DOM
-        const openPopupBtn = document.getElementById('openPopupBtn');
-        const overlay = document.getElementById('overlay');
-        const captchaOverlay = document.getElementById('captchaOverlay');
-        const downloadBtn = document.getElementById('downloadBtn');
-        const closeBtn = document.getElementById('closeBtn');
-        const closeCaptchaBtn = document.getElementById('closeCaptchaBtn');
-        const verifyBtn = document.getElementById('verifyBtn');
-        const downloadForm = document.getElementById('downloadForm');
-        const emailInput = document.getElementById('email');
-        
-        // Abrir o popup de download quando o link "Clique aqui" for clicado
-        if (openPopupBtn) {
-            openPopupBtn.addEventListener('click', function(e) {
-                e.preventDefault(); // Previne o comportamento padrão do link
-                overlay.style.display = 'flex';
-                document.body.style.overflow = 'hidden'; // Impedir rolagem do body
-            });
-        }
-        
-        // Fechar o popup de download
-        if (closeBtn) {
-            closeBtn.addEventListener('click', function() {
-                overlay.style.display = 'none';
-                document.body.style.overflow = 'auto'; // Permitir rolagem do body
-            });
-        }
-        
-        // Mostrar popup de CAPTCHA quando o botão de download for clicado
-        if (downloadBtn) {
-            downloadBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Verificar se o formulário é válido
-                if (downloadForm.checkValidity()) {
-                    // Ocultar o popup de download
-                    overlay.style.display = 'none';
-                    
-                    // Mostrar o popup de CAPTCHA
-                    captchaOverlay.style.display = 'flex';
-                    
-                    // Simulação de envio de email com código de verificação
-                    console.log(`Código de verificação enviado para: ${emailInput.value}`);
-                } else {
-                    // Forçar a validação do formulário para mostrar mensagens de erro
-                    downloadForm.reportValidity();
-                }
-            });
-        }
-        
-        // Fechar popup de CAPTCHA
-        if (closeCaptchaBtn) {
-            closeCaptchaBtn.addEventListener('click', function() {
-                captchaOverlay.style.display = 'none';
-                document.body.style.overflow = 'auto'; // Permitir rolagem do body
-            });
-        }
-        
-        // Verificar código CAPTCHA
-        if (verifyBtn) {
-            verifyBtn.addEventListener('click', function() {
-                const captchaInput = document.getElementById('captcha');
-                
-                if (captchaInput.value.trim() === '') {
-                    alert('Por favor, insira o código de verificação.');
-                } else {
-                    // Simulação de verificação bem-sucedida
-                    alert('Código verificado com sucesso! Seu download começará em instantes.');
-                    captchaOverlay.style.display = 'none';
-                    document.body.style.overflow = 'auto'; // Permitir rolagem do body
-                    
-                    // Aqui você pode adicionar a lógica real para iniciar o download
-                    
-                    // Opcional: fechar também a notificação após o download
-                    const notificacaoContainer = document.getElementById('notificacao-container');
-                    if (notificacaoContainer) {
-                        notificacaoContainer.style.display = 'none';
-                    }
-                }
-            });
-        }
-        
-        // Fechar os popups ao clicar fora deles
-        window.addEventListener('click', function(e) {
-            if (e.target === overlay) {
-                overlay.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-            if (e.target === captchaOverlay) {
-                captchaOverlay.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        });
-    });
+                        document.addEventListener('DOMContentLoaded', function () {
+                            // Elementos do DOM
+                            const openPopupBtn = document.getElementById('openPopupBtn');
+                            const overlay = document.getElementById('overlay');
+                            const captchaOverlay = document.getElementById('captchaOverlay');
+                            const downloadBtn = document.getElementById('downloadBtn');
+                            const closeBtn = document.getElementById('closeBtn');
+                            const closeCaptchaBtn = document.getElementById('closeCaptchaBtn');
+                            const verifyBtn = document.getElementById('verifyBtn');
+                            const downloadForm = document.getElementById('downloadForm');
+                            const emailInput = document.getElementById('email');
+
+                            // Abrir o popup de download quando o link "Clique aqui" for clicado
+                            if (openPopupBtn) {
+                                openPopupBtn.addEventListener('click', function (e) {
+                                    e.preventDefault(); // Previne o comportamento padrão do link
+                                    overlay.style.display = 'flex';
+                                    document.body.style.overflow = 'hidden'; // Impedir rolagem do body
+                                });
+                            }
+
+                            // Fechar o popup de download
+                            if (closeBtn) {
+                                closeBtn.addEventListener('click', function () {
+                                    overlay.style.display = 'none';
+                                    document.body.style.overflow = 'auto'; // Permitir rolagem do body
+                                });
+                            }
+
+                            // Mostrar popup de CAPTCHA quando o botão de download for clicado
+                            if (downloadBtn) {
+                                downloadBtn.addEventListener('click', function (e) {
+                                    e.preventDefault();
+
+                                    // Verificar se o formulário é válido
+                                    if (downloadForm.checkValidity()) {
+                                        // Ocultar o popup de download
+                                        overlay.style.display = 'none';
+
+                                        // Mostrar o popup de CAPTCHA
+                                        captchaOverlay.style.display = 'flex';
+
+                                        // Simulação de envio de email com código de verificação
+                                        console.log(`Código de verificação enviado para: ${emailInput.value}`);
+                                    } else {
+                                        // Forçar a validação do formulário para mostrar mensagens de erro
+                                        downloadForm.reportValidity();
+                                    }
+                                });
+                            }
+
+                            // Fechar popup de CAPTCHA
+                            if (closeCaptchaBtn) {
+                                closeCaptchaBtn.addEventListener('click', function () {
+                                    captchaOverlay.style.display = 'none';
+                                    document.body.style.overflow = 'auto'; // Permitir rolagem do body
+                                });
+                            }
+
+                            // Verificar código CAPTCHA
+                            if (verifyBtn) {
+                                verifyBtn.addEventListener('click', function () {
+                                    const captchaInput = document.getElementById('captcha');
+
+                                    if (captchaInput.value.trim() === '') {
+                                        alert('Por favor, insira o código de verificação.');
+                                    } else {
+                                        // Simulação de verificação bem-sucedida
+                                        alert('Código verificado com sucesso! Seu download começará em instantes.');
+                                        captchaOverlay.style.display = 'none';
+                                        document.body.style.overflow = 'auto'; // Permitir rolagem do body
+
+                                        // Aqui você pode adicionar a lógica real para iniciar o download
+
+                                        // Opcional: fechar também a notificação após o download
+                                        const notificacaoContainer = document.getElementById('notificacao-container');
+                                        if (notificacaoContainer) {
+                                            notificacaoContainer.style.display = 'none';
+                                        }
+                                    }
+                                });
+                            }
+
+                            // Fechar os popups ao clicar fora deles
+                            window.addEventListener('click', function (e) {
+                                if (e.target === overlay) {
+                                    overlay.style.display = 'none';
+                                    document.body.style.overflow = 'auto';
+                                }
+                                if (e.target === captchaOverlay) {
+                                    captchaOverlay.style.display = 'none';
+                                    document.body.style.overflow = 'auto';
+                                }
+                            });
+                        });
                         // Certifique-se de que este código esteja no seu arquivo JavaScript ou dentro de uma tag <script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Elementos do DOM
-  const downloadBtn = document.getElementById('downloadBtn');
-  const closeDownloadBtn = document.getElementById('closeBtn');
-  const closeCaptchaBtn = document.getElementById('closeCaptchaBtn');
-  const verifyBtn = document.getElementById('verifyBtn');
-  const downloadForm = document.getElementById('downloadForm');
-  const emailInput = document.getElementById('email');
-  const overlay = document.getElementById('overlay');
-  const captchaOverlay = document.getElementById('captchaOverlay');
-  
-  // Mostrar popup de CAPTCHA quando o botão de download for clicado
-  if (downloadBtn) {
-    downloadBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      
-      // Verificar se o formulário é válido
-      if (downloadForm.checkValidity()) {
-        // Ocultar o popup de download
-        overlay.style.display = 'none';
-        
-        // Mostrar o popup de CAPTCHA
-        captchaOverlay.style.display = 'flex';
-        
-        // Simulação de envio de email com código de verificação
-        console.log(`Código de verificação enviado para: ${emailInput.value}`);
-      } else {
-        // Forçar a validação do formulário para mostrar mensagens de erro
-        downloadForm.reportValidity();
-      }
-    });
-  }
-  
-  // Fechar popup de CAPTCHA
-  if (closeCaptchaBtn) {
-    closeCaptchaBtn.addEventListener('click', function() {
-      captchaOverlay.style.display = 'none';
-    });
-  }
-  
-  // Verificar código CAPTCHA
-  if (verifyBtn) {
-    verifyBtn.addEventListener('click', function() {
-      const captchaInput = document.getElementById('captcha');
-      
-      if (captchaInput.value.trim() === '') {
-        alert('Por favor, insira o código de verificação.');
-      } else {
-        // Simulação de verificação bem-sucedida
-        alert('Código verificado com sucesso! Seu download começará em instantes.');
-        captchaOverlay.style.display = 'none';
-        
-        // Aqui você pode adicionar a lógica real para iniciar o download
-      }
-    });
-  }
-});
+                        document.addEventListener('DOMContentLoaded', function () {
+                            // Elementos do DOM
+                            const downloadBtn = document.getElementById('downloadBtn');
+                            const closeDownloadBtn = document.getElementById('closeBtn');
+                            const closeCaptchaBtn = document.getElementById('closeCaptchaBtn');
+                            const verifyBtn = document.getElementById('verifyBtn');
+                            const downloadForm = document.getElementById('downloadForm');
+                            const emailInput = document.getElementById('email');
+                            const overlay = document.getElementById('overlay');
+                            const captchaOverlay = document.getElementById('captchaOverlay');
+
+                            // Mostrar popup de CAPTCHA quando o botão de download for clicado
+                            if (downloadBtn) {
+                                downloadBtn.addEventListener('click', function (e) {
+                                    e.preventDefault();
+
+                                    // Verificar se o formulário é válido
+                                    if (downloadForm.checkValidity()) {
+                                        // Ocultar o popup de download
+                                        overlay.style.display = 'none';
+
+                                        // Mostrar o popup de CAPTCHA
+                                        captchaOverlay.style.display = 'flex';
+
+                                        // Simulação de envio de email com código de verificação
+                                        console.log(`Código de verificação enviado para: ${emailInput.value}`);
+                                    } else {
+                                        // Forçar a validação do formulário para mostrar mensagens de erro
+                                        downloadForm.reportValidity();
+                                    }
+                                });
+                            }
+
+                            // Fechar popup de CAPTCHA
+                            if (closeCaptchaBtn) {
+                                closeCaptchaBtn.addEventListener('click', function () {
+                                    captchaOverlay.style.display = 'none';
+                                });
+                            }
+
+                            // Verificar código CAPTCHA
+                            if (verifyBtn) {
+                                verifyBtn.addEventListener('click', function () {
+                                    const captchaInput = document.getElementById('captcha');
+
+                                    if (captchaInput.value.trim() === '') {
+                                        alert('Por favor, insira o código de verificação.');
+                                    } else {
+                                        // Simulação de verificação bem-sucedida
+                                        alert('Código verificado com sucesso! Seu download começará em instantes.');
+                                        captchaOverlay.style.display = 'none';
+
+                                        // Aqui você pode adicionar a lógica real para iniciar o download
+                                    }
+                                });
+                            }
+                        });
                         document.addEventListener('DOMContentLoaded', function () {
                             // === Função para preencher anos, meses e dias dinamicamente ===
                             function populateDateSelectors(yearId, monthId, dayId) {
