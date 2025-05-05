@@ -32,6 +32,7 @@
                 Caso tenha dificuldade e necessite de suporte, regresse à página inicial das estatísticas e procure
                 suporte na janela do chat ou através dos contactos disponibilizados no nosso website.</p>
         </div>
+        </div>
 
         <div class="search-container">
             <div class="search-row">
@@ -251,126 +252,137 @@
                 </div>
             </div>
         </div>
-        <!-- Overlay e Popup -->
+
+        <!-- Overlay e Popup de Download -->
         <div class="overlay" id="overlay">
             <div class="popup">
                 <button class="close-btn" id="closeBtn">&times;</button>
                 <h2 class="popup-title">Formulário de Download</h2>
 
-                <form id="downloadForm">
-                    <!-- Nome -->
-                    <div class="form-group">
-                        <label for="nome" class="form-label">Nome</label>
-                        <input type="text" id="nome" name="nome" class="form-input" required>
-                    </div>
+                <div id="downloadStep1" class="download-step active">
+                    <form id="downloadForm">
+                        <!-- Nome -->
+                        <div class="form-group">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input type="text" id="nome" name="nome" class="form-input" required>
+                        </div>
 
-                    <!-- Sobrenome -->
-                    <div class="form-group">
-                        <label for="sobrenome" class="form-label">Sobrenome</label>
-                        <input type="text" id="sobrenome" name="sobrenome" class="form-input" required>
-                    </div>
+                        <!-- Sobrenome -->
+                        <div class="form-group">
+                            <label for="sobrenome" class="form-label">Sobrenome</label>
+                            <input type="text" id="sobrenome" name="sobrenome" class="form-input" required>
+                        </div>
 
-                    <!-- E-mail Profissional -->
-                    <div class="form-group">
-                        <label for="email" class="form-label">E-mail Profissional</label>
-                        <input type="email" id="email" name="email" class="form-input" required>
-                    </div>
+                        <!-- E-mail Profissional -->
+                        <div class="form-group">
+                            <label for="email" class="form-label">E-mail Profissional</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                        </div>
 
-                    <!-- Telefone Profissional -->
-                    <div class="form-group">
-                        <label for="telefone" class="form-label">Telefone Profissional</label>
-                        <input type="tel" id="telefone" name="telefone" class="form-input" required>
-                    </div>
+                        <!-- Telefone Profissional -->
+                        <div class="form-group">
+                            <label for="telefone" class="form-label">Telefone Profissional</label>
+                            <input type="tel" id="telefone" name="telefone" class="form-input" required>
+                        </div>
 
-                    <!-- Setor de Atividade Profissional -->
-                    <div class="form-group">
-                        <label for="setor" class="form-label">Setor de Atividade Profissional</label>
-                        <select id="setor" name="setor" class="form-select" required>
-                            <option value="" disabled selected>Selecione um setor</option>
-                            <option value="01">01 - Agricultura, produção animal, caça e atividades dos serviços
-                                relacionados</option>
-                            <option value="02">02 - Silvicultura e exploração florestal</option>
-                            <option value="03">03 - Pesca e aquicultura</option>
-                            <option value="05">05 - Extração de hulha e lenhite</option>
-                            <option value="06">06 - Extração de petróleo bruto e gás natural</option>
-                            <option value="07">07 - Extração e preparação de minérios metálicos</option>
-                            <option value="08">08 - Outras indústrias extrativas</option>
-                            <option value="09">09 - Atividades dos serviços relacionados com as indústrias extrativas
-                            </option>
-                            <option value="10">10 - Indústrias alimentares</option>
-                        </select>
-                    </div>
+                        <!-- Setor de Atividade Profissional -->
+                        <div class="form-group">
+                            <label for="setor" class="form-label">Setor de Atividade Profissional</label>
+                            <select id="setor" name="setor" class="form-select" required>
+                                <option value="" disabled selected>Selecione um setor</option>
+                                <option value="01">01 - Agricultura, produção animal, caça e atividades dos serviços
+                                    relacionados</option>
+                                <option value="02">02 - Silvicultura e exploração florestal</option>
+                                <option value="03">03 - Pesca e aquicultura</option>
+                                <option value="05">05 - Extração de hulha e lenhite</option>
+                                <option value="06">06 - Extração de petróleo bruto e gás natural</option>
+                                <option value="07">07 - Extração e preparação de minérios metálicos</option>
+                                <option value="08">08 - Outras indústrias extrativas</option>
+                                <option value="09">09 - Atividades dos serviços relacionados com as indústrias
+                                    extrativas</option>
+                                <option value="10">10 - Indústrias alimentares</option>
+                            </select>
+                        </div>
 
-                    <!-- Formato de Download -->
-                    <div class="form-group">
-                        <label class="form-label">Em que formato pretende efetuar o download:</label>
-                        <div class="format-options">
-                            <div class="format-option">
-                                <input type="radio" id="formatCsv" name="formato" value="csv" class="format-radio"
-                                    required checked>
-                                <label for="formatCsv">CSV</label>
-                            </div>
-                            <div class="format-option">
-                                <input type="radio" id="formatXls" name="formato" value="xls" class="format-radio">
-                                <label for="formatXls">XLS</label>
-                            </div>
-                            <div class="format-option">
-                                <input type="radio" id="formatCsvSep" name="formato" value="csv-sep"
-                                    class="format-radio">
-                                <label for="formatCsvSep">PDF</label>
+                        <!-- Formato de Download -->
+                        <div class="form-group">
+                            <label class="form-label">Em que formato pretende efetuar o download:</label>
+                            <div class="format-options">
+                                <div class="format-option">
+                                    <input type="radio" id="formatCsv" name="formato" value="csv" class="format-radio"
+                                        required checked>
+                                    <label for="formatCsv">CSV</label>
+                                </div>
+                                <div class="format-option">
+                                    <input type="radio" id="formatXls" name="formato" value="xls" class="format-radio">
+                                    <label for="formatXls">XLS</label>
+                                </div>
+                                <div class="format-option">
+                                    <input type="radio" id="formatPdf" name="formato" value="pdf" class="format-radio">
+                                    <label for="formatPdf">PDF</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <button type="button" id="downloadBtn" class="submit-btn">Fazer Download</button>
-                </form>
-            </div>
-        </div>
+                        <!-- CAPTCHA -->
+                        <div class="form-group captcha-container">
+                            <label class="form-label">Verificação de Segurança:</label>
+                            <div class="captcha-box" id="captchaBox">
+                                <div class="captcha-text" id="captchaText"></div>
+                                <button type="button" class="refresh-captcha" id="refreshCaptcha">
+                                    <i data-lucide="refresh-cw" class="icon-small"></i>
+                                </button>
+                            </div>
+                            <input type="text" id="captchaInput" name="captchaInput" class="form-input"
+                                placeholder="Digite os caracteres acima" required>
+                        </div>
 
-        <!-- Popup de CAPTCHA (adicione este código FORA do overlay principal, logo após o fechamento da div overlay) -->
-        <div class="overlay captcha-popup" id="captchaOverlay">
-            <div class="popup verification-popup">
-                <div class="popup-header">
-                    <h2 class="popup-title">Verificação de Segurança</h2>
-                    <button class="close-btn" id="closeCaptchaBtn">&times;</button>
+                        <button type="submit" class="submit-btn">Continuar</button>
+                    </form>
                 </div>
 
-                <div class="popup-body">
-                    <div class="info-box">
-                        <p>Enviamos um código de verificação para o seu e-mail.</p>
-                        <p>Por favor, verifique sua caixa de entrada e insira o código de 6 dígitos abaixo para
-                            continuar.</p>
-                    </div>
+                <!-- Etapa 2: Verificação por Email -->
+                <div id="downloadStep2" class="download-step">
+                    <div class="verification-container">
+                        <div class="verification-icon">
+                            <i data-lucide="mail" class="icon-large"></i>
+                        </div>
+                        <h3>Verificação por Email</h3>
+                        <p>Enviamos um código de verificação de 3 dígitos para o seu email.</p>
+                        <p>Por favor, verifique sua caixa de entrada e insira o código abaixo:</p>
 
-                    <div class="form-group">
-                        <label for="verification-code" class="form-label">Código de Verificação</label>
-                        <div class="code-input-container">
-                            <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric"
-                                autocomplete="one-time-code">
-                            <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
-                            <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
-                            <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
-                            <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
-                            <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                        <div class="verification-code-container">
+                            <input type="text" class="verification-input" maxlength="1" data-index="0">
+                            <input type="text" class="verification-input" maxlength="1" data-index="1">
+                            <input type="text" class="verification-input" maxlength="1" data-index="2">
                         </div>
 
-                        <div class="timer">
-                            Código válido por <span id="countdown">05:00</span>
-                            <a class="resend-link" id="resendLink">Reenviar código</a>
+                        <div class="verification-actions">
+                            <button id="verifyCodeBtn" class="submit-btn">Verificar</button>
+                            <button id="resendCodeBtn" class="resend-btn">Reenviar Código</button>
                         </div>
                     </div>
+                </div>
 
-                    <button class="verify-btn" id="verifyBtn" disabled>
-                        Verificar
-                    </button>
+                <!-- Etapa 3: Download Concluído -->
+                <div id="downloadStep3" class="download-step">
+                    <div class="success-container">
+                        <div class="success-icon">
+                            <i data-lucide="check-circle" class="icon-large"></i>
+                        </div>
+                        <h3>Download Pronto!</h3>
+                        <p>Seu download começará automaticamente em alguns segundos.</p>
+                        <p>Se o download não iniciar, clique no botão abaixo:</p>
+
+                        <a href="#" id="downloadLink" class="download-link">
+                            <i data-lucide="download" class="icon-small"></i>
+                            <span>Baixar Arquivo</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
 
-                    <button type="submit" class="submit-btn">Fazer Download</button>
-                </form>
-            </div>
-        </div>
     </main>
     <%- include('components/tab_base') %>
         <%- include('components/detalhes') %>
@@ -378,159 +390,6 @@
                 <%- include('components/button') %>
 
                     <script>
-                        document.addEventListener('DOMContentLoaded', function () {
-                            // Elementos do DOM
-                            const openPopupBtn = document.getElementById('openPopupBtn');
-                            const overlay = document.getElementById('overlay');
-                            const captchaOverlay = document.getElementById('captchaOverlay');
-                            const downloadBtn = document.getElementById('downloadBtn');
-                            const closeBtn = document.getElementById('closeBtn');
-                            const closeCaptchaBtn = document.getElementById('closeCaptchaBtn');
-                            const verifyBtn = document.getElementById('verifyBtn');
-                            const downloadForm = document.getElementById('downloadForm');
-                            const emailInput = document.getElementById('email');
-
-                            // Abrir o popup de download quando o link "Clique aqui" for clicado
-                            if (openPopupBtn) {
-                                openPopupBtn.addEventListener('click', function (e) {
-                                    e.preventDefault(); // Previne o comportamento padrão do link
-                                    overlay.style.display = 'flex';
-                                    document.body.style.overflow = 'hidden'; // Impedir rolagem do body
-                                });
-                            }
-
-                            // Fechar o popup de download
-                            if (closeBtn) {
-                                closeBtn.addEventListener('click', function () {
-                                    overlay.style.display = 'none';
-                                    document.body.style.overflow = 'auto'; // Permitir rolagem do body
-                                });
-                            }
-
-                            // Mostrar popup de CAPTCHA quando o botão de download for clicado
-                            if (downloadBtn) {
-                                downloadBtn.addEventListener('click', function (e) {
-                                    e.preventDefault();
-
-                                    // Verificar se o formulário é válido
-                                    if (downloadForm.checkValidity()) {
-                                        // Ocultar o popup de download
-                                        overlay.style.display = 'none';
-
-                                        // Mostrar o popup de CAPTCHA
-                                        captchaOverlay.style.display = 'flex';
-
-                                        // Simulação de envio de email com código de verificação
-                                        console.log(`Código de verificação enviado para: ${emailInput.value}`);
-                                    } else {
-                                        // Forçar a validação do formulário para mostrar mensagens de erro
-                                        downloadForm.reportValidity();
-                                    }
-                                });
-                            }
-
-                            // Fechar popup de CAPTCHA
-                            if (closeCaptchaBtn) {
-                                closeCaptchaBtn.addEventListener('click', function () {
-                                    captchaOverlay.style.display = 'none';
-                                    document.body.style.overflow = 'auto'; // Permitir rolagem do body
-                                });
-                            }
-
-                            // Verificar código CAPTCHA
-                            if (verifyBtn) {
-                                verifyBtn.addEventListener('click', function () {
-                                    const captchaInput = document.getElementById('captcha');
-
-                                    if (captchaInput.value.trim() === '') {
-                                        alert('Por favor, insira o código de verificação.');
-                                    } else {
-                                        // Simulação de verificação bem-sucedida
-                                        alert('Código verificado com sucesso! Seu download começará em instantes.');
-                                        captchaOverlay.style.display = 'none';
-                                        document.body.style.overflow = 'auto'; // Permitir rolagem do body
-
-                                        // Aqui você pode adicionar a lógica real para iniciar o download
-
-                                        // Opcional: fechar também a notificação após o download
-                                        const notificacaoContainer = document.getElementById('notificacao-container');
-                                        if (notificacaoContainer) {
-                                            notificacaoContainer.style.display = 'none';
-                                        }
-                                    }
-                                });
-                            }
-
-                            // Fechar os popups ao clicar fora deles
-                            window.addEventListener('click', function (e) {
-                                if (e.target === overlay) {
-                                    overlay.style.display = 'none';
-                                    document.body.style.overflow = 'auto';
-                                }
-                                if (e.target === captchaOverlay) {
-                                    captchaOverlay.style.display = 'none';
-                                    document.body.style.overflow = 'auto';
-                                }
-                            });
-                        });
-                        // Certifique-se de que este código esteja no seu arquivo JavaScript ou dentro de uma tag <script>
-                        document.addEventListener('DOMContentLoaded', function () {
-                            // Elementos do DOM
-                            const downloadBtn = document.getElementById('downloadBtn');
-                            const closeDownloadBtn = document.getElementById('closeBtn');
-                            const closeCaptchaBtn = document.getElementById('closeCaptchaBtn');
-                            const verifyBtn = document.getElementById('verifyBtn');
-                            const downloadForm = document.getElementById('downloadForm');
-                            const emailInput = document.getElementById('email');
-                            const overlay = document.getElementById('overlay');
-                            const captchaOverlay = document.getElementById('captchaOverlay');
-
-                            // Mostrar popup de CAPTCHA quando o botão de download for clicado
-                            if (downloadBtn) {
-                                downloadBtn.addEventListener('click', function (e) {
-                                    e.preventDefault();
-
-                                    // Verificar se o formulário é válido
-                                    if (downloadForm.checkValidity()) {
-                                        // Ocultar o popup de download
-                                        overlay.style.display = 'none';
-
-                                        // Mostrar o popup de CAPTCHA
-                                        captchaOverlay.style.display = 'flex';
-
-                                        // Simulação de envio de email com código de verificação
-                                        console.log(`Código de verificação enviado para: ${emailInput.value}`);
-                                    } else {
-                                        // Forçar a validação do formulário para mostrar mensagens de erro
-                                        downloadForm.reportValidity();
-                                    }
-                                });
-                            }
-
-                            // Fechar popup de CAPTCHA
-                            if (closeCaptchaBtn) {
-                                closeCaptchaBtn.addEventListener('click', function () {
-                                    captchaOverlay.style.display = 'none';
-                                });
-                            }
-
-                            // Verificar código CAPTCHA
-                            if (verifyBtn) {
-                                verifyBtn.addEventListener('click', function () {
-                                    const captchaInput = document.getElementById('captcha');
-
-                                    if (captchaInput.value.trim() === '') {
-                                        alert('Por favor, insira o código de verificação.');
-                                    } else {
-                                        // Simulação de verificação bem-sucedida
-                                        alert('Código verificado com sucesso! Seu download começará em instantes.');
-                                        captchaOverlay.style.display = 'none';
-
-                                        // Aqui você pode adicionar a lógica real para iniciar o download
-                                    }
-                                });
-                            }
-                        });
                         document.addEventListener('DOMContentLoaded', function () {
                             // === Função para preencher anos, meses e dias dinamicamente ===
                             function populateDateSelectors(yearId, monthId, dayId) {
@@ -592,179 +451,82 @@
                             populateDateSelectors('from-year', 'from-month', 'from-day');
                             populateDateSelectors('to-year', 'to-month', 'to-day');
 
-                            // Initialize Lucide icons
+                            // === Inicializar ícones Lucide ===
                             if (typeof lucide === 'undefined') {
-                                console.warn('Lucide is not globally defined. Ensure Lucide library is properly included.');
-                                window.lucide = { createIcons: function () { } };
+                                console.warn('Lucide não definido. Verifique a inclusão da biblioteca.');
+                                window.lucide = { createIcons: () => { } };
                             }
                             lucide.createIcons();
 
-                            // Clear button functionality
+                            // === Limpar formulário ===
                             const clearBtn = document.getElementById('clear-form-btn');
+                            clearBtn?.addEventListener('click', () => {
+                                const form = document.getElementById('advancedSearchForm');
+                                if (!form) return;
 
-                            clearBtn.addEventListener('click', function () {
-                                // Reset all form inputs
-                                const inputs = advancedSearchForm.querySelectorAll('input');
-                                const selects = advancedSearchForm.querySelectorAll('select');
-
-                                inputs.forEach(function (input) {
-                                    if (input.type === 'checkbox') {
-                                        input.checked = false;
-                                    } else {
-                                        input.value = '';
-                                    }
+                                form.querySelectorAll('input').forEach(input => {
+                                    input.type === 'checkbox' ? input.checked = false : input.value = '';
                                 });
 
-                                selects.forEach(function (select) {
+                                form.querySelectorAll('select').forEach(select => {
                                     select.selectedIndex = 0;
                                 });
                             });
 
-                            // Search button functionality
-                            const searchBtn = document.querySelector('.submit-button');
-
-                            searchBtn.addEventListener('click', function () {
-                                // Collect form data and submit
-                                console.log('Advanced search submitted');
-                                const formData = {
-                                    specialMeasures: document.getElementById('special-measures').checked,
-                                    includeMec: document.getElementById('include-mec').checked,
-                                    measureType: document.getElementById('measure-type').value,
-                                    procedureType: document.getElementById('procedure-type').value,
-                                    entity: document.getElementById('entity').value,
-                                    contractType: document.getElementById('contract-type').value,
-                                    awardedEntity: document.getElementById('awarded-entity').value,
-                                    cpv: document.getElementById('cpv').value,
-                                    environmentalCriteria: document.getElementById('environmental-criteria').checked,
-                                    dateType: document.getElementById('date-type').value,
-                                };
-
-                                console.log('Form data:', formData);
-                            });
-
-                            // Mostrar tabela de resultados quando os botões de pesquisa são clicados
-                            const searchButtons = document.querySelectorAll('.search-button, .submit-button');
+                            // === Mostrar tabela de resultados ===
                             const resultsTable = document.getElementById('results-table');
                             const notificationContainer = document.getElementById('notificacao-container');
-
-                            searchButtons.forEach(button => {
-                                button.addEventListener('click', function () {
-                                    if (resultsTable) {
-                                        resultsTable.style.display = 'block';
-                                        resultsTable.scrollIntoView({ behavior: 'smooth' });
-                                    }
-
-                                    if (notificationContainer) {
-                                        notificationContainer.style.display = 'block';
-                                    }
+                            document.querySelectorAll('.search-button, .submit-button').forEach(button => {
+                                button.addEventListener('click', () => {
+                                    resultsTable?.style.setProperty('display', 'block');
+                                    notificationContainer?.style.setProperty('display', 'block');
+                                    resultsTable?.scrollIntoView({ behavior: 'smooth' });
                                 });
                             });
 
-                            // Controle de visibilidade do container principal de detalhes
-                            const detailsButtons = document.querySelectorAll('.details-button');
+                            // === Controle de detalhes de contratos ===
                             const contractDetails = document.querySelectorAll('.contract-details');
-                            const closeButtons = document.querySelectorAll('.close-details');
+                            contractDetails.forEach(el => el.style.display = 'none');
 
-                            contractDetails.forEach(detail => {
-                                detail.style.display = 'none';
-                            });
+                            const toggleDetail = (contractId, show) => {
+                                const detail = document.getElementById(`details-${contractId}`);
+                                const mainContainer = document.getElementById('main-container');
+                                const button = document.querySelector(`.details-button[data-contract-id="${contractId}"]`);
+                                const icon = button?.querySelector('i');
 
-                            detailsButtons.forEach(button => {
-                                button.addEventListener('click', function () {
-                                    const contractId = this.getAttribute('data-contract-id');
-                                    const mainContainer = document.getElementById('main-container');
-                                    if (mainContainer) {
-                                        mainContainer.style.display = 'block';
-                                    }
-
-                                    const detailsElement = document.getElementById(`details-${contractId}`);
-                                    if (!detailsElement) return;
-
-                                    contractDetails.forEach(detail => {
-                                        if (detail.id !== `details-${contractId}`) {
-                                            detail.style.display = 'none';
-                                        }
-                                    });
-
-                                    detailsElement.style.display = 'block';
-
-                                    const icon = this.querySelector('i');
-                                    if (icon) {
-                                        icon.classList.remove('fa-plus-circle');
-                                        icon.classList.add('fa-minus-circle');
-                                    }
-
-                                    if (mainContainer) {
-                                        mainContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                    }
+                                contractDetails.forEach(el => {
+                                    el.style.display = (el.id === `details-${contractId}` && show) ? 'block' : 'none';
                                 });
-                            });
 
-                            closeButtons.forEach(button => {
-                                button.addEventListener('click', function () {
-                                    const contractId = this.getAttribute('data-contract-id');
-                                    const mainContainer = document.getElementById('main-container');
-                                    if (mainContainer) {
-                                        mainContainer.style.display = 'none';
-                                    }
+                                mainContainer && (mainContainer.style.display = show ? 'block' : 'none');
+                                icon?.classList.toggle('fa-plus-circle', !show);
+                                icon?.classList.toggle('fa-minus-circle', show);
 
-                                    const detailsButton = document.querySelector(`.details-button[data-contract-id="${contractId}"]`);
-                                    if (detailsButton) {
-                                        const icon = detailsButton.querySelector('i');
-                                        if (icon) {
-                                            icon.classList.remove('fa-minus-circle');
-                                            icon.classList.add('fa-plus-circle');
-                                        }
-                                    }
+                                (show ? mainContainer : document.querySelector('.results-table'))?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            };
 
-                                    const resultsTable = document.querySelector('.results-table');
-                                    if (resultsTable) {
-                                        resultsTable.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                    }
+                            document.querySelectorAll('.details-button').forEach(button => {
+                                button.addEventListener('click', () => {
+                                    toggleDetail(button.dataset.contractId, true);
                                 });
-                            });
-
-                            detailsButtons.forEach(button => {
-                                button.addEventListener('keydown', function (e) {
-                                    if (e.key === 'Enter' || e.key === ' ') {
+                                button.addEventListener('keydown', e => {
+                                    if (['Enter', ' '].includes(e.key)) {
                                         e.preventDefault();
-                                        this.click();
+                                        button.click();
                                     }
                                 });
                             });
 
-                            closeButtons.forEach(button => {
-                                button.addEventListener('keydown', function (e) {
-                                    if (e.key === 'Enter' || e.key === ' ') {
+                            document.querySelectorAll('.close-details').forEach(button => {
+                                button.addEventListener('click', () => {
+                                    toggleDetail(button.dataset.contractId, false);
+                                });
+                                button.addEventListener('keydown', e => {
+                                    if (['Enter', ' '].includes(e.key)) {
                                         e.preventDefault();
-                                        this.click();
+                                        button.click();
                                     }
                                 });
-                            });
-
-                            // Elementos do DOM
-                            const openPopupBtn = document.getElementById('openPopupBtn');
-                            const closeBtn = document.getElementById('closeBtn');
-                            const overlay = document.getElementById('overlay');
-
-                            // Abrir o popup
-                            openPopupBtn.addEventListener('click', function () {
-                                overlay.style.display = 'flex';
-                                document.body.style.overflow = 'hidden'; // Impedir rolagem do body
-                            });
-
-                            // Fechar o popup
-                            closeBtn.addEventListener('click', function () {
-                                overlay.style.display = 'none';
-                                document.body.style.overflow = 'auto'; // Permitir rolagem do body
-                            });
-
-                            // Fechar o popup ao clicar fora dele
-                            overlay.addEventListener('click', function (e) {
-                                if (e.target === overlay) {
-                                    overlay.style.display = 'none';
-                                    document.body.style.overflow = 'auto'; // Permitir rolagem do body
-                                }
                             });
                         });
                     </script>

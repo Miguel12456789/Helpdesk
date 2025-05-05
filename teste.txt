@@ -1,1 +1,481 @@
-<!-- <%- include('components/contract_details') %> -->
+<!DOCTYPE html>
+<html lang="pt-pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="base_gov.css">
+    <!-- Include Lucide icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <title>Helpdesk Público</title>
+</head>
+
+<body>
+    <main class="container py-8">
+        <h1 class="titulo">Mercado Público</h1>
+        <div class="banner">
+            <p>
+                Bem-vindos à página de estatísticas do Helpdesk Público. <br>
+                Aqui encontra toda a informação pública sobre os Contratos de Compras Públicas. <br>
+                Consulte todas as informações sobre os Contratos Públicos de forma mais ágil e prática. <br>
+
+            </p>
+        </div>
+
+        <div class="info-box">
+            <p>Informações adicionais sobre a pesquisa de contratos</p>
+            <p>Utilize os filtros abaixo para refinar sua busca e encontrar informações específicas sobre contratos públicos.</p>
+          </div>
+
+        <div class="search-container">
+            <div class="search-row">
+                <div class="dropdown" id="contracts-dropdown">
+
+
+@@ -240,6 +245,81 @@
+                </div>
+            </div>
+        </div>
+        <!-- Overlay e Popup -->
+        <div class="overlay" id="overlay">
+            <div class="popup">
+                <button class="close-btn" id="closeBtn">&times;</button>
+                <h2 class="popup-title">Formulário de Download</h2>
+
+                <form id="downloadForm">
+                    <!-- Nome -->
+                    <div class="form-group">
+                        <label for="nome" class="form-label">Nome</label>
+                        <input type="text" id="nome" name="nome" class="form-input" required>
+                    </div>
+
+                    <!-- Sobrenome -->
+                    <div class="form-group">
+                        <label for="sobrenome" class="form-label">Sobrenome</label>
+                        <input type="text" id="sobrenome" name="sobrenome" class="form-input" required>
+                    </div>
+
+                    <!-- E-mail Profissional -->
+                    <div class="form-group">
+                        <label for="email" class="form-label">E-mail Profissional</label>
+                        <input type="email" id="email" name="email" class="form-input" required>
+                    </div>
+
+                    <!-- Telefone Profissional -->
+                    <div class="form-group">
+                        <label for="telefone" class="form-label">Telefone Profissional</label>
+                        <input type="tel" id="telefone" name="telefone" class="form-input" required>
+                    </div>
+
+                    <!-- Setor de Atividade Profissional -->
+                    <div class="form-group">
+                        <label for="setor" class="form-label">Setor de Atividade Profissional</label>
+                        <select id="setor" name="setor" class="form-select" required>
+                            <option value="" disabled selected>Selecione um setor</option>
+                            <option value="01">01 - Agricultura, produção animal, caça e atividades dos serviços
+                                relacionados</option>
+                            <option value="02">02 - Silvicultura e exploração florestal</option>
+                            <option value="03">03 - Pesca e aquicultura</option>
+                            <option value="05">05 - Extração de hulha e lenhite</option>
+                            <option value="06">06 - Extração de petróleo bruto e gás natural</option>
+                            <option value="07">07 - Extração e preparação de minérios metálicos</option>
+                            <option value="08">08 - Outras indústrias extrativas</option>
+                            <option value="09">09 - Atividades dos serviços relacionados com as indústrias extrativas
+                            </option>
+                            <option value="10">10 - Indústrias alimentares</option>
+                        </select>
+                    </div>
+
+                    <!-- Formato de Download -->
+                    <div class="form-group">
+                        <label class="form-label">Em que formato pretende efetuar o download:</label>
+                        <div class="format-options">
+                            <div class="format-option">
+                                <input type="radio" id="formatCsv" name="formato" value="csv" class="format-radio"
+                                    required checked>
+                                <label for="formatCsv">CSV</label>
+                            </div>
+                            <div class="format-option">
+                                <input type="radio" id="formatXls" name="formato" value="xls" class="format-radio">
+                                <label for="formatXls">XLS</label>
+                            </div>
+                            <div class="format-option">
+                                <input type="radio" id="formatCsvSep" name="formato" value="csv-sep"
+                                    class="format-radio">
+                                <label for="formatCsvSep">PDF</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Fazer Download</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <%- include('components/tab_base') %>
+        <%- include('components/detalhes') %>
+
+@@ -247,49 +327,6 @@
+                <%- include('components/button') %>
+
+                    <script>
+
+                        document.addEventListener("DOMContentLoaded", () => {
+                            const dropdownButton = document.getElementById("dropdown-button")
+                            const dropdownMenu = document.getElementById("dropdown-menu")
+                            const selectedContractText = document.getElementById("selected-contract")
+                            const dropdownItems = document.querySelectorAll(".dropdown-item")
+                            const searchInput = document.querySelector(".search-input")
+
+                            dropdownButton.addEventListener("click", function () {
+                                const expanded = this.getAttribute("aria-expanded") === "true"
+                                this.setAttribute("aria-expanded", !expanded)
+                                dropdownMenu.style.display = expanded ? "none" : "block"
+                            })
+
+                            document.addEventListener("click", (event) => {
+                                if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                                    dropdownButton.setAttribute("aria-expanded", "false")
+                                    dropdownMenu.style.display = "none"
+                                }
+                            })
+
+                            const placeholderTexts = {
+                                Contrato: "Pesquisar pelo número ou objeto do Contrato",
+                                Entidades: "Pesquisar pelo nome da Entidade",
+                                "Modificações contratuais": "Pesquisar pela modificação contratual",
+                                "Bens móveis": "Pesquisar pelo bem móvel",
+                                "Não Celebrações de contrato": "Pesquisar pela não celebração",
+                                Impugnação: "Pesquisar pela impugnação",
+                            }
+
+                            dropdownItems.forEach((item) => {
+                                item.addEventListener("click", function () {
+                                    const selectedValue = this.getAttribute("data-value")
+                                    selectedContractText.textContent = selectedValue
+                                    searchInput.placeholder = placeholderTexts[selectedValue] || `Pesquisar pelo ${selectedValue.toLowerCase()}`
+                                    dropdownButton.setAttribute("aria-expanded", "false")
+                                    dropdownMenu.style.display = "none"
+                                })
+                            })
+
+                            const initialSelection = selectedContractText.textContent
+                            searchInput.placeholder = placeholderTexts[initialSelection] || `Pesquisar pelo ${initialSelection.toLowerCase()}`
+                        })
+                        document.addEventListener('DOMContentLoaded', function () {
+                            // === Função para preencher anos, meses e dias dinamicamente ===
+                            function populateDateSelectors(yearId, monthId, dayId) {
+
+
+@@ -352,65 +389,12 @@
+                            populateDateSelectors('to-year', 'to-month', 'to-day');
+
+                            // Initialize Lucide icons
+                            // Declare lucide if it's not already available globally
+                            if (typeof lucide === 'undefined') {
+                                console.warn('Lucide is not globally defined. Ensure Lucide library is properly included.');
+                                // You might want to initialize a placeholder or load the library here if possible.
+                                // Example placeholder:
+                                window.lucide = { createIcons: function () { } };
+                            }
+                            lucide.createIcons();
+
+                            // Dropdown functionality
+                            const dropdownContainer = document.getElementById('contracts-dropdown');
+                            const dropdownButton = document.getElementById('dropdown-button');
+                            const dropdownText = document.getElementById('selected-contract');
+                            const dropdownMenu = document.getElementById('dropdown-menu');
+                            const dropdownItems = document.querySelectorAll('.dropdown-item');
+                            const dropdownIcon = dropdownButton.querySelector('[data-lucide="chevron-down"]');
+
+                            // Toggle dropdown menu when clicking on the button
+                            dropdownButton.addEventListener('click', function (e) {
+                                e.stopPropagation();
+                                dropdownContainer.classList.toggle('active');
+
+                                // Update ARIA attributes
+                                const isExpanded = dropdownContainer.classList.contains('active');
+                                dropdownButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+                            });
+
+                            // Close dropdown when clicking outside
+                            document.addEventListener('click', function () {
+                                dropdownContainer.classList.remove('active');
+                                dropdownButton.setAttribute('aria-expanded', 'false');
+                            });
+
+                            // Prevent closing when clicking inside the dropdown menu
+                            dropdownMenu.addEventListener('click', function (e) {
+                                e.stopPropagation();
+                            });
+
+                            // Select dropdown item
+                            dropdownItems.forEach(function (item) {
+                                item.addEventListener('click', function () {
+                                    const value = this.getAttribute('data-value');
+                                    dropdownText.textContent = value;
+                                    dropdownContainer.classList.remove('active');
+                                    dropdownButton.setAttribute('aria-expanded', 'false');
+
+                                    // You could trigger an action here based on selection
+                                    console.log('Selected:', value);
+                                });
+                            });
+
+                            // Close dropdown when pressing Escape key
+                            document.addEventListener('keydown', function (e) {
+                                if (e.key === 'Escape') {
+                                    dropdownContainer.classList.remove('active');
+                                    dropdownButton.setAttribute('aria-expanded', 'false');
+                                }
+                            });
+
+                            // Clear button functionality
+                            const clearBtn = document.getElementById('clear-form-btn');
+
+
+
+@@ -438,9 +422,6 @@
+                            searchBtn.addEventListener('click', function () {
+                                // Collect form data and submit
+                                console.log('Advanced search submitted');
+                                // Here you would typically collect all form data and submit it
+
+                                // Example of collecting form data
+                                const formData = {
+                                    specialMeasures: document.getElementById('special-measures').checked,
+                                    includeMec: document.getElementById('include-mec').checked,
+
+@@ -452,123 +433,77 @@
+                                    cpv: document.getElementById('cpv').value,
+                                    environmentalCriteria: document.getElementById('environmental-criteria').checked,
+                                    dateType: document.getElementById('date-type').value,
+                                    // Add more fields as needed
+                                };
+
+                                console.log('Form data:', formData);
+                            });
+
+                            // Make dropdown accessible via keyboard
+                            dropdownButton.addEventListener('keydown', function (e) {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    dropdownContainer.classList.toggle('active');
+
+                                    const isExpanded = dropdownContainer.classList.contains('active');
+                                    dropdownButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+                                }
+                            });
+
+                            // Mostrar tabela de resultados quando os botões de pesquisa são clicados
+                            const searchButtons = document.querySelectorAll('.search-button, .submit-button');
+                            const resultsTable = document.getElementById('results-table');
+                            const notificationContainer = document.getElementById('notificacao-container'); // Referência ao popup
+                            const notificationContainer = document.getElementById('notificacao-container');
+
+                            searchButtons.forEach(button => {
+                                button.addEventListener('click', function () {
+                                    // Exibe a tabela de resultados
+                                    if (resultsTable) {
+                                        resultsTable.style.display = 'block';
+                                        resultsTable.scrollIntoView({ behavior: 'smooth' });
+                                    }
+
+                                    // Exibe o popup de notificação
+                                    if (notificationContainer) {
+                                        notificationContainer.style.display = 'block';
+                                    }
+                                });
+                            });
+
+                            // === NOVA FUNCIONALIDADE: Controle de visibilidade do container principal de detalhes ===
+
+                            // Selecionar todos os botões de detalhes na tabela
+                            // Controle de visibilidade do container principal de detalhes
+                            const detailsButtons = document.querySelectorAll('.details-button');
+
+                            // Selecionar todos os elementos de detalhes
+                            const contractDetails = document.querySelectorAll('.contract-details');
+
+                            // Selecionar todos os botões de voltar
+                            const closeButtons = document.querySelectorAll('.close-details');
+
+                            // Inicialmente ocultar todos os detalhes
+                            contractDetails.forEach(detail => {
+                                detail.style.display = 'none';
+                            });
+
+                            // Adicionar evento de clique aos botões de detalhes
+                            detailsButtons.forEach(button => {
+                                button.addEventListener('click', function () {
+                                    // Obter o ID do contrato do atributo data-contract-id
+                                    const contractId = this.getAttribute('data-contract-id');
+
+                                    // Mostrar o container principal de detalhes
+                                    const mainContainer = document.getElementById('main-container');
+                                    if (mainContainer) {
+                                        mainContainer.style.display = 'block';
+                                    }
+
+                                    // Verificar se o elemento de detalhes existe
+                                    const detailsElement = document.getElementById(`details-${contractId}`);
+                                    if (!detailsElement) return;
+
+                                    // Ocultar todos os outros detalhes
+                                    contractDetails.forEach(detail => {
+                                        if (detail.id !== `details-${contractId}`) {
+                                            detail.style.display = 'none';
+                                        }
+                                    });
+
+                                    // Restaurar os ícones de todos os outros botões
+                                    detailsButtons.forEach(btn => {
+                                        if (btn !== this) {
+                                            const icon = btn.querySelector('i');
+                                            if (icon) {
+                                                icon.classList.remove('fa-minus-circle');
+                                                icon.classList.add('fa-plus-circle');
+                                            }
+                                        }
+                                    });
+
+                                    // Mostrar os detalhes do contrato clicado
+                                    detailsElement.style.display = 'block';
+
+                                    // Alterar o ícone do botão para indicar que está expandido
+                                    const icon = this.querySelector('i');
+                                    if (icon) {
+                                        icon.classList.remove('fa-plus-circle');
+                                        icon.classList.add('fa-minus-circle');
+                                    }
+
+                                    // Rolar suavemente até os detalhes
+                                    if (mainContainer) {
+                                        mainContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                    }
+                                });
+                            });
+
+                            // Adicionar evento de clique aos botões de voltar
+                            closeButtons.forEach(button => {
+                                button.addEventListener('click', function () {
+                                    // Obter o ID do contrato do atributo data-contract-id
+                                    const contractId = this.getAttribute('data-contract-id');
+
+                                    // Ocultar o container principal
+                                    const mainContainer = document.getElementById('main-container');
+                                    if (mainContainer) {
+                                        mainContainer.style.display = 'none';
+                                    }
+
+                                    // Encontrar o botão correspondente na tabela e restaurar seu ícone
+                                    const detailsButton = document.querySelector(`.details-button[data-contract-id="${contractId}"]`);
+                                    if (detailsButton) {
+                                        const icon = detailsButton.querySelector('i');
+
+@@ -578,7 +513,6 @@
+                                        }
+                                    }
+
+                                    // Rolar de volta para a tabela
+                                    const resultsTable = document.querySelector('.results-table');
+                                    if (resultsTable) {
+                                        resultsTable.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+@@ -586,7 +520,6 @@
+                                });
+                            });
+
+                            // Adicionar suporte para navegação por teclado
+                            detailsButtons.forEach(button => {
+                                button.addEventListener('keydown', function (e) {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+
+@@ -604,66 +537,33 @@
+                                    }
+                                });
+                            });
+                            document.addEventListener("DOMContentLoaded", () => {
+                                // Get references to the elements
+                                const dropdownButton = document.getElementById("dropdown-button")
+                                const dropdownMenu = document.getElementById("dropdown-menu")
+                                const selectedContractText = document.getElementById("selected-contract")
+                                const dropdownItems = document.querySelectorAll(".dropdown-item")
+                                const searchInput = document.querySelector(".search-input")
+
+                                // Toggle dropdown menu when button is clicked
+                                dropdownButton.addEventListener("click", function () {
+                                    const expanded = this.getAttribute("aria-expanded") === "true"
+                                    this.setAttribute("aria-expanded", !expanded)
+                                    dropdownMenu.style.display = expanded ? "none" : "block"
+                                })
+
+                                // Close dropdown when clicking outside
+                                document.addEventListener("click", (event) => {
+                                    if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                                        dropdownButton.setAttribute("aria-expanded", "false")
+                                        dropdownMenu.style.display = "none"
+                                    }
+                                })
+
+                                // Define placeholder texts for each option
+                                const placeholderTexts = {
+                                    Contratos: "Pesquisar pelo objeto do Contrato",
+                                    Anúncios: "Pesquisar pelo objeto do Anúncio",
+                                    Entidades: "Pesquisar pelo nome da Entidade",
+                                    "Modificações contratuais": "Pesquisar pela modificação contratual",
+                                    "Bens móveis": "Pesquisar pelo bem móvel",
+                                    "Não Celebrações de contrato": "Pesquisar pela não celebração",
+                                    Impugnação: "Pesquisar pela impugnação",
+                                }
+
+                                // Handle dropdown item selection
+                                dropdownItems.forEach((item) => {
+                                    item.addEventListener("click", function () {
+                                        const selectedValue = this.getAttribute("data-value")
+                            // Elementos do DOM
+                            const openPopupBtn = document.getElementById('openPopupBtn');
+                            const closeBtn = document.getElementById('closeBtn');
+                            const overlay = document.getElementById('overlay');
+
+                                        // Update the dropdown button text
+                                        selectedContractText.textContent = selectedValue
+
+                                        // Update the search input placeholder
+                                        searchInput.placeholder = placeholderTexts[selectedValue] || `Pesquisar pelo ${selectedValue.toLowerCase()}`
+
+                                        // Close the dropdown
+                                        dropdownButton.setAttribute("aria-expanded", "false")
+                                        dropdownMenu.style.display = "none"
+                                    })
+                                })
+
+                                // Set initial placeholder based on default selection
+                                const initialSelection = selectedContractText.textContent
+                                searchInput.placeholder = placeholderTexts[initialSelection] || `Pesquisar pelo ${initialSelection.toLowerCase()}`
+                            })
+                            // Abrir o popup
+                            openPopupBtn.addEventListener('click', function () {
+                                overlay.style.display = 'flex';
+                                document.body.style.overflow = 'hidden'; // Impedir rolagem do body
+                            });
+
+                           
+                            // Fechar o popup
+                            closeBtn.addEventListener('click', function () {
+                                overlay.style.display = 'none';
+                                document.body.style.overflow = 'auto'; // Permitir rolagem do body
+                            });
+
+                            // Fechar o popup ao clicar fora dele
+                            overlay.addEventListener('click', function (e) {
+                                if (e.target === overlay) {
+                                    overlay.style.display = 'none';
+                                    document.body.style.overflow = 'auto'; // Permitir rolagem do body
+                                }
+                            });
+                        });
+                    </script>
+</body>
+
+</html>
