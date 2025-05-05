@@ -406,84 +406,60 @@ main {
 
 
 /* Overlay para o popup */
-    /* Estilos para os popups */
-    .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-    }
-    #overlay, #captchaOverlay {
-      display: none;
-  }
-    .captcha-popup {
-        display: none; /* Inicialmente oculto */
-        z-index: 1100; /* Maior que o overlay principal */
-    }
-    
-    .popup {
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        max-width: 500px;
-        width: 100%;
-        padding: 25px;
-        position: relative;
-    }
-    
-    .close-btn {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        cursor: pointer;
-        font-size: 20px;
-        color: #666;
-        background: none;
-        border: none;
-        padding: 0;
-    }
-    
-    .popup-title, h2 {
-        color: #4a7c30;
-        margin-top: 0;
-        margin-bottom: 25px;
-        text-align: center;
-    }
-    
-    .captcha-info {
-        background-color: #f5f5f5;
-        border-radius: 4px;
-        padding: 15px;
-        margin-bottom: 20px;
-    }
-    
-    .captcha-info p {
-        margin: 0 0 10px 0;
-        color: #555;
-    }
-    
-    .submit-btn {
-        background-color: #4a7c30;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        padding: 12px;
-        width: 100%;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-    
-    .submit-btn:hover {
-        background-color: #3d6628;
-    }
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
 
+/* Estilo do popup */
+.popup {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 500px;
+  padding: 2rem;
+  position: relative;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Botão de fechar */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+/* Título do popup */
+.popup-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #3c6c2a;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  display: flex; /* Adicionado */
+  justify-content: center; /* Adicionado */
+  align-items: center; /* Adicionado */
+  height: 100%; /* Opcional, se necessário para centralizar verticalmente */
+}
 
 /* Formulário */
 .form-group {
@@ -615,8 +591,6 @@ main {
   font-weight: bold;
   margin-bottom: 8px;
 }
-
-
 
 /* Responsive styles */
 @media (max-width: 768px) {
