@@ -262,31 +262,31 @@
                 <div id="downloadStep1" class="download-step active">
                     <form id="downloadForm">
                         <!-- Nome -->
-                        <div class="form-group">
+                        <div class="overlay-form-group">
                             <label for="nome" class="form-label">Nome</label>
                             <input type="text" id="nome" name="nome" class="form-input" required>
                         </div>
 
                         <!-- Sobrenome -->
-                        <div class="form-group">
+                        <div class="overlay-form-group">
                             <label for="sobrenome" class="form-label">Sobrenome</label>
                             <input type="text" id="sobrenome" name="sobrenome" class="form-input" required>
                         </div>
 
                         <!-- E-mail Profissional -->
-                        <div class="form-group">
+                        <div class="overlay-form-group">
                             <label for="email" class="form-label">E-mail Profissional</label>
                             <input type="email" id="email" name="email" class="form-input" required>
                         </div>
 
                         <!-- Telefone Profissional -->
-                        <div class="form-group">
+                        <div class="overlay-form-group">
                             <label for="telefone" class="form-label">Telefone Profissional</label>
                             <input type="tel" id="telefone" name="telefone" class="form-input" required>
                         </div>
 
                         <!-- Setor de Atividade Profissional -->
-                        <div class="form-group">
+                        <div class="overlay-form-group">
                             <label for="setor" class="form-label">Setor de Atividade Profissional</label>
                             <select id="setor" name="setor" class="form-select" required>
                                 <option value="" disabled selected>Selecione um setor</option>
@@ -305,12 +305,11 @@
                         </div>
 
                         <!-- Formato de Download -->
-                        <div class="form-group">
+                        <div class="download-format-group">
                             <label class="form-label">Em que formato pretende efetuar o download:</label>
                             <div class="format-options">
                                 <div class="format-option">
-                                    <input type="radio" id="formatCsv" name="formato" value="csv" class="format-radio"
-                                        required checked>
+                                    <input type="radio" id="formatCsv" name="formato" value="csv" class="format-radio" required checked>
                                     <label for="formatCsv">CSV</label>
                                 </div>
                                 <div class="format-option">
@@ -331,7 +330,7 @@
                 <div id="downloadStep2" class="download-step">
                     <div class="verification-container">
                         <div class="verification-icon">
-                            <i data-lucide="mail" class="icon-large"></i>
+                            <i data-lucide="mail"></i>
                         </div>
                         <h3>Verificação por Email</h3>
                         <p>Enviamos um código de verificação de 3 dígitos para o seu email.</p>
@@ -341,7 +340,8 @@
                             <input type="text" class="verification-input" maxlength="1" data-index="0">
                             <input type="text" class="verification-input" maxlength="1" data-index="1">
                             <input type="text" class="verification-input" maxlength="1" data-index="2">
-                        </div>
+                            <input type="text" class="verification-input" maxlength="1" data-index="3">
+                            <input type="text" class="verification-input" maxlength="1" data-index="4">                        </div>
 
                         <div class="verification-actions">
                             <button id="verifyCodeBtn" class="submit-btn">Verificar</button>
@@ -432,142 +432,142 @@
 
                             populateDateSelectors('from-year', 'from-month', 'from-day');
                             populateDateSelectors('to-year', 'to-month', 'to-day');
-                        
 
-                        // ========== Ícones Lucide ==========
-                        (typeof lucide === 'undefined' ? { createIcons: () => { } } : lucide).createIcons();
 
-                        // ========== Limpar formulário ==========
-                        qs('#clear-form-btn')?.addEventListener('click', () => {
-                            const form = qs('#advancedSearchForm');
-                            form?.querySelectorAll('input').forEach(i => i.type === 'checkbox' ? i.checked = false : i.value = '');
-                            form?.querySelectorAll('select').forEach(s => s.selectedIndex = 0);
-                        });
+                            // ========== Ícones Lucide ==========
+                            (typeof lucide === 'undefined' ? { createIcons: () => { } } : lucide).createIcons();
 
-                        // ========== Mostrar resultados ==========
-                        const resultsTable = qs('#results-table');
-                        const notifContainer = qs('#notificacao-container');
-                        qsa('.search-button, .submit-button').forEach(btn =>
-                            btn.addEventListener('click', () => {
-                                resultsTable?.style.setProperty('display', 'block');
-                                notifContainer?.style.setProperty('display', 'block');
-                                resultsTable?.scrollIntoView({ behavior: 'smooth' });
-                            })
-                        );
+                            // ========== Limpar formulário ==========
+                            qs('#clear-form-btn')?.addEventListener('click', () => {
+                                const form = qs('#advancedSearchForm');
+                                form?.querySelectorAll('input').forEach(i => i.type === 'checkbox' ? i.checked = false : i.value = '');
+                                form?.querySelectorAll('select').forEach(s => s.selectedIndex = 0);
+                            });
 
-                        // ========== Detalhes de contratos ==========
-                        const contractDetails = qsa('.contract-details');
-                        const toggleDetail = (id, show) => {
-                            contractDetails.forEach(el => el.style.display = el.id === `details-${id}` && show ? 'block' : 'none');
-                            const btn = qs(`.details-button[data-contract-id="${id}"]`);
-                            const icon = btn?.querySelector('i');
-                            qs('#main-container')?.style.setProperty('display', show ? 'block' : 'none');
-                            icon?.classList.toggle('fa-plus-circle', !show);
-                            icon?.classList.toggle('fa-minus-circle', show);
-                            (show ? qs('#main-container') : qs('.results-table'))?.scrollIntoView({ behavior: 'smooth' });
-                        };
+                            // ========== Mostrar resultados ==========
+                            const resultsTable = qs('#results-table');
+                            const notifContainer = qs('#notificacao-container');
+                            qsa('.search-button, .submit-button').forEach(btn =>
+                                btn.addEventListener('click', () => {
+                                    resultsTable?.style.setProperty('display', 'block');
+                                    notifContainer?.style.setProperty('display', 'block');
+                                    resultsTable?.scrollIntoView({ behavior: 'smooth' });
+                                })
+                            );
 
-                        qsa('.details-button').forEach(btn => {
-                            const id = btn.dataset.contractId;
-                            ['click', 'keydown'].forEach(evt => {
-                                btn.addEventListener(evt, e => {
-                                    if (evt === 'click' || ['Enter', ' '].includes(e.key)) {
-                                        e.preventDefault?.();
-                                        toggleDetail(id, true);
-                                    }
+                            // ========== Detalhes de contratos ==========
+                            const contractDetails = qsa('.contract-details');
+                            const toggleDetail = (id, show) => {
+                                contractDetails.forEach(el => el.style.display = el.id === `details-${id}` && show ? 'block' : 'none');
+                                const btn = qs(`.details-button[data-contract-id="${id}"]`);
+                                const icon = btn?.querySelector('i');
+                                qs('#main-container')?.style.setProperty('display', show ? 'block' : 'none');
+                                icon?.classList.toggle('fa-plus-circle', !show);
+                                icon?.classList.toggle('fa-minus-circle', show);
+                                (show ? qs('#main-container') : qs('.results-table'))?.scrollIntoView({ behavior: 'smooth' });
+                            };
+
+                            qsa('.details-button').forEach(btn => {
+                                const id = btn.dataset.contractId;
+                                ['click', 'keydown'].forEach(evt => {
+                                    btn.addEventListener(evt, e => {
+                                        if (evt === 'click' || ['Enter', ' '].includes(e.key)) {
+                                            e.preventDefault?.();
+                                            toggleDetail(id, true);
+                                        }
+                                    });
+                                });
+                            });
+
+                            qsa('.close-details').forEach(btn => {
+                                const id = btn.dataset.contractId;
+                                ['click', 'keydown'].forEach(evt => {
+                                    btn.addEventListener(evt, e => {
+                                        if (evt === 'click' || ['Enter', ' '].includes(e.key)) {
+                                            e.preventDefault?.();
+                                            toggleDetail(id, false);
+                                        }
+                                    });
+                                });
+                            });
+
+                            // ========== Dropdown ==========
+                            const dropdownBtn = qs('#dropdown-button');
+                            const dropdownMenu = qs('#dropdown-menu');
+                            const searchInput = qs('.search-input');
+                            const selectedContract = qs('#selected-contract');
+
+                            const placeholderMap = {
+                                Contrato: "Pesquisar pelo objeto do Contrato",
+                                Anúncios: "Pesquisar pelo objeto do Anúncio",
+                                Entidades: "Pesquisar pelo nome da Entidade",
+                                "Modificações contratuais": "Pesquisar pela modificação contratual",
+                                "Bens móveis": "Pesquisar pelo bem móvel",
+                                "Não Celebrações de contrato": "Pesquisar pela não celebração",
+                                Impugnação: "Pesquisar pela impugnação",
+                            };
+
+                            dropdownBtn?.addEventListener('click', () => {
+                                const expanded = dropdownBtn.getAttribute("aria-expanded") === "true";
+                                dropdownBtn.setAttribute("aria-expanded", String(!expanded));
+                                dropdownMenu.style.display = expanded ? "none" : "block";
+                            });
+
+                            document.addEventListener('click', e => {
+                                if (!dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                                    dropdownBtn.setAttribute("aria-expanded", "false");
+                                    dropdownMenu.style.display = "none";
+                                }
+                            });
+
+                            qsa('.dropdown-item').forEach(item =>
+                                item.addEventListener('click', e => {
+                                    const val = e.currentTarget.dataset.value;
+                                    selectedContract.textContent = val;
+                                    searchInput.placeholder = placeholderMap[val] || '';
+                                    dropdownBtn.setAttribute("aria-expanded", "false");
+                                    dropdownMenu.style.display = "none";
+                                })
+                            );
+
+                            // ========== Popup de Download ==========
+                            const openBtn = qs('#openPopupBtn'), closeBtn = qs('#closeBtn'), overlay = qs('#overlay');
+                            const form = qs('#downloadForm'), verifyBtn = qs('#verifyCodeBtn'), resendBtn = qs('#resendCodeBtn');
+                            const step1 = qs('#downloadStep1'), step2 = qs('#downloadStep2'), step3 = qs('#downloadStep3');
+                            const inputs = qsa('.verification-input');
+                            let code = '', email = '';
+
+                            const showStep = step => [step1, step2, step3].forEach(s => s.classList.toggle('active', s === step));
+                            const genCode = () => (code = Math.floor(100 + Math.random() * 900).toString());
+                            const sendCode = (email, code) => {
+                                console.log(`Enviando código ${code} para ${email}`);
+                                return new Promise(res => setTimeout(() => res(true), 1000));
+                            };
+
+                            openBtn?.addEventListener('click', () => {
+                                overlay.style.display = 'flex';
+                                document.body.style.overflow = 'hidden';
+                            });
+
+                            const closePopup = () => {
+                                overlay.style.display = 'none';
+                                document.body.style.overflow = 'auto';
+                                showStep(step1);
+                                form.reset();
+                            };
+
+                            closeBtn?.addEventListener('click', closePopup);
+                            overlay?.addEventListener('click', e => e.target === overlay && closePopup());
+
+                            form?.addEventListener('submit', e => {
+                                e.preventDefault();
+                                email = qs('#email').value;
+                                sendCode(email, genCode()).then(() => {
+                                    showStep(step2);
+                                    inputs[0]?.focus();
                                 });
                             });
                         });
-
-                        qsa('.close-details').forEach(btn => {
-                            const id = btn.dataset.contractId;
-                            ['click', 'keydown'].forEach(evt => {
-                                btn.addEventListener(evt, e => {
-                                    if (evt === 'click' || ['Enter', ' '].includes(e.key)) {
-                                        e.preventDefault?.();
-                                        toggleDetail(id, false);
-                                    }
-                                });
-                            });
-                        });
-
-                        // ========== Dropdown ==========
-                        const dropdownBtn = qs('#dropdown-button');
-                        const dropdownMenu = qs('#dropdown-menu');
-                        const searchInput = qs('.search-input');
-                        const selectedContract = qs('#selected-contract');
-
-                        const placeholderMap = {
-                            Contrato: "Pesquisar pelo objeto do Contrato",
-                            Anúncios: "Pesquisar pelo objeto do Anúncio",
-                            Entidades: "Pesquisar pelo nome da Entidade",
-                            "Modificações contratuais": "Pesquisar pela modificação contratual",
-                            "Bens móveis": "Pesquisar pelo bem móvel",
-                            "Não Celebrações de contrato": "Pesquisar pela não celebração",
-                            Impugnação: "Pesquisar pela impugnação",
-                        };
-
-                        dropdownBtn?.addEventListener('click', () => {
-                            const expanded = dropdownBtn.getAttribute("aria-expanded") === "true";
-                            dropdownBtn.setAttribute("aria-expanded", String(!expanded));
-                            dropdownMenu.style.display = expanded ? "none" : "block";
-                        });
-
-                        document.addEventListener('click', e => {
-                            if (!dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
-                                dropdownBtn.setAttribute("aria-expanded", "false");
-                                dropdownMenu.style.display = "none";
-                            }
-                        });
-
-                        qsa('.dropdown-item').forEach(item =>
-                            item.addEventListener('click', e => {
-                                const val = e.currentTarget.dataset.value;
-                                selectedContract.textContent = val;
-                                searchInput.placeholder = placeholderMap[val] || '';
-                                dropdownBtn.setAttribute("aria-expanded", "false");
-                                dropdownMenu.style.display = "none";
-                            })
-                        );
-
-                        // ========== Popup de Download ==========
-                        const openBtn = qs('#openPopupBtn'), closeBtn = qs('#closeBtn'), overlay = qs('#overlay');
-                        const form = qs('#downloadForm'), verifyBtn = qs('#verifyCodeBtn'), resendBtn = qs('#resendCodeBtn');
-                        const step1 = qs('#downloadStep1'), step2 = qs('#downloadStep2'), step3 = qs('#downloadStep3');
-                        const inputs = qsa('.verification-input');
-                        let code = '', email = '';
-
-                        const showStep = step => [step1, step2, step3].forEach(s => s.classList.toggle('active', s === step));
-                        const genCode = () => (code = Math.floor(100 + Math.random() * 900).toString());
-                        const sendCode = (email, code) => {
-                            console.log(`Enviando código ${code} para ${email}`);
-                            return new Promise(res => setTimeout(() => res(true), 1000));
-                        };
-
-                        openBtn?.addEventListener('click', () => {
-                            overlay.style.display = 'flex';
-                            document.body.style.overflow = 'hidden';
-                        });
-
-                        const closePopup = () => {
-                            overlay.style.display = 'none';
-                            document.body.style.overflow = 'auto';
-                            showStep(step1);
-                            form.reset();
-                        };
-
-                        closeBtn?.addEventListener('click', closePopup);
-                        overlay?.addEventListener('click', e => e.target === overlay && closePopup());
-
-                        form?.addEventListener('submit', e => {
-                            e.preventDefault();
-                            email = qs('#email').value;
-                            sendCode(email, genCode()).then(() => {
-                                showStep(step2);
-                                inputs[0]?.focus();
-                            });
-                        });
-                    });
                     </script>
 
 </body>
