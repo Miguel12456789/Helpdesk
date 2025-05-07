@@ -14,9 +14,4 @@ app.use(express.static("src")); // Serve static files from the src folder
 // Usa o roteador
 app.use('/', router);
 
-// Middleware para erro 404
-app.use((req, res) => {
-    res.status(404).render("components/404"); // Renderiza a página 404.ejs
-});
-
 module.exports = app;

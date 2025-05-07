@@ -229,8 +229,6 @@ main {
   margin-right: 0.5rem;
 }
 
-
-
 .advanced-search-form {
   max-height: 2000px;
   opacity: 1;
@@ -308,6 +306,12 @@ main {
   background-position: right 0.75rem center;
   background-size: 1rem;
   padding-right: 2.5rem;
+}
+
+.form-select:disabled {
+  background-color: #f3f4f6;
+  color: #9ca3af;
+  cursor: not-allowed;
 }
 
 /* Date fields */
@@ -404,93 +408,121 @@ main {
   background-color: #4d8836;
 }
 
+/* Botão para abrir o popup (para demonstração) */
+.open-popup-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #3c6c2a;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin: 2rem;
+}
+
+.open-popup-btn:hover {
+  background-color: #4d8836;
+}
+
+.info-box {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  padding: 20px 30px;
+  margin: 20px 0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  font-family: Arial, sans-serif;
+  color: #333;
+  line-height: 1.5;
+}
+
+.info-box p:first-child {
+  font-weight: bold;
+  text-align: center; /* Centraliza o primeiro parágrafo */
+  margin-bottom: 8px;
+}
+
+.info-box p:last-child {
+  text-align: left; /* Alinha o segundo parágrafo à esquerda */
+}
+
+.info-box p {
+  margin: 0;
+  padding: 0;
+}
+
+.info-box p:first-child {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+
 
 /* Overlay para o popup */
-    /* Estilos para os popups */
-    .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-    }
-    #overlay, #captchaOverlay {
-      display: none;
-  }
-    .captcha-popup {
-        display: none; /* Inicialmente oculto */
-        z-index: 1100; /* Maior que o overlay principal */
-    }
-    
-    .popup {
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        max-width: 500px;
-        width: 100%;
-        padding: 25px;
-        position: relative;
-    }
-    
-    .close-btn {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        cursor: pointer;
-        font-size: 20px;
-        color: #666;
-        background: none;
-        border: none;
-        padding: 0;
-    }
-    
-    .popup-title, h2 {
-        color: #4a7c30;
-        margin-top: 0;
-        margin-bottom: 25px;
-        text-align: center;
-    }
-    
-    .captcha-info {
-        background-color: #f5f5f5;
-        border-radius: 4px;
-        padding: 15px;
-        margin-bottom: 20px;
-    }
-    
-    .captcha-info p {
-        margin: 0 0 10px 0;
-        color: #555;
-    }
-    
-    .submit-btn {
-        background-color: #4a7c30;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        padding: 12px;
-        width: 100%;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-    
-    .submit-btn:hover {
-        background-color: #3d6628;
-    }
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
 
+/* Estilo do popup */
+.popup {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 500px;
+  padding: 2rem;
+  position: relative;
+  animation: fadeIn 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Botão de fechar */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+/* Título do popup */
+.popup-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #3c6c2a;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /* Formulário */
-.form-group {
+.overlay-form-group {
   margin-bottom: 1.25rem;
 }
 
-.form-label {
+.overlay-form-group .form-label {
   display: block;
   font-size: 0.9rem;
   font-weight: 500;
@@ -498,7 +530,7 @@ main {
   margin-bottom: 0.5rem;
 }
 
-.form-input {
+.overlay-form-group .form-input {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid #e5e7eb;
@@ -507,13 +539,13 @@ main {
   transition: all 0.2s;
 }
 
-.form-input:focus {
+.overlay-form-group .form-input:focus {
   outline: none;
   border-color: #3c6c2a;
   box-shadow: 0 0 0 3px rgba(60, 108, 42, 0.1);
 }
 
-.form-select {
+.overlay-form-group .form-select {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid #e5e7eb;
@@ -529,27 +561,26 @@ main {
   padding-right: 2.5rem;
 }
 
-.form-select:focus {
+.overlay-form-group .form-select:focus {
   outline: none;
   border-color: #3c6c2a;
   box-shadow: 0 0 0 3px rgba(60, 108, 42, 0.1);
 }
 
 /* Opções de formato */
-.format-options {
-  margin-top: 0.5rem;
+.download-format-group .format-options {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
 }
 
-.format-option {
+.download-format-group .format-option {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.format-radio {
+.download-format-group .format-radio {
   width: 1.25rem;
   height: 1.25rem;
   accent-color: #3c6c2a;
@@ -575,9 +606,169 @@ main {
   background-color: #4d8836;
 }
 
-/* Botão para abrir o popup (para demonstração) */
-.open-popup-btn {
-  display: inline-block;
+/* CAPTCHA */
+.captcha-container {
+  margin-top: 1.5rem;
+}
+
+.captcha-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.captcha-text {
+  font-family: 'Courier New', monospace;
+  font-size: 1.25rem;
+  font-weight: bold;
+  letter-spacing: 0.25rem;
+  color: #1f2937;
+  user-select: none;
+  background: linear-gradient(45deg, #3c6c2a, #4d8836);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.captcha-text::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 5px,
+    rgba(0, 0, 0, 0.05) 5px,
+    rgba(0, 0, 0, 0.05) 10px
+  );
+  z-index: -1;
+}
+
+.refresh-captcha {
+  background: none;
+  border: none;
+  color: #4b5563;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.refresh-captcha:hover {
+  color: #1f2937;
+}
+
+/* Etapas do download */
+.download-step {
+  display: none;
+}
+
+.download-step.active {
+  display: block;
+}
+
+/* Verificação por Email */
+.verification-container {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.verification-icon {
+  margin-bottom: 1rem;
+}
+
+.verification-icon i {
+  font-size: 20rem; /* Aumente o tamanho conforme necessário */
+  color: #3c6c2a; /* Cor opcional */
+}
+
+.verification-container h3 {
+  font-size: 1.25rem;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.verification-container p {
+  color: #4b5563;
+  margin-bottom: 0.5rem;
+}
+
+.verification-code-container {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.verification-input {
+  width: 3rem;
+  height: 3.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.375rem;
+  transition: all 0.2s;
+}
+
+.verification-input:focus {
+  outline: none;
+  border-color: #3c6c2a;
+  box-shadow: 0 0 0 3px rgba(60, 108, 42, 0.1);
+}
+
+.verification-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.resend-btn {
+  background: none;
+  border: none;
+  color: #3c6c2a;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.resend-btn:hover {
+  color: #4d8836;
+  text-decoration: underline;
+}
+
+/* Download Concluído */
+.success-container {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.success-icon {
+  margin-bottom: 1rem;
+}
+
+.success-container h3 {
+  font-size: 1.25rem;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.success-container p {
+  color: #4b5563;
+  margin-bottom: 0.5rem;
+}
+
+.download-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.75rem 1.5rem;
   background-color: #3c6c2a;
   color: white;
@@ -587,36 +778,13 @@ main {
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s;
-  margin: 2rem;
+  margin-top: 1.5rem;
+  text-decoration: none;
 }
 
-.open-popup-btn:hover {
+.download-link:hover {
   background-color: #4d8836;
 }
-
-.info-box {
-  background-color: #f5f5f5;
-  border-radius: 16px;
-  padding: 20px 30px;
-  margin: 20px 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  font-family: Arial, sans-serif;
-  color: #333;
-  line-height: 1.5;
-  text-align: justify;
-}
-
-.info-box p {
-  margin: 0;
-  padding: 0;
-}
-
-.info-box p:first-child {
-  font-weight: bold;
-  margin-bottom: 8px;
-}
-
-
 
 /* Responsive styles */
 @media (max-width: 768px) {
@@ -659,8 +827,6 @@ main {
     gap: 0.5rem;
   }
 }
-
-
 
 @media (min-width: 769px) and (max-width: 1024px) {
   .search-input {
