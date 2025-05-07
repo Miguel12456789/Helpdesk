@@ -83,10 +83,24 @@
                             <label for="measure-type" class="form-label">
                                 Tipologia da medida especial
                             </label>
-                            <select id="measure-type" class="form-select">
+                            <select id="measure-type" class="form-select" disabled>
                                 <option>Todos</option>
-                                <option>Opção 1</option>
-                                <option>Opção 2</option>
+                                <option>Projetos financiados ou cofinanciados por fundos europeus - artigo 2º da Lei n.º
+                                    30/2021</option>
+                                <option>Habitação e descentralização - artigo 3º da Lei n.º 30/2021</option>
+                                <option>Tecnologias de informação e conhecimento - artigo 4º da Lei n.º 30/2021</option>
+                                <option>Setor da saúde e do apoio social - artigo 5º da Lei n.º 30/2021</option>
+                                <option>Plano de Recuperação e Resiliência (PRR) - artigo 2º da Lei n.º 30/2021, DL n.º
+                                    78/2022</option>
+                                <option>Sistema de Gestão Integrada de Fogos Rurais - artigo 7º da Lei n.º 30/2021
+                                </option>
+                                <option>Bens agro-alimentares - artigo 8º da Lei n.º 30/2021</option>
+                                <option>Programa de Estabilização Económica e Social (PEES) - artigo 6º da Lei n.º
+                                    30/2021</option>
+                                <option>Plano de Recuperação e Resiliência (PRR) - artigo 6º da Lei n.º 30/2021</option>
+                                <option>Regime especial de empreitadas de conceção-construção - artigo 2º-A da Lei n.º
+                                    30/2021, DL n.º 78/2022</option>
+
                             </select>
                         </div>
                     </div>
@@ -221,13 +235,31 @@
                             <select class="form-select location-select">
                                 <option>Todos</option>
                                 <option>Portugal</option>
-                                <option>Espanha</option>
+                                <option>Outros</option>
+                            </select>
                             </select>
                             <select class="form-select location-select">
                                 <option>Todos</option>
-                                <option>Lisboa</option>
-                                <option>Porto</option>
+                                <option>Aveiro</option>
+                                <option>Beja</option>
+                                <option>Braga</option>
+                                <option>Bragança</option>
+                                <option>Castelo Branco</option>
+                                <option>Coimbra</option>
+                                <option>Évora</option>
                                 <option>Faro</option>
+                                <option>Guarda</option>
+                                <option>Leiria</option>
+                                <option>Lisboa</option>
+                                <option>Portalegre</option>
+                                <option>Porto</option>
+                                <option>Santarém</option>
+                                <option>Setúbal</option>
+                                <option>Viana do Castelo</option>
+                                <option>Vila Real</option>
+                                <option>Viseu</option>
+                                <option>Região Autónoma dos Açores</option>
+                                <option>Região Autónoma da Madeira</option>
                             </select>
                             <select class="form-select location-select">
                                 <option>Todos</option>
@@ -309,7 +341,8 @@
                             <label class="form-label">Em que formato pretende efetuar o download:</label>
                             <div class="format-options">
                                 <div class="format-option">
-                                    <input type="radio" id="formatCsv" name="formato" value="csv" class="format-radio" required checked>
+                                    <input type="radio" id="formatCsv" name="formato" value="csv" class="format-radio"
+                                        required checked>
                                     <label for="formatCsv">CSV</label>
                                 </div>
                                 <div class="format-option">
@@ -341,7 +374,8 @@
                             <input type="text" class="verification-input" maxlength="1" data-index="1">
                             <input type="text" class="verification-input" maxlength="1" data-index="2">
                             <input type="text" class="verification-input" maxlength="1" data-index="3">
-                            <input type="text" class="verification-input" maxlength="1" data-index="4">                        </div>
+                            <input type="text" class="verification-input" maxlength="1" data-index="4">
+                        </div>
 
                         <div class="verification-actions">
                             <button id="verifyCodeBtn" class="submit-btn">Verificar</button>
@@ -567,6 +601,22 @@
                                     inputs[0]?.focus();
                                 });
                             });
+
+                            // Referências aos elementos
+                            const checkboxes = [
+                                document.getElementById('special-measures'),
+                                document.getElementById('include-mec')
+                            ];
+                            const measureTypeSelect = document.getElementById('measure-type');
+                            // Função para atualizar o estado do dropdown
+                            const updateDropdownState = () => {
+                                measureTypeSelect.disabled = !checkboxes.some(cb => cb.checked);
+                            };
+                            // Adicionar evento a todos os checkboxes
+                            checkboxes.forEach(cb => cb.addEventListener('change', updateDropdownState));
+                            // Estado inicial
+                            updateDropdownState();
+
                         });
                     </script>
 
