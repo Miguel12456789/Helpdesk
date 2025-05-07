@@ -20,7 +20,7 @@
 
         <!-- Last Update -->
         <div class="last-update">
-            Última atualização: 28 abr.2023
+            Última atualização: <span id="data-atualizacao"></span>
         </div>
 
         <main class="content-container">
@@ -211,6 +211,19 @@
         document.addEventListener('DOMContentLoaded', function () {
             // Initialize Lucide icons
             lucide.createIcons();
+        });
+
+        // =================== Data Atual =========================
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+
+            const spanData = document.getElementById('data-atualizacao');
+            if (!spanData) return;
+
+            const hoje = new Date();
+            const meses = ['jan.', 'fev.', 'mar.', 'abr.', 'mai.', 'jun.', 'jul.', 'ago.', 'set.', 'out.', 'nov.', 'dez.'];
+
+            spanData.textContent = `${hoje.getDate()} ${meses[hoje.getMonth()]} ${hoje.getFullYear()}`;
         });
     </script>
 </body>

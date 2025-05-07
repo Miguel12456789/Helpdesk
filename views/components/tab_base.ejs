@@ -19,7 +19,7 @@
 
             <!-- Last Update -->
             <div class="last-update">
-                Última atualização: 28 abr.2023
+                Última atualização: <span id="data-atualizacao"></span>
             </div>
 
             <!-- Main Content -->
@@ -67,66 +67,63 @@
                     </div>
                 </div>
 
-                
+
                 <%- include('paginacao') %>
+
+            </div>
+
 
         </div>
 
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // DOM elements
+                const countDisplay = document.getElementById('count-display');
+                const countNumber = document.getElementById('count-number');
+                const tableRows = document.querySelectorAll('.results-table tbody tr');
+                const contractCount = tableRows.length;
 
-    </div>
+                // Atualiza e mostra o contador
+                countNumber.textContent = 0;
+                countDisplay.classList.add('visible');
+                animateCount(0, contractCount);
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Elementos do DOM
-            const countDisplay = document.getElementById('count-display');
-            const countNumber = document.getElementById('count-number');
-
-            // Obter o número de linhas na tabela (excluindo o cabeçalho)
-            const tableRows = document.querySelectorAll('.results-table tbody tr');
-            const contractCount = tableRows.length;
-
-            // Atualizar o número no contador
-            countNumber.textContent = contractCount;
-
-            // Mostrar o contador automaticamente quando a página carregar
-            countDisplay.classList.add('visible');
-
-            // Animar a contagem
-            animateCount(0, contractCount);
-
-            // Função para animar a contagem
-            function animateCount(start, end) {
-                // Resetar o contador para começar do zero
-                countNumber.textContent = start;
-
-                // Se o contador já estiver visível, não precisamos animar novamente
-                if (start === end) return;
-
-                // Calcular a duração da animação baseada no número de contratos
-                const duration = Math.min(1500, Math.max(500, end * 100));
-                const increment = end > 100 ? 5 : 1;
-                const steps = Math.ceil(end / increment);
-                const stepDuration = duration / steps;
-
-                let current = start;
-
-                // Função para incrementar o contador
-                function step() {
-                    current += increment;
-                    if (current > end) current = end;
-
-                    countNumber.textContent = current;
-
-                    if (current < end) {
-                        setTimeout(step, stepDuration);
+                // Animação do contador
+                function animateCount(start, end) {
+                    if (start === end) {
+                        countNumber.textContent = end;
+                        return;
                     }
-                }
 
-                // Iniciar a animação
-                setTimeout(step, stepDuration);
-            }
-        });
-    </script>
+                    const duration = Math.min(1500, Math.max(500, end * 100));
+                    const increment = end > 100 ? 5 : 1;
+                    const steps = Math.ceil((end - start) / increment);
+                    const stepTime = duration / steps;
+                    let current = start;
+
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= end) {
+                            current = end;
+                            clearInterval(timer);
+                        }
+                        countNumber.textContent = current;
+                    }, stepTime);
+                }
+                // =================== Data Atual =========================
+                document.addEventListener('DOMContentLoaded', () => {
+                    lucide.createIcons();
+
+                    const spanData = document.getElementById('data-atualizacao');
+                    if (!spanData) return;
+
+                    const hoje = new Date();
+                    const meses = ['jan.', 'fev.', 'mar.', 'abr.', 'mai.', 'jun.', 'jul.', 'ago.', 'set.', 'out.', 'nov.', 'dez.'];
+
+                    spanData.textContent = `${hoje.getDate()} ${meses[hoje.getMonth()]} ${hoje.getFullYear()}`;
+                });
+            });
+        </script>
 </body>
 
 </html>
