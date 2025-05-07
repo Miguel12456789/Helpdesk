@@ -229,8 +229,6 @@ main {
   margin-right: 0.5rem;
 }
 
-
-
 .advanced-search-form {
   max-height: 2000px;
   opacity: 1;
@@ -820,8 +818,6 @@ main {
     gap: 0.5rem;
   }
 }
-
-
 
 @media (min-width: 769px) and (max-width: 1024px) {
   .search-input {
